@@ -1,0 +1,25 @@
+sequenceDiagram
+  participant participant_detectionDiagnostics as detectionDiagnostics
+  participant participant_detectProject as detectProject
+  participant participant_detectSnapshot as detectSnapshot
+  participant participant_inspectWithPortAsync as inspectWithPortAsync
+  participant participant_inspectWorkspaces as inspectWorkspaces
+  participant participant_readAsync as readAsync
+  participant participant_summarizeDetection as summarizeDetection
+  participant participant_valuesFor as valuesFor
+  participant_inspectWithPortAsync->>participant_readAsync: port.readAsync()
+  participant_readAsync-->>participant_inspectWithPortAsync: return
+  participant_inspectWithPortAsync->>participant_inspectWorkspaces: inspectWorkspaces()
+  participant_inspectWorkspaces-->>participant_inspectWithPortAsync: return
+  participant_inspectWithPortAsync->>participant_detectSnapshot: detectSnapshot()
+  participant_detectSnapshot->>participant_detectProject: detectProject()
+  participant_detectProject->>participant_summarizeDetection: summarizeDetection()
+  participant_summarizeDetection->>participant_valuesFor: valuesFor()
+  participant_valuesFor-->>participant_summarizeDetection: return
+  participant_summarizeDetection->>participant_detectionDiagnostics: detectionDiagnostics()
+  participant_detectionDiagnostics-->>participant_summarizeDetection: return
+  participant_summarizeDetection-->>participant_detectProject: return
+  participant_detectProject-->>participant_detectSnapshot: return
+  participant_detectSnapshot->>participant_summarizeDetection: summarizeDetection()
+  participant_summarizeDetection-->>participant_detectSnapshot: return
+  participant_detectSnapshot-->>participant_inspectWithPortAsync: return

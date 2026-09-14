@@ -1,0 +1,903 @@
+[
+  {
+    "name": "AttributedFinding",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 44,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "detectorId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "evidence",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"language\" | \"framework\" | \"runtime\" | \"package-manager\" | \"build-tool\" | \"manifest\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "value",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "weight",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DetectedLanguage",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 48,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "evidence",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "score",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "sourceRoots",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DetectionFinding",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 18,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "evidence",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"language\" | \"framework\" | \"runtime\" | \"package-manager\" | \"build-tool\" | \"manifest\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "value",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "weight",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "detectProject",
+    "description": "Detect overlapping project languages, frameworks, runtimes and package-manager evidence.\n\nThe pure API accepts package metadata plus optional relative POSIX file paths and manifest text.\nJavaScript, TypeScript, Java, Kotlin, C++, Python and Delphi evidence is additive, never exclusive.\nGeneric Make/CMake/Gradle files identify build tools, not necessarily a source language.\nScores are heuristic strengths, not confidence probabilities. No source parser, registry request,\ndependency update, migration, filesystem operation or inspected project script runs here.\nExtend detection with explicitly supplied trusted detector callbacks; IDs must be unique.\nPublic types are owned by this package and exported through `@ankhorage/project-detector/types`.",
+    "isReadme": true,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/detection/application/detectProject.ts",
+    "sourceLocation": {
+      "filePath": "src/features/detection/application/detectProject.ts",
+      "line": 24,
+      "column": 1
+    },
+    "exportPaths": ["src/projectDetector.ts"],
+    "relatedSymbols": ["ProjectDetection", "ProjectDetectionInput", "ProjectDetectionOptions"],
+    "signatures": [
+      {
+        "label": "(input: ProjectDetectionInput, options?: ProjectDetectionOptions) => ProjectDetection",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "ProjectDetectionInput",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "options",
+            "type": "ProjectDetectionOptions",
+            "required": false,
+            "description": null
+          }
+        ],
+        "returnType": "ProjectDetection",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "InspectedPackage",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/inspection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/inspection.ts",
+      "line": 27,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": ["ProjectDetection"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "detection",
+        "kind": "property",
+        "type": "ProjectDetection",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "manifestPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "rootPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "InspectedWorkspace",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/inspection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/inspection.ts",
+      "line": 34,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "manifestPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "packagePaths",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "patterns",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "rootPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "inspectProjectAsync",
+    "description": "Inspect a directory using bounded, asynchronous, read-only filesystem access.\n\nImport from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,\n256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories are pruned. Symlinks are skipped\nwith diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.\nConfigure additional manifest basenames and detector callbacks for new ecosystems.\nPackage/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;\nother ecosystem manifests are identified, not fully resolved into dependency graphs.\nNo inspected JavaScript, Gradle, Python, executable config or install script is executed.\nInspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.\nThe result reports incompleteness; it never grants permission to run an update.\nOn a complete scan output is sorted; when a budget is exhausted the retained subset depends\non filesystem enumeration order. Inspect a stable checkout for reproducible results.\nInstall with `npm install @ankhorage/project-detector`; the standalone command is\n`npx --package @ankhorage/project-detector project-detector inspect .`.\nWith Ankh installed, use `ankh project-detector inspect .`.\nCLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.\nRelease automation requires the organization release App configuration and npm publishing\nauthorization for this new package; repository files alone do not provision these credentials.",
+    "isReadme": true,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/inspection/composition/inspectProjectAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/inspection/composition/inspectProjectAsync.ts",
+      "line": 27,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts"],
+    "relatedSymbols": ["ProjectInspection", "ProjectInspectionOptions"],
+    "signatures": [
+      {
+        "label": "(path: string, options?: ProjectInspectionOptions) => Promise<ProjectInspection>",
+        "parameters": [
+          {
+            "name": "options",
+            "type": "ProjectInspectionOptions",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "path",
+            "type": "string",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<ProjectInspection>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "inspectWithPortAsync",
+    "description": "Inspect a snapshot through an injected evidence source; keep I/O outside project classification.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+      "line": 19,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts"],
+    "relatedSymbols": ["ProjectInspection", "ProjectInspectionOptions", "ProjectInspectionPort"],
+    "signatures": [
+      {
+        "label": "(path: string, port: ProjectInspectionPort, options?: ProjectInspectionOptions) => Promise<ProjectInspection>",
+        "parameters": [
+          {
+            "name": "options",
+            "type": "ProjectInspectionOptions",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "path",
+            "type": "string",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "port",
+            "type": "ProjectInspectionPort",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<ProjectInspection>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectDependencyMap",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 1,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectDetection",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 55,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": ["AttributedFinding", "DetectedLanguage", "ProjectDiagnostic"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "buildTools",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "diagnostics",
+        "kind": "property",
+        "type": "readonly ProjectDiagnostic[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "findings",
+        "kind": "property",
+        "type": "readonly AttributedFinding[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "languages",
+        "kind": "property",
+        "type": "readonly DetectedLanguage[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "packageManagers",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "traits",
+        "kind": "property",
+        "type": "ReadonlySet<string>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectDetectionInput",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 5,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "contents",
+        "kind": "property",
+        "type": "ReadonlyMap<string, string>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "dependencies",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "devDependencies",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "engines",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "files",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "optionalDependencies",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "packageManager",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "peerDependencies",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectDetectionOptions",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 33,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": ["ProjectDetector"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "detectors",
+        "kind": "property",
+        "type": "readonly ProjectDetector[]",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectDetector",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 27,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": ["DetectionFinding", "ProjectDetectionInput"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "detect",
+        "kind": "property",
+        "type": "(input: ProjectDetectionInput) => readonly DetectionFinding[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectDetectorCliContext",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/cli.ts",
+    "sourceLocation": {
+      "filePath": "src/types/cli.ts",
+      "line": 1,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "cwd",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "writeStderr",
+        "kind": "property",
+        "type": "(text: string) => void",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "writeStdout",
+        "kind": "property",
+        "type": "(text: string) => void",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectDiagnostic",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 38,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "code",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "message",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "path",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectInspection",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/inspection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/inspection.ts",
+      "line": 41,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [
+      "InspectedPackage",
+      "InspectedWorkspace",
+      "ProjectDetection",
+      "ProjectDiagnostic"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "complete",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "detection",
+        "kind": "property",
+        "type": "ProjectDetection",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "diagnostics",
+        "kind": "property",
+        "type": "readonly ProjectDiagnostic[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "manifests",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "packages",
+        "kind": "property",
+        "type": "readonly InspectedPackage[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "rootPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "workspaces",
+        "kind": "property",
+        "type": "readonly InspectedWorkspace[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectInspectionOptions",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/inspection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/inspection.ts",
+      "line": 3,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": ["ProjectDetector"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "detectors",
+        "kind": "property",
+        "type": "readonly ProjectDetector[]",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "excludeDirectories",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "manifestNames",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "maxDepth",
+        "kind": "property",
+        "type": "number",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "maxEntries",
+        "kind": "property",
+        "type": "number",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "maxManifestBytes",
+        "kind": "property",
+        "type": "number",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "maxTotalManifestBytes",
+        "kind": "property",
+        "type": "number",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "signal",
+        "kind": "property",
+        "type": "AbortSignal",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectInspectionPort",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/inspection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/inspection.ts",
+      "line": 23,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": ["ProjectInspectionOptions", "ProjectSnapshot"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "readAsync",
+        "kind": "property",
+        "type": "(path: string, options: ProjectInspectionOptions) => Promise<ProjectSnapshot>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectSnapshot",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/inspection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/inspection.ts",
+      "line": 15,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": ["ProjectDiagnostic"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "complete",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "contents",
+        "kind": "property",
+        "type": "ReadonlyMap<string, string>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "diagnostics",
+        "kind": "property",
+        "type": "readonly ProjectDiagnostic[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "files",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "rootPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectTrait",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/detection.ts",
+    "sourceLocation": {
+      "filePath": "src/types/detection.ts",
+      "line": 3,
+      "column": 1
+    },
+    "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  }
+]

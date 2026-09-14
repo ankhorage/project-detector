@@ -1,0 +1,106 @@
+graph TD
+  package__ankhorage_project_detector["@ankhorage/project-detector"]
+  entrypoint_src_nodeProjectDetector_ts["src/nodeProjectDetector.ts"]
+  package__ankhorage_project_detector --> entrypoint_src_nodeProjectDetector_ts
+  entrypoint_src_projectDetector_ts["src/projectDetector.ts"]
+  package__ankhorage_project_detector --> entrypoint_src_projectDetector_ts
+  module_examples_basic_usage_inspect_ts["examples/basic-usage/inspect.ts"]
+  package__ankhorage_project_detector -.-> module_examples_basic_usage_inspect_ts
+  module_examples_basic_usage_inspect_ts --> module_dist_nodeProjectDetector_d_ts
+  module_examples_basic_usage_inspect_ts --> module_dist_projectDetector_d_ts
+  module_package_json["package.json"]
+  package__ankhorage_project_detector -.-> module_package_json
+  module_paradox_config_ts["paradox.config.ts"]
+  package__ankhorage_project_detector -.-> module_paradox_config_ts
+  module_src_cli_commands_inspect_ts["src/cli/commands/inspect.ts"]
+  package__ankhorage_project_detector -.-> module_src_cli_commands_inspect_ts
+  module_src_cli_commands_inspect_ts --> module_src_features_inspection_composition_inspectProjectAsync_ts
+  module_src_cli_commands_inspect_ts --> module_src_types_cli_ts
+  module_src_cli_createCliProvider_ts["src/cli/createCliProvider.ts"]
+  package__ankhorage_project_detector -.-> module_src_cli_createCliProvider_ts
+  module_src_cli_createCliProvider_ts --> module_src_cli_commands_inspect_ts
+  module_src_cli_createCliProvider_ts --> module_src_cli_runAsync_ts
+  module_src_cli_provider_ts["src/cli/provider.ts"]
+  package__ankhorage_project_detector -.-> module_src_cli_provider_ts
+  module_src_cli_provider_ts --> module_package_json
+  module_src_cli_provider_ts --> module_src_cli_createCliProvider_ts
+  module_src_cli_runAsync_test_ts["src/cli/runAsync.test.ts"]
+  package__ankhorage_project_detector -.-> module_src_cli_runAsync_test_ts
+  module_src_cli_runAsync_test_ts --> module_src_cli_createCliProvider_ts
+  module_src_cli_runAsync_test_ts --> module_src_cli_runAsync_ts
+  module_src_cli_runAsync_ts["src/cli/runAsync.ts"]
+  package__ankhorage_project_detector -.-> module_src_cli_runAsync_ts
+  module_src_cli_runAsync_ts --> module_src_cli_commands_inspect_ts
+  module_src_cli_runAsync_ts --> module_src_types_cli_ts
+  module_src_features_detection_application_detectProject_test_ts["src/features/detection/application/detectProject.test.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_detection_application_detectProject_test_ts
+  module_src_features_detection_application_detectProject_test_ts --> module_src_projectDetector_ts
+  module_src_features_detection_application_detectProject_test_ts --> module_src_types_public_ts
+  module_src_features_detection_application_detectProject_ts["src/features/detection/application/detectProject.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_detection_application_detectProject_ts
+  module_src_features_detection_application_detectProject_ts --> module_src_features_detection_domain_detectFiles_ts
+  module_src_features_detection_application_detectProject_ts --> module_src_features_detection_domain_detectMetadata_ts
+  module_src_features_detection_application_detectProject_ts --> module_src_features_detection_domain_summarizeDetection_ts
+  module_src_features_detection_application_detectProject_ts --> module_src_types_detection_ts
+  module_src_features_detection_constants_fileRules_ts["src/features/detection/constants/fileRules.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_detection_constants_fileRules_ts
+  module_src_features_detection_constants_fileRules_ts --> module_src_types_detection_ts
+  module_src_features_detection_domain_detectFiles_ts["src/features/detection/domain/detectFiles.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_detection_domain_detectFiles_ts
+  module_src_features_detection_domain_detectFiles_ts --> module_src_features_detection_constants_fileRules_ts
+  module_src_features_detection_domain_detectFiles_ts --> module_src_types_detection_ts
+  module_src_features_detection_domain_detectMetadata_ts["src/features/detection/domain/detectMetadata.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_detection_domain_detectMetadata_ts
+  module_src_features_detection_domain_detectMetadata_ts --> module_src_types_detection_ts
+  module_src_features_detection_domain_summarizeDetection_ts["src/features/detection/domain/summarizeDetection.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_detection_domain_summarizeDetection_ts
+  module_src_features_detection_domain_summarizeDetection_ts --> module_src_features_detection_constants_fileRules_ts
+  module_src_features_detection_domain_summarizeDetection_ts --> module_src_types_detection_ts
+  module_src_features_inspection_adapters_outbound_readManifestAsync_ts["src/features/inspection/adapters/outbound/readManifestAsync.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_adapters_outbound_readManifestAsync_ts
+  module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts["src/features/inspection/adapters/outbound/readSnapshotAsync.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts
+  module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --> module_src_features_inspection_adapters_outbound_readManifestAsync_ts
+  module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --> module_src_features_inspection_constants_scanPolicy_ts
+  module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --> module_src_types_detection_ts
+  module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --> module_src_types_inspection_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts["src/features/inspection/application/inspectWithPortAsync.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_application_inspectWithPortAsync_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts --> module_src_features_detection_application_detectProject_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts --> module_src_features_detection_domain_summarizeDetection_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts --> module_src_features_inspection_domain_inspectWorkspaces_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts --> module_src_features_inspection_domain_readPackageMetadata_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts --> module_src_types_detection_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts --> module_src_types_inspection_ts
+  module_src_features_inspection_composition_inspectProjectAsync_test_ts["src/features/inspection/composition/inspectProjectAsync.test.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_composition_inspectProjectAsync_test_ts
+  module_src_features_inspection_composition_inspectProjectAsync_test_ts --> module_src_nodeProjectDetector_ts
+  module_src_features_inspection_composition_inspectProjectAsync_ts["src/features/inspection/composition/inspectProjectAsync.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_composition_inspectProjectAsync_ts
+  module_src_features_inspection_composition_inspectProjectAsync_ts --> module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts
+  module_src_features_inspection_composition_inspectProjectAsync_ts --> module_src_features_inspection_application_inspectWithPortAsync_ts
+  module_src_features_inspection_composition_inspectProjectAsync_ts --> module_src_types_inspection_ts
+  module_src_features_inspection_composition_manifestLimits_test_ts["src/features/inspection/composition/manifestLimits.test.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_composition_manifestLimits_test_ts
+  module_src_features_inspection_composition_manifestLimits_test_ts --> module_src_nodeProjectDetector_ts
+  module_src_features_inspection_constants_scanPolicy_ts["src/features/inspection/constants/scanPolicy.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_constants_scanPolicy_ts
+  module_src_features_inspection_domain_inspectWorkspaces_ts["src/features/inspection/domain/inspectWorkspaces.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_domain_inspectWorkspaces_ts
+  module_src_features_inspection_domain_inspectWorkspaces_ts --> module_src_features_inspection_domain_readPackageMetadata_ts
+  module_src_features_inspection_domain_inspectWorkspaces_ts --> module_src_types_detection_ts
+  module_src_features_inspection_domain_inspectWorkspaces_ts --> module_src_types_inspection_ts
+  module_src_features_inspection_domain_readPackageMetadata_ts["src/features/inspection/domain/readPackageMetadata.ts"]
+  package__ankhorage_project_detector -.-> module_src_features_inspection_domain_readPackageMetadata_ts
+  module_src_features_inspection_domain_readPackageMetadata_ts --> module_src_types_detection_ts
+  module_src_nodeProjectDetector_ts["src/nodeProjectDetector.ts"]
+  module_src_projectDetector_ts["src/projectDetector.ts"]
+  module_src_types_cli_ts["src/types/cli.ts"]
+  package__ankhorage_project_detector -.-> module_src_types_cli_ts
+  module_src_types_detection_ts["src/types/detection.ts"]
+  package__ankhorage_project_detector -.-> module_src_types_detection_ts
+  module_src_types_inspection_ts["src/types/inspection.ts"]
+  package__ankhorage_project_detector -.-> module_src_types_inspection_ts
+  module_src_types_inspection_ts --> module_src_types_detection_ts
+  module_src_types_public_ts["src/types/public.ts"]
+  package__ankhorage_project_detector -.-> module_src_types_public_ts

@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant participant_detectionDiagnostics as detectionDiagnostics
+  participant participant_detectProject as detectProject
+  participant participant_summarizeDetection as summarizeDetection
+  participant participant_valuesFor as valuesFor
+  participant_detectProject->>participant_summarizeDetection: summarizeDetection()
+  participant_summarizeDetection->>participant_valuesFor: valuesFor()
+  participant_valuesFor-->>participant_summarizeDetection: return
+  participant_summarizeDetection->>participant_detectionDiagnostics: detectionDiagnostics()
+  participant_detectionDiagnostics-->>participant_summarizeDetection: return
+  participant_summarizeDetection-->>participant_detectProject: return

@@ -1,0 +1,2528 @@
+{
+  "packageName": "@ankhorage/project-detector",
+  "packageId": "@ankhorage/project-detector",
+  "description": "Extensible, evidence-based project detection and safe filesystem inspection.",
+  "collaborators": null,
+  "donation": null,
+  "badges": [
+    {
+      "id": "license",
+      "label": "license",
+      "value": "MIT",
+      "color": "2563eb"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "value": "v0.0.0",
+      "color": "cb3837"
+    },
+    {
+      "id": "runtime",
+      "label": "runtime",
+      "value": "bun",
+      "color": "f59e0b"
+    },
+    {
+      "id": "typescript",
+      "label": "typescript",
+      "value": "strict",
+      "color": "2563eb"
+    },
+    {
+      "id": "eslint",
+      "label": "eslint",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "prettier",
+      "label": "prettier",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "build",
+      "label": "build",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "docs",
+      "label": "docs",
+      "value": "paradox",
+      "color": "0f766e"
+    }
+  ],
+  "usage": {
+    "packageName": "@ankhorage/project-detector",
+    "commands": [
+      {
+        "name": "project-detector",
+        "command": "bunx @ankhorage/project-detector"
+      }
+    ]
+  },
+  "readmeUsageDescription": null,
+  "readmeUsage": [],
+  "readmeCli": null,
+  "readmeConfig": null,
+  "config": null,
+  "entrypoints": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+  "modules": [
+    {
+      "path": "examples/basic-usage/inspect.ts",
+      "isEntrypoint": false,
+      "dependencies": ["dist/nodeProjectDetector.d.ts", "dist/projectDetector.d.ts"],
+      "exports": []
+    },
+    {
+      "path": "package.json",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": []
+    },
+    {
+      "path": "paradox.config.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["default"]
+    },
+    {
+      "path": "src/cli/commands/inspect.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/inspection/composition/inspectProjectAsync.ts",
+        "src/types/cli.ts"
+      ],
+      "exports": ["inspect"]
+    },
+    {
+      "path": "src/cli/createCliProvider.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/cli/commands/inspect.ts", "src/cli/runAsync.ts"],
+      "exports": ["createCliProvider"]
+    },
+    {
+      "path": "src/cli/provider.ts",
+      "isEntrypoint": false,
+      "dependencies": ["package.json", "src/cli/createCliProvider.ts"],
+      "exports": ["default"]
+    },
+    {
+      "path": "src/cli/runAsync.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/cli/createCliProvider.ts", "src/cli/runAsync.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/cli/runAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/cli/commands/inspect.ts", "src/types/cli.ts"],
+      "exports": ["runAsync"]
+    },
+    {
+      "path": "src/features/detection/application/detectProject.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/projectDetector.ts", "src/types/public.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/features/detection/application/detectProject.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/detection/domain/detectFiles.ts",
+        "src/features/detection/domain/detectMetadata.ts",
+        "src/features/detection/domain/summarizeDetection.ts",
+        "src/types/detection.ts"
+      ],
+      "exports": ["detectProject"]
+    },
+    {
+      "path": "src/features/detection/constants/fileRules.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/detection.ts"],
+      "exports": ["languageExtensions", "manifestRules", "sourceRootNames"]
+    },
+    {
+      "path": "src/features/detection/domain/detectFiles.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/features/detection/constants/fileRules.ts", "src/types/detection.ts"],
+      "exports": ["detectFiles"]
+    },
+    {
+      "path": "src/features/detection/domain/detectMetadata.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/detection.ts"],
+      "exports": ["detectMetadata"]
+    },
+    {
+      "path": "src/features/detection/domain/summarizeDetection.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/features/detection/constants/fileRules.ts", "src/types/detection.ts"],
+      "exports": ["summarizeDetection"]
+    },
+    {
+      "path": "src/features/inspection/adapters/outbound/readManifestAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["readManifestAsync"]
+    },
+    {
+      "path": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/inspection/adapters/outbound/readManifestAsync.ts",
+        "src/features/inspection/constants/scanPolicy.ts",
+        "src/types/detection.ts",
+        "src/types/inspection.ts"
+      ],
+      "exports": ["readSnapshotAsync"]
+    },
+    {
+      "path": "src/features/inspection/application/inspectWithPortAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/detection/application/detectProject.ts",
+        "src/features/detection/domain/summarizeDetection.ts",
+        "src/features/inspection/domain/inspectWorkspaces.ts",
+        "src/features/inspection/domain/readPackageMetadata.ts",
+        "src/types/detection.ts",
+        "src/types/inspection.ts"
+      ],
+      "exports": ["inspectWithPortAsync"]
+    },
+    {
+      "path": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/nodeProjectDetector.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/features/inspection/composition/inspectProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "src/features/inspection/application/inspectWithPortAsync.ts",
+        "src/types/inspection.ts"
+      ],
+      "exports": ["inspectProjectAsync"]
+    },
+    {
+      "path": "src/features/inspection/composition/manifestLimits.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/nodeProjectDetector.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/features/inspection/constants/scanPolicy.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["defaultExcludedDirectories", "defaultManifestNames"]
+    },
+    {
+      "path": "src/features/inspection/domain/inspectWorkspaces.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/inspection/domain/readPackageMetadata.ts",
+        "src/types/detection.ts",
+        "src/types/inspection.ts"
+      ],
+      "exports": ["inspectWorkspaces"]
+    },
+    {
+      "path": "src/features/inspection/domain/readPackageMetadata.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/detection.ts"],
+      "exports": ["readPackageMetadata"]
+    },
+    {
+      "path": "src/nodeProjectDetector.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "AttributedFinding",
+        "DetectedLanguage",
+        "DetectionFinding",
+        "InspectedPackage",
+        "InspectedWorkspace",
+        "inspectProjectAsync",
+        "inspectWithPortAsync",
+        "ProjectDependencyMap",
+        "ProjectDetection",
+        "ProjectDetectionInput",
+        "ProjectDetectionOptions",
+        "ProjectDetector",
+        "ProjectDetectorCliContext",
+        "ProjectDiagnostic",
+        "ProjectInspection",
+        "ProjectInspectionOptions",
+        "ProjectInspectionPort",
+        "ProjectSnapshot",
+        "ProjectTrait"
+      ]
+    },
+    {
+      "path": "src/projectDetector.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "AttributedFinding",
+        "DetectedLanguage",
+        "DetectionFinding",
+        "detectProject",
+        "InspectedPackage",
+        "InspectedWorkspace",
+        "ProjectDependencyMap",
+        "ProjectDetection",
+        "ProjectDetectionInput",
+        "ProjectDetectionOptions",
+        "ProjectDetector",
+        "ProjectDetectorCliContext",
+        "ProjectDiagnostic",
+        "ProjectInspection",
+        "ProjectInspectionOptions",
+        "ProjectInspectionPort",
+        "ProjectSnapshot",
+        "ProjectTrait"
+      ]
+    },
+    {
+      "path": "src/types/cli.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["ProjectDetectorCliContext"]
+    },
+    {
+      "path": "src/types/detection.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "AttributedFinding",
+        "DetectedLanguage",
+        "DetectionFinding",
+        "ProjectDependencyMap",
+        "ProjectDetection",
+        "ProjectDetectionInput",
+        "ProjectDetectionOptions",
+        "ProjectDetector",
+        "ProjectDiagnostic",
+        "ProjectTrait"
+      ]
+    },
+    {
+      "path": "src/types/inspection.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/detection.ts"],
+      "exports": [
+        "InspectedPackage",
+        "InspectedWorkspace",
+        "ProjectInspection",
+        "ProjectInspectionOptions",
+        "ProjectInspectionPort",
+        "ProjectSnapshot"
+      ]
+    },
+    {
+      "path": "src/types/public.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "AttributedFinding",
+        "DetectedLanguage",
+        "DetectionFinding",
+        "InspectedPackage",
+        "InspectedWorkspace",
+        "ProjectDependencyMap",
+        "ProjectDetection",
+        "ProjectDetectionInput",
+        "ProjectDetectionOptions",
+        "ProjectDetector",
+        "ProjectDetectorCliContext",
+        "ProjectDiagnostic",
+        "ProjectInspection",
+        "ProjectInspectionOptions",
+        "ProjectInspectionPort",
+        "ProjectSnapshot",
+        "ProjectTrait"
+      ]
+    }
+  ],
+  "exports": [
+    {
+      "name": "AttributedFinding",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 44,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "detectorId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "evidence",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "kind",
+          "kind": "property",
+          "type": "\"language\" | \"framework\" | \"runtime\" | \"package-manager\" | \"build-tool\" | \"manifest\"",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "value",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "weight",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DetectedLanguage",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 48,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "evidence",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "score",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "sourceRoots",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DetectionFinding",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 18,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "evidence",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "kind",
+          "kind": "property",
+          "type": "\"language\" | \"framework\" | \"runtime\" | \"package-manager\" | \"build-tool\" | \"manifest\"",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "value",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "weight",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "detectProject",
+      "description": "Detect overlapping project languages, frameworks, runtimes and package-manager evidence.\n\nThe pure API accepts package metadata plus optional relative POSIX file paths and manifest text.\nJavaScript, TypeScript, Java, Kotlin, C++, Python and Delphi evidence is additive, never exclusive.\nGeneric Make/CMake/Gradle files identify build tools, not necessarily a source language.\nScores are heuristic strengths, not confidence probabilities. No source parser, registry request,\ndependency update, migration, filesystem operation or inspected project script runs here.\nExtend detection with explicitly supplied trusted detector callbacks; IDs must be unique.\nPublic types are owned by this package and exported through `@ankhorage/project-detector/types`.",
+      "isReadme": true,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/detection/application/detectProject.ts",
+      "sourceLocation": {
+        "filePath": "src/features/detection/application/detectProject.ts",
+        "line": 24,
+        "column": 1
+      },
+      "exportPaths": ["src/projectDetector.ts"],
+      "relatedSymbols": ["ProjectDetection", "ProjectDetectionInput", "ProjectDetectionOptions"],
+      "signatures": [
+        {
+          "label": "(input: ProjectDetectionInput, options?: ProjectDetectionOptions) => ProjectDetection",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "ProjectDetectionInput",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "options",
+              "type": "ProjectDetectionOptions",
+              "required": false,
+              "description": null
+            }
+          ],
+          "returnType": "ProjectDetection",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "InspectedPackage",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/inspection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/inspection.ts",
+        "line": 27,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": ["ProjectDetection"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "detection",
+          "kind": "property",
+          "type": "ProjectDetection",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "manifestPath",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "rootPath",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "InspectedWorkspace",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/inspection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/inspection.ts",
+        "line": 34,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "manifestPath",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "packagePaths",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "patterns",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "rootPath",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "inspectProjectAsync",
+      "description": "Inspect a directory using bounded, asynchronous, read-only filesystem access.\n\nImport from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,\n256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories are pruned. Symlinks are skipped\nwith diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.\nConfigure additional manifest basenames and detector callbacks for new ecosystems.\nPackage/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;\nother ecosystem manifests are identified, not fully resolved into dependency graphs.\nNo inspected JavaScript, Gradle, Python, executable config or install script is executed.\nInspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.\nThe result reports incompleteness; it never grants permission to run an update.\nOn a complete scan output is sorted; when a budget is exhausted the retained subset depends\non filesystem enumeration order. Inspect a stable checkout for reproducible results.\nInstall with `npm install @ankhorage/project-detector`; the standalone command is\n`npx --package @ankhorage/project-detector project-detector inspect .`.\nWith Ankh installed, use `ankh project-detector inspect .`.\nCLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.\nRelease automation requires the organization release App configuration and npm publishing\nauthorization for this new package; repository files alone do not provision these credentials.",
+      "isReadme": true,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/inspection/composition/inspectProjectAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/composition/inspectProjectAsync.ts",
+        "line": 27,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts"],
+      "relatedSymbols": ["ProjectInspection", "ProjectInspectionOptions"],
+      "signatures": [
+        {
+          "label": "(path: string, options?: ProjectInspectionOptions) => Promise<ProjectInspection>",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "ProjectInspectionOptions",
+              "required": false,
+              "description": null
+            },
+            {
+              "name": "path",
+              "type": "string",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<ProjectInspection>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "inspectWithPortAsync",
+      "description": "Inspect a snapshot through an injected evidence source; keep I/O outside project classification.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "line": 19,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts"],
+      "relatedSymbols": ["ProjectInspection", "ProjectInspectionOptions", "ProjectInspectionPort"],
+      "signatures": [
+        {
+          "label": "(path: string, port: ProjectInspectionPort, options?: ProjectInspectionOptions) => Promise<ProjectInspection>",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "ProjectInspectionOptions",
+              "required": false,
+              "description": null
+            },
+            {
+              "name": "path",
+              "type": "string",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "port",
+              "type": "ProjectInspectionPort",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<ProjectInspection>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectDependencyMap",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 1,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectDetection",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 55,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": ["AttributedFinding", "DetectedLanguage", "ProjectDiagnostic"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "buildTools",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "diagnostics",
+          "kind": "property",
+          "type": "readonly ProjectDiagnostic[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "findings",
+          "kind": "property",
+          "type": "readonly AttributedFinding[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "languages",
+          "kind": "property",
+          "type": "readonly DetectedLanguage[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "packageManagers",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "traits",
+          "kind": "property",
+          "type": "ReadonlySet<string>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectDetectionInput",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 5,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "contents",
+          "kind": "property",
+          "type": "ReadonlyMap<string, string>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "dependencies",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "devDependencies",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "engines",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "files",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "optionalDependencies",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "packageManager",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "peerDependencies",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectDetectionOptions",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 33,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": ["ProjectDetector"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "detectors",
+          "kind": "property",
+          "type": "readonly ProjectDetector[]",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectDetector",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 27,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": ["DetectionFinding", "ProjectDetectionInput"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "detect",
+          "kind": "property",
+          "type": "(input: ProjectDetectionInput) => readonly DetectionFinding[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectDetectorCliContext",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/cli.ts",
+      "sourceLocation": {
+        "filePath": "src/types/cli.ts",
+        "line": 1,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "cwd",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "writeStderr",
+          "kind": "property",
+          "type": "(text: string) => void",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "writeStdout",
+          "kind": "property",
+          "type": "(text: string) => void",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectDiagnostic",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 38,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "code",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "message",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "path",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectInspection",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/inspection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/inspection.ts",
+        "line": 41,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [
+        "InspectedPackage",
+        "InspectedWorkspace",
+        "ProjectDetection",
+        "ProjectDiagnostic"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "complete",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "detection",
+          "kind": "property",
+          "type": "ProjectDetection",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "diagnostics",
+          "kind": "property",
+          "type": "readonly ProjectDiagnostic[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "manifests",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "packages",
+          "kind": "property",
+          "type": "readonly InspectedPackage[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "rootPath",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "workspaces",
+          "kind": "property",
+          "type": "readonly InspectedWorkspace[]",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectInspectionOptions",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/inspection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/inspection.ts",
+        "line": 3,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": ["ProjectDetector"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "detectors",
+          "kind": "property",
+          "type": "readonly ProjectDetector[]",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "excludeDirectories",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "manifestNames",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "maxDepth",
+          "kind": "property",
+          "type": "number",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "maxEntries",
+          "kind": "property",
+          "type": "number",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "maxManifestBytes",
+          "kind": "property",
+          "type": "number",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "maxTotalManifestBytes",
+          "kind": "property",
+          "type": "number",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "signal",
+          "kind": "property",
+          "type": "AbortSignal",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectInspectionPort",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/inspection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/inspection.ts",
+        "line": 23,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": ["ProjectInspectionOptions", "ProjectSnapshot"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "readAsync",
+          "kind": "property",
+          "type": "(path: string, options: ProjectInspectionOptions) => Promise<ProjectSnapshot>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectSnapshot",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/inspection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/inspection.ts",
+        "line": 15,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": ["ProjectDiagnostic"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "complete",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "contents",
+          "kind": "property",
+          "type": "ReadonlyMap<string, string>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "diagnostics",
+          "kind": "property",
+          "type": "readonly ProjectDiagnostic[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "files",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "rootPath",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectTrait",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/types/detection.ts",
+      "sourceLocation": {
+        "filePath": "src/types/detection.ts",
+        "line": 3,
+        "column": 1
+      },
+      "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    }
+  ],
+  "components": [],
+  "sourceFunctions": [
+    {
+      "name": "createCliProvider",
+      "description": "Create the Ankh CLI adapter without coupling the detection core to Ankh.",
+      "sourceLocation": {
+        "filePath": "src/cli/createCliProvider.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "runAsync",
+      "description": "Run `project-detector inspect [directory]` standalone, or `ankh project-detector inspect`.\nJSON output includes diagnostics. Exit codes: 0 complete, 1 invalid invocation/failure,\n2 incomplete inspection. Unknown project evidence is not an execution failure.",
+      "sourceLocation": {
+        "filePath": "src/cli/runAsync.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "detectProject",
+      "description": "Detect overlapping project languages, frameworks, runtimes and package-manager evidence.\n\nThe pure API accepts package metadata plus optional relative POSIX file paths and manifest text.\nJavaScript, TypeScript, Java, Kotlin, C++, Python and Delphi evidence is additive, never exclusive.\nGeneric Make/CMake/Gradle files identify build tools, not necessarily a source language.\nScores are heuristic strengths, not confidence probabilities. No source parser, registry request,\ndependency update, migration, filesystem operation or inspected project script runs here.\nExtend detection with explicitly supplied trusted detector callbacks; IDs must be unique.\nPublic types are owned by this package and exported through `@ankhorage/project-detector/types`.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/application/detectProject.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
+      "name": "runDetector",
+      "description": "Attribute and validate contributions at the plugin boundary.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/application/detectProject.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "detectFiles",
+      "description": "Classify file and manifest evidence without loading or executing a project.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/detectFiles.ts",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "name": "detectFileName",
+      "description": "Interpret file basenames and language-specific suffixes.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/detectFiles.ts",
+        "line": 13,
+        "column": 1
+      }
+    },
+    {
+      "name": "detectContent",
+      "description": "Distinguish Kotlin build plugins from generic JVM build files.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/detectFiles.ts",
+        "line": 32,
+        "column": 1
+      }
+    },
+    {
+      "name": "isManifest",
+      "description": "Identify manifests independently from inferred language certainty.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/detectFiles.ts",
+        "line": 46,
+        "column": 1
+      }
+    },
+    {
+      "name": "detectMetadata",
+      "description": "Infer overlapping JavaScript ecosystem traits from explicit package metadata.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/detectMetadata.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "finding",
+      "description": "Record one package metadata signal without treating its weight as confidence.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/detectMetadata.ts",
+        "line": 53,
+        "column": 1
+      }
+    },
+    {
+      "name": "detectManager",
+      "description": "Recognize an explicitly declared package manager and its Bun runtime implication.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/detectMetadata.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "summarizeDetection",
+      "description": "Aggregate additive findings and preserve ties and ambiguity instead of choosing a language.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/summarizeDetection.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "summarizeLanguage",
+      "description": "Group language evidence without allowing duplicate findings to inflate the score.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/summarizeDetection.ts",
+        "line": 31,
+        "column": 1
+      }
+    },
+    {
+      "name": "valuesFor",
+      "description": "Return deterministic unique values for one kind of evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/summarizeDetection.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
+      "name": "detectionDiagnostics",
+      "description": "Report missing evidence and conflicting JavaScript package-manager signals.",
+      "sourceLocation": {
+        "filePath": "src/features/detection/domain/summarizeDetection.ts",
+        "line": 59,
+        "column": 1
+      }
+    },
+    {
+      "name": "readManifestAsync",
+      "description": "Read bounded regular-file text without following a final symlink or leaving the scan root.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/adapters/outbound/readManifestAsync.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "readBytesAsync",
+      "description": "Handle short reads while retaining a strict allocation/read ceiling.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/adapters/outbound/readManifestAsync.ts",
+        "line": 31,
+        "column": 1
+      }
+    },
+    {
+      "name": "readSnapshotAsync",
+      "description": "Collect bounded inspection evidence while pruning dependencies and never following directory symlinks.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "line": 12,
+        "column": 1
+      }
+    },
+    {
+      "name": "visitDirectoryAsync",
+      "description": "Stream a directory with a global entry budget; return explicit diagnostics for partial scans.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "line": 71,
+        "column": 1
+      }
+    },
+    {
+      "name": "visitFileAsync",
+      "description": "Retain file paths and only read explicitly recognized manifest text.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "line": 122,
+        "column": 1
+      }
+    },
+    {
+      "name": "inspectWithPortAsync",
+      "description": "Inspect a snapshot through an injected evidence source; keep I/O outside project classification.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "line": 19,
+        "column": 1
+      }
+    },
+    {
+      "name": "detectSnapshot",
+      "description": "Combine tree evidence with attributed metadata from every package, not just the root.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "line": 56,
+        "column": 1
+      }
+    },
+    {
+      "name": "inspectPackage",
+      "description": "Classify each package using its own metadata and files, excluding nested package roots.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "line": 71,
+        "column": 1
+      }
+    },
+    {
+      "name": "owns",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "line": 81,
+        "column": 9
+      }
+    },
+    {
+      "name": "createFixtureAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "line": 151,
+        "column": 1
+      }
+    },
+    {
+      "name": "inspectProjectAsync",
+      "description": "Inspect a directory using bounded, asynchronous, read-only filesystem access.\n\nImport from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,\n256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories are pruned. Symlinks are skipped\nwith diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.\nConfigure additional manifest basenames and detector callbacks for new ecosystems.\nPackage/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;\nother ecosystem manifests are identified, not fully resolved into dependency graphs.\nNo inspected JavaScript, Gradle, Python, executable config or install script is executed.\nInspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.\nThe result reports incompleteness; it never grants permission to run an update.\nOn a complete scan output is sorted; when a budget is exhausted the retained subset depends\non filesystem enumeration order. Inspect a stable checkout for reproducible results.\nInstall with `npm install @ankhorage/project-detector`; the standalone command is\n`npx --package @ankhorage/project-detector project-detector inspect .`.\nWith Ankh installed, use `ankh project-detector inspect .`.\nCLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.\nRelease automation requires the organization release App configuration and npm publishing\nauthorization for this new package; repository files alone do not provision these credentials.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/composition/inspectProjectAsync.ts",
+        "line": 27,
+        "column": 1
+      }
+    },
+    {
+      "name": "inspectWorkspaces",
+      "description": "Resolve declared JavaScript workspace membership without guessing from folder names.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "workspaceFromManifest",
+      "description": "Parse one declarative workspace definition with explicit malformed-input diagnostics.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "line": 28,
+        "column": 1
+      }
+    },
+    {
+      "name": "readPatterns",
+      "description": "Read npm/Yarn workspace arrays or pnpm YAML without evaluating configuration scripts.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "line": 78,
+        "column": 1
+      }
+    },
+    {
+      "name": "readPackageMetadata",
+      "description": "Validate inspected package JSON and report malformed metadata instead of executing project code.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/domain/readPackageMetadata.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "dependencyMap",
+      "description": "Retain only valid dependency versions from one manifest section.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/domain/readPackageMetadata.ts",
+        "line": 56,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidFields",
+      "description": "List malformed known manifest fields so partial detection is visible.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/domain/readPackageMetadata.ts",
+        "line": 66,
+        "column": 1
+      }
+    }
+  ],
+  "sequenceScenarios": [
+    {
+      "kind": "export",
+      "name": "detectProject",
+      "sourcePath": "src/features/detection/application/detectProject.ts",
+      "symbolName": "detectProject",
+      "description": "Detect overlapping project languages, frameworks, runtimes and package-manager evidence.\n\nThe pure API accepts package metadata plus optional relative POSIX file paths and manifest text.\nJavaScript, TypeScript, Java, Kotlin, C++, Python and Delphi evidence is additive, never exclusive.\nGeneric Make/CMake/Gradle files identify build tools, not necessarily a source language.\nScores are heuristic strengths, not confidence probabilities. No source parser, registry request,\ndependency update, migration, filesystem operation or inspected project script runs here.\nExtend detection with explicitly supplied trusted detector callbacks; IDs must be unique.\nPublic types are owned by this package and exported through `@ankhorage/project-detector/types`.",
+      "isReadme": true
+    },
+    {
+      "kind": "export",
+      "name": "inspectProjectAsync",
+      "sourcePath": "src/features/inspection/composition/inspectProjectAsync.ts",
+      "symbolName": "inspectProjectAsync",
+      "description": "Inspect a directory using bounded, asynchronous, read-only filesystem access.\n\nImport from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,\n256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories are pruned. Symlinks are skipped\nwith diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.\nConfigure additional manifest basenames and detector callbacks for new ecosystems.\nPackage/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;\nother ecosystem manifests are identified, not fully resolved into dependency graphs.\nNo inspected JavaScript, Gradle, Python, executable config or install script is executed.\nInspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.\nThe result reports incompleteness; it never grants permission to run an update.\nOn a complete scan output is sorted; when a budget is exhausted the retained subset depends\non filesystem enumeration order. Inspect a stable checkout for reproducible results.\nInstall with `npm install @ankhorage/project-detector`; the standalone command is\n`npx --package @ankhorage/project-detector project-detector inspect .`.\nWith Ankh installed, use `ankh project-detector inspect .`.\nCLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.\nRelease automation requires the organization release App configuration and npm publishing\nauthorization for this new package; repository files alone do not provision these credentials.",
+      "isReadme": true
+    },
+    {
+      "kind": "export",
+      "name": "inspectWithPortAsync",
+      "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts",
+      "symbolName": "inspectWithPortAsync",
+      "description": "Inspect a snapshot through an injected evidence source; keep I/O outside project classification.",
+      "isReadme": false
+    },
+    {
+      "kind": "bin",
+      "name": "project-detector",
+      "sourcePath": "src/cli/runAsync.ts",
+      "symbolName": "runAsync",
+      "description": "Run `project-detector inspect [directory]` standalone, or `ankh project-detector inspect`.\nJSON output includes diagnostics. Exit codes: 0 complete, 1 invalid invocation/failure,\n2 incomplete inspection. Unknown project evidence is not an execution failure.",
+      "isReadme": true
+    }
+  ],
+  "graphs": {
+    "imports": [
+      {
+        "fromPath": "src/nodeProjectDetector.ts",
+        "toPath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "sourcePath": "src/nodeProjectDetector.ts"
+      },
+      {
+        "fromPath": "src/nodeProjectDetector.ts",
+        "toPath": "src/features/inspection/composition/inspectProjectAsync.ts",
+        "sourcePath": "src/nodeProjectDetector.ts"
+      },
+      {
+        "fromPath": "src/nodeProjectDetector.ts",
+        "toPath": "src/types/public.ts",
+        "sourcePath": "src/nodeProjectDetector.ts"
+      },
+      {
+        "fromPath": "src/projectDetector.ts",
+        "toPath": "src/features/detection/application/detectProject.ts",
+        "sourcePath": "src/projectDetector.ts"
+      },
+      {
+        "fromPath": "src/projectDetector.ts",
+        "toPath": "src/types/public.ts",
+        "sourcePath": "src/projectDetector.ts"
+      },
+      {
+        "fromPath": "examples/basic-usage/inspect.ts",
+        "toPath": "dist/projectDetector.d.ts",
+        "sourcePath": "examples/basic-usage/inspect.ts"
+      },
+      {
+        "fromPath": "examples/basic-usage/inspect.ts",
+        "toPath": "dist/nodeProjectDetector.d.ts",
+        "sourcePath": "examples/basic-usage/inspect.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/commands/inspect.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/createCliProvider.ts",
+        "toPath": "src/cli/runAsync.ts",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromPath": "src/cli/provider.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/cli/provider.ts"
+      },
+      {
+        "fromPath": "src/cli/provider.ts",
+        "toPath": "src/cli/createCliProvider.ts",
+        "sourcePath": "src/cli/provider.ts"
+      },
+      {
+        "fromPath": "src/cli/runAsync.test.ts",
+        "toPath": "src/cli/createCliProvider.ts",
+        "sourcePath": "src/cli/runAsync.test.ts"
+      },
+      {
+        "fromPath": "src/cli/runAsync.test.ts",
+        "toPath": "src/cli/runAsync.ts",
+        "sourcePath": "src/cli/runAsync.test.ts"
+      },
+      {
+        "fromPath": "src/cli/runAsync.ts",
+        "toPath": "src/types/cli.ts",
+        "sourcePath": "src/cli/runAsync.ts"
+      },
+      {
+        "fromPath": "src/cli/runAsync.ts",
+        "toPath": "src/cli/commands/inspect.ts",
+        "sourcePath": "src/cli/runAsync.ts"
+      },
+      {
+        "fromPath": "src/types/inspection.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromPath": "src/types/public.ts",
+        "toPath": "src/types/cli.ts",
+        "sourcePath": "src/types/public.ts"
+      },
+      {
+        "fromPath": "src/types/public.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/types/public.ts"
+      },
+      {
+        "fromPath": "src/types/public.ts",
+        "toPath": "src/types/inspection.ts",
+        "sourcePath": "src/types/public.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/inspect.ts",
+        "toPath": "src/features/inspection/composition/inspectProjectAsync.ts",
+        "sourcePath": "src/cli/commands/inspect.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/inspect.ts",
+        "toPath": "src/types/cli.ts",
+        "sourcePath": "src/cli/commands/inspect.ts"
+      },
+      {
+        "fromPath": "src/features/detection/application/detectProject.test.ts",
+        "toPath": "src/projectDetector.ts",
+        "sourcePath": "src/features/detection/application/detectProject.test.ts"
+      },
+      {
+        "fromPath": "src/features/detection/application/detectProject.test.ts",
+        "toPath": "src/types/public.ts",
+        "sourcePath": "src/features/detection/application/detectProject.test.ts"
+      },
+      {
+        "fromPath": "src/features/detection/application/detectProject.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromPath": "src/features/detection/application/detectProject.ts",
+        "toPath": "src/features/detection/domain/detectFiles.ts",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromPath": "src/features/detection/application/detectProject.ts",
+        "toPath": "src/features/detection/domain/detectMetadata.ts",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromPath": "src/features/detection/application/detectProject.ts",
+        "toPath": "src/features/detection/domain/summarizeDetection.ts",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromPath": "src/features/detection/constants/fileRules.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/detection/constants/fileRules.ts"
+      },
+      {
+        "fromPath": "src/features/detection/domain/detectFiles.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/detection/domain/detectFiles.ts"
+      },
+      {
+        "fromPath": "src/features/detection/domain/detectFiles.ts",
+        "toPath": "src/features/detection/constants/fileRules.ts",
+        "sourcePath": "src/features/detection/domain/detectFiles.ts"
+      },
+      {
+        "fromPath": "src/features/detection/domain/detectMetadata.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/detection/domain/detectMetadata.ts"
+      },
+      {
+        "fromPath": "src/features/detection/domain/summarizeDetection.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/detection/domain/summarizeDetection.ts"
+      },
+      {
+        "fromPath": "src/features/detection/domain/summarizeDetection.ts",
+        "toPath": "src/features/detection/constants/fileRules.ts",
+        "sourcePath": "src/features/detection/domain/summarizeDetection.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toPath": "src/types/inspection.ts",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toPath": "src/features/detection/application/detectProject.ts",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toPath": "src/features/detection/domain/summarizeDetection.ts",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toPath": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toPath": "src/features/inspection/domain/readPackageMetadata.ts",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toPath": "src/nodeProjectDetector.ts",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/composition/inspectProjectAsync.ts",
+        "toPath": "src/types/inspection.ts",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/composition/inspectProjectAsync.ts",
+        "toPath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/composition/inspectProjectAsync.ts",
+        "toPath": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/composition/manifestLimits.test.ts",
+        "toPath": "src/nodeProjectDetector.ts",
+        "sourcePath": "src/features/inspection/composition/manifestLimits.test.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "toPath": "src/types/inspection.ts",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "toPath": "src/features/inspection/domain/readPackageMetadata.ts",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/domain/readPackageMetadata.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/inspection/domain/readPackageMetadata.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "toPath": "src/types/detection.ts",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "toPath": "src/types/inspection.ts",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "toPath": "src/features/inspection/constants/scanPolicy.ts",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromPath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "toPath": "src/features/inspection/adapters/outbound/readManifestAsync.ts",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "paradox.config.ts",
+        "toSymbol": "defineParadoxConfig",
+        "callExpression": "defineParadoxConfig",
+        "sourcePath": "paradox.config.ts"
+      },
+      {
+        "fromSymbol": "examples/basic-usage/inspect.ts",
+        "toSymbol": "detectProject",
+        "callExpression": "detectProject",
+        "sourcePath": "examples/basic-usage/inspect.ts"
+      },
+      {
+        "fromSymbol": "examples/basic-usage/inspect.ts",
+        "toSymbol": "inspectProjectAsync",
+        "callExpression": "inspectProjectAsync",
+        "sourcePath": "examples/basic-usage/inspect.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "runAsync",
+        "callExpression": "runAsync",
+        "sourcePath": "src/cli/createCliProvider.ts"
+      },
+      {
+        "fromSymbol": "src/cli/provider.ts",
+        "toSymbol": "createCliProvider",
+        "callExpression": "createCliProvider",
+        "sourcePath": "src/cli/provider.ts"
+      },
+      {
+        "fromSymbol": "src/cli/runAsync.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/cli/runAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/runAsync.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/cli/runAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/runAsync.test.ts",
+        "toSymbol": "runAsync",
+        "callExpression": "runAsync",
+        "sourcePath": "src/cli/runAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/runAsync.test.ts",
+        "toSymbol": "createCliProvider",
+        "callExpression": "createCliProvider",
+        "sourcePath": "src/cli/runAsync.test.ts"
+      },
+      {
+        "fromSymbol": "runAsync",
+        "toSymbol": "writeStdout",
+        "callExpression": "context.writeStdout",
+        "sourcePath": "src/cli/runAsync.ts"
+      },
+      {
+        "fromSymbol": "runAsync",
+        "toSymbol": "executeAsync",
+        "callExpression": "inspect.executeAsync",
+        "sourcePath": "src/cli/runAsync.ts"
+      },
+      {
+        "fromSymbol": "runAsync",
+        "toSymbol": "writeStderr",
+        "callExpression": "context.writeStderr",
+        "sourcePath": "src/cli/runAsync.ts"
+      },
+      {
+        "fromSymbol": "runAsync",
+        "toSymbol": "toErrorMessage",
+        "callExpression": "toErrorMessage",
+        "sourcePath": "src/cli/runAsync.ts"
+      },
+      {
+        "fromSymbol": "src/cli/runAsync.ts",
+        "toSymbol": "runAsync",
+        "callExpression": "runAsync",
+        "sourcePath": "src/cli/runAsync.ts"
+      },
+      {
+        "fromSymbol": "executeAsync",
+        "toSymbol": "inspectProjectAsync",
+        "callExpression": "inspectProjectAsync",
+        "sourcePath": "src/cli/commands/inspect.ts"
+      },
+      {
+        "fromSymbol": "executeAsync",
+        "toSymbol": "writeStdout",
+        "callExpression": "context.writeStdout",
+        "sourcePath": "src/cli/commands/inspect.ts"
+      },
+      {
+        "fromSymbol": "src/features/detection/application/detectProject.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/detection/application/detectProject.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/detection/application/detectProject.test.ts",
+        "toSymbol": "detectProject",
+        "callExpression": "detectProject",
+        "sourcePath": "src/features/detection/application/detectProject.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/detection/application/detectProject.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/detection/application/detectProject.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/detection/application/detectProject.ts",
+        "toSymbol": "runDetector",
+        "callExpression": "runDetector",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromSymbol": "detectProject",
+        "toSymbol": "summarizeDetection",
+        "callExpression": "summarizeDetection",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromSymbol": "runDetector",
+        "toSymbol": "detect",
+        "callExpression": "detector.detect",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromSymbol": "src/features/detection/domain/detectFiles.ts",
+        "toSymbol": "detectFileName",
+        "callExpression": "detectFileName",
+        "sourcePath": "src/features/detection/domain/detectFiles.ts"
+      },
+      {
+        "fromSymbol": "src/features/detection/domain/detectFiles.ts",
+        "toSymbol": "detectContent",
+        "callExpression": "detectContent",
+        "sourcePath": "src/features/detection/domain/detectFiles.ts"
+      },
+      {
+        "fromSymbol": "detectFileName",
+        "toSymbol": "isManifest",
+        "callExpression": "isManifest",
+        "sourcePath": "src/features/detection/domain/detectFiles.ts"
+      },
+      {
+        "fromSymbol": "detectMetadata",
+        "toSymbol": "finding",
+        "callExpression": "finding",
+        "sourcePath": "src/features/detection/domain/detectMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/features/detection/domain/detectMetadata.ts",
+        "toSymbol": "finding",
+        "callExpression": "finding",
+        "sourcePath": "src/features/detection/domain/detectMetadata.ts"
+      },
+      {
+        "fromSymbol": "detectMetadata",
+        "toSymbol": "detectManager",
+        "callExpression": "detectManager",
+        "sourcePath": "src/features/detection/domain/detectMetadata.ts"
+      },
+      {
+        "fromSymbol": "detectManager",
+        "toSymbol": "finding",
+        "callExpression": "finding",
+        "sourcePath": "src/features/detection/domain/detectMetadata.ts"
+      },
+      {
+        "fromSymbol": "summarizeDetection",
+        "toSymbol": "valuesFor",
+        "callExpression": "valuesFor",
+        "sourcePath": "src/features/detection/domain/summarizeDetection.ts"
+      },
+      {
+        "fromSymbol": "src/features/detection/domain/summarizeDetection.ts",
+        "toSymbol": "summarizeLanguage",
+        "callExpression": "summarizeLanguage",
+        "sourcePath": "src/features/detection/domain/summarizeDetection.ts"
+      },
+      {
+        "fromSymbol": "summarizeDetection",
+        "toSymbol": "detectionDiagnostics",
+        "callExpression": "detectionDiagnostics",
+        "sourcePath": "src/features/detection/domain/summarizeDetection.ts"
+      },
+      {
+        "fromSymbol": "inspectWithPortAsync",
+        "toSymbol": "readAsync",
+        "callExpression": "port.readAsync",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toSymbol": "readPackageMetadata",
+        "callExpression": "readPackageMetadata",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectWithPortAsync",
+        "toSymbol": "inspectWorkspaces",
+        "callExpression": "inspectWorkspaces",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toSymbol": "inspectPackage",
+        "callExpression": "inspectPackage",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectWithPortAsync",
+        "toSymbol": "detectSnapshot",
+        "callExpression": "detectSnapshot",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "detectSnapshot",
+        "toSymbol": "detectProject",
+        "callExpression": "detectProject",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "detectSnapshot",
+        "toSymbol": "summarizeDetection",
+        "callExpression": "summarizeDetection",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectPackage",
+        "toSymbol": "readPackageMetadata",
+        "callExpression": "readPackageMetadata",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/application/inspectWithPortAsync.ts",
+        "toSymbol": "owns",
+        "callExpression": "owns",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectPackage",
+        "toSymbol": "detectProject",
+        "callExpression": "detectProject",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "createFixtureAsync",
+        "callExpression": "createFixtureAsync",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "inspectProjectAsync",
+        "callExpression": "inspectProjectAsync",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "rejects",
+        "callExpression": "rejects",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "symlink",
+        "callExpression": "symlink",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "inspectWithPortAsync",
+        "callExpression": "inspectWithPortAsync",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "createFixtureAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/inspectProjectAsync.test.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.test.ts"
+      },
+      {
+        "fromSymbol": "inspectProjectAsync",
+        "toSymbol": "inspectWithPortAsync",
+        "callExpression": "inspectWithPortAsync",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/manifestLimits.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/inspection/composition/manifestLimits.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/manifestLimits.test.ts",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/features/inspection/composition/manifestLimits.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/manifestLimits.test.ts",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/inspection/composition/manifestLimits.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/manifestLimits.test.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/inspection/composition/manifestLimits.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/manifestLimits.test.ts",
+        "toSymbol": "inspectProjectAsync",
+        "callExpression": "inspectProjectAsync",
+        "sourcePath": "src/features/inspection/composition/manifestLimits.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/manifestLimits.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/inspection/composition/manifestLimits.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/composition/manifestLimits.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/inspection/composition/manifestLimits.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "toSymbol": "workspaceFromManifest",
+        "callExpression": "workspaceFromManifest",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromSymbol": "workspaceFromManifest",
+        "toSymbol": "readPatterns",
+        "callExpression": "readPatterns",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/domain/inspectWorkspaces.ts",
+        "toSymbol": "minimatch",
+        "callExpression": "minimatch",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromSymbol": "workspaceFromManifest",
+        "toSymbol": "toErrorMessage",
+        "callExpression": "toErrorMessage",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromSymbol": "readPatterns",
+        "toSymbol": "parseDocument",
+        "callExpression": "parseDocument",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromSymbol": "readPatterns",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromSymbol": "readPatterns",
+        "toSymbol": "isStringArray",
+        "callExpression": "isStringArray",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromSymbol": "readPatterns",
+        "toSymbol": "readPackageMetadata",
+        "callExpression": "readPackageMetadata",
+        "sourcePath": "src/features/inspection/domain/inspectWorkspaces.ts"
+      },
+      {
+        "fromSymbol": "readPackageMetadata",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/inspection/domain/readPackageMetadata.ts"
+      },
+      {
+        "fromSymbol": "readPackageMetadata",
+        "toSymbol": "dependencyMap",
+        "callExpression": "dependencyMap",
+        "sourcePath": "src/features/inspection/domain/readPackageMetadata.ts"
+      },
+      {
+        "fromSymbol": "readPackageMetadata",
+        "toSymbol": "invalidFields",
+        "callExpression": "invalidFields",
+        "sourcePath": "src/features/inspection/domain/readPackageMetadata.ts"
+      },
+      {
+        "fromSymbol": "readPackageMetadata",
+        "toSymbol": "toErrorMessage",
+        "callExpression": "toErrorMessage",
+        "sourcePath": "src/features/inspection/domain/readPackageMetadata.ts"
+      },
+      {
+        "fromSymbol": "dependencyMap",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/inspection/domain/readPackageMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/domain/readPackageMetadata.ts",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/inspection/domain/readPackageMetadata.ts"
+      },
+      {
+        "fromSymbol": "readManifestAsync",
+        "toSymbol": "realpath",
+        "callExpression": "realpath",
+        "sourcePath": "src/features/inspection/adapters/outbound/readManifestAsync.ts"
+      },
+      {
+        "fromSymbol": "readManifestAsync",
+        "toSymbol": "open",
+        "callExpression": "open",
+        "sourcePath": "src/features/inspection/adapters/outbound/readManifestAsync.ts"
+      },
+      {
+        "fromSymbol": "readManifestAsync",
+        "toSymbol": "readBytesAsync",
+        "callExpression": "readBytesAsync",
+        "sourcePath": "src/features/inspection/adapters/outbound/readManifestAsync.ts"
+      },
+      {
+        "fromSymbol": "readBytesAsync",
+        "toSymbol": "readBytesAsync",
+        "callExpression": "readBytesAsync",
+        "sourcePath": "src/features/inspection/adapters/outbound/readManifestAsync.ts"
+      },
+      {
+        "fromSymbol": "readSnapshotAsync",
+        "toSymbol": "realpath",
+        "callExpression": "realpath",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "readSnapshotAsync",
+        "toSymbol": "stat",
+        "callExpression": "stat",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "readSnapshotAsync",
+        "toSymbol": "visitDirectoryAsync",
+        "callExpression": "visitDirectoryAsync",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitDirectoryAsync",
+        "toSymbol": "opendir",
+        "callExpression": "opendir",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitDirectoryAsync",
+        "toSymbol": "visitDirectoryAsync",
+        "callExpression": "visitDirectoryAsync",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitDirectoryAsync",
+        "toSymbol": "visitFileAsync",
+        "callExpression": "visitFileAsync",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitDirectoryAsync",
+        "toSymbol": "toErrorMessage",
+        "callExpression": "toErrorMessage",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitFileAsync",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitFileAsync",
+        "toSymbol": "readManifestAsync",
+        "callExpression": "readManifestAsync",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitFileAsync",
+        "toSymbol": "toErrorMessage",
+        "callExpression": "toErrorMessage",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      }
+    ],
+    "typeReferences": [
+      {
+        "fromSymbol": "detectProject",
+        "toType": "ProjectDetection",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromSymbol": "detectProject",
+        "toType": "ProjectDetectionInput",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromSymbol": "detectProject",
+        "toType": "ProjectDetectionOptions",
+        "sourcePath": "src/features/detection/application/detectProject.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetection",
+        "toType": "AttributedFinding",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetection",
+        "toType": "DetectedLanguage",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetection",
+        "toType": "ProjectDiagnostic",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetection",
+        "toType": "ReadonlySet",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetectionInput",
+        "toType": "Readonly",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetectionInput",
+        "toType": "ReadonlyMap",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetectionOptions",
+        "toType": "ProjectDetector",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetector",
+        "toType": "DetectionFinding",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "ProjectDetector",
+        "toType": "ProjectDetectionInput",
+        "sourcePath": "src/types/detection.ts"
+      },
+      {
+        "fromSymbol": "InspectedPackage",
+        "toType": "ProjectDetection",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectInspection",
+        "toType": "InspectedPackage",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectInspection",
+        "toType": "InspectedWorkspace",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectInspection",
+        "toType": "ProjectDetection",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectInspection",
+        "toType": "ProjectDiagnostic",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectInspectionOptions",
+        "toType": "AbortSignal",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectInspectionOptions",
+        "toType": "ProjectDetector",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectInspectionPort",
+        "toType": "ProjectInspectionOptions",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectInspectionPort",
+        "toType": "ProjectSnapshot",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectSnapshot",
+        "toType": "ProjectDiagnostic",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "ProjectSnapshot",
+        "toType": "ReadonlyMap",
+        "sourcePath": "src/types/inspection.ts"
+      },
+      {
+        "fromSymbol": "inspectWithPortAsync",
+        "toType": "ProjectInspection",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectWithPortAsync",
+        "toType": "ProjectInspectionOptions",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectWithPortAsync",
+        "toType": "ProjectInspectionPort",
+        "sourcePath": "src/features/inspection/application/inspectWithPortAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectProjectAsync",
+        "toType": "ProjectInspection",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectProjectAsync",
+        "toType": "ProjectInspectionOptions",
+        "sourcePath": "src/features/inspection/composition/inspectProjectAsync.ts"
+      }
+    ],
+    "componentComposition": []
+  }
+}
