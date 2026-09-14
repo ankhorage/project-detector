@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/project-detector",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "description": "Extensible, evidence-based project detection and safe filesystem inspection for standalone tools.",
   "license": "MIT",
