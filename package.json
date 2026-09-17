@@ -13,12 +13,13 @@
     "url": "https://github.com/ankhorage/project-detector/issues"
   },
   "keywords": [
+    "ankhorage",
+    "cli",
+    "package-manager",
+    "polyglot",
     "project-detection",
     "typescript",
-    "polyglot",
-    "workspace",
-    "package-manager",
-    "cli"
+    "workspace"
   ],
   "sideEffects": false,
   "files": [
