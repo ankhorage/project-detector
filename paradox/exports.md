@@ -73,7 +73,7 @@ Public types are owned by this package and exported through `@ankhorage/project-
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:27:1`
+Source: `src/types/inspection.ts:28:1`
 
 ### Members
 
@@ -88,7 +88,7 @@ Source: `src/types/inspection.ts:27:1`
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:34:1`
+Source: `src/types/inspection.ts:35:1`
 
 ### Members
 
@@ -103,7 +103,7 @@ Source: `src/types/inspection.ts:34:1`
 
 Kind: `function`
 Module: `src/features/inspection/composition/inspectProjectAsync.ts`
-Source: `src/features/inspection/composition/inspectProjectAsync.ts:29:1`
+Source: `src/features/inspection/composition/inspectProjectAsync.ts:30:1`
 
 Inspect a directory using bounded, asynchronous, read-only filesystem access.
 
@@ -116,7 +116,8 @@ Package/workspace membership currently resolves JavaScript package.json workspac
 other ecosystem manifests are identified, not fully resolved into dependency graphs.
 No inspected JavaScript, Gradle, Python, executable config or install script is executed.
 Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.
-Returned `files` are sorted relative POSIX paths from the pruned scan, including source files.
+Returned `directories` and `files` are sorted relative POSIX paths from the pruned scan.
+The directory inventory includes empty directories and omits the inspection root itself.
 The result reports incompleteness; it never grants permission to run an update.
 On a complete scan output is sorted; when a budget is exhausted the retained subset depends
 on filesystem enumeration order. Inspect a stable checkout for reproducible results.
@@ -249,7 +250,7 @@ Source: `src/types/detection.ts:38:1`
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:41:1`
+Source: `src/types/inspection.ts:42:1`
 
 ### Members
 
@@ -258,6 +259,7 @@ Source: `src/types/inspection.ts:41:1`
 | complete    | property | `boolean`                       | yes      |             |
 | detection   | property | `ProjectDetection`              | yes      |             |
 | diagnostics | property | `readonly ProjectDiagnostic[]`  | yes      |             |
+| directories | property | `readonly string[]`             | yes      |             |
 | files       | property | `readonly string[]`             | yes      |             |
 | manifests   | property | `readonly string[]`             | yes      |             |
 | packages    | property | `readonly InspectedPackage[]`   | yes      |             |
@@ -287,7 +289,7 @@ Source: `src/types/inspection.ts:3:1`
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:23:1`
+Source: `src/types/inspection.ts:24:1`
 
 ### Members
 
@@ -308,6 +310,7 @@ Source: `src/types/inspection.ts:15:1`
 | complete    | property | `boolean`                      | yes      |             |
 | contents    | property | `ReadonlyMap<string, string>`  | yes      |             |
 | diagnostics | property | `readonly ProjectDiagnostic[]` | yes      |             |
+| directories | property | `readonly string[]`            | yes      |             |
 | files       | property | `readonly string[]`            | yes      |             |
 | rootPath    | property | `string`                       | yes      |             |
 

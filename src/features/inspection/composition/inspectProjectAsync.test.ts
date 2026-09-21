@@ -123,6 +123,23 @@ test('prunes generated Ankh materialization without treating its runtime link as
   }
 });
 
+test('retains scanned empty directories in a sorted project-relative inventory', async () => {
+  const fixture = await createFixtureAsync({
+    'src/nested/main.py': '',
+    'node_modules/hidden/index.py': '',
+  });
+  try {
+    await mkdir(path.join(fixture, 'src/empty'));
+    const result = await inspectProjectAsync(fixture);
+
+    expect(result.complete).toBe(true);
+    expect(result.directories).toEqual(['src', 'src/empty', 'src/nested']);
+    expect(result.files).toEqual(['src/nested/main.py']);
+  } finally {
+    await rm(fixture, { recursive: true });
+  }
+});
+
 test('supports custom manifest evidence and explicit extra exclusions', async () => {
   const fixture = await createFixtureAsync({ 'project.custom': 'custom', 'ignored/main.py': '' });
   try {
@@ -150,6 +167,7 @@ test('can inspect through an injected evidence port without a filesystem', async
     readAsync: () =>
       Promise.resolve({
         rootPath: 'virtual',
+        directories: [],
         files: ['Main.kt'],
         contents: new Map(),
         diagnostics: [],

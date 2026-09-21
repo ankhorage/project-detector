@@ -37,6 +37,7 @@ export async function inspectWithPortAsync(
   return {
     rootPath: snapshot.rootPath,
     complete: snapshot.complete && diagnostics.length === 0,
+    directories: snapshot.directories,
     files: snapshot.files,
     detection,
     packages: inspected,

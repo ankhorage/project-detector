@@ -194,7 +194,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 27,
+      "line": 28,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -241,7 +241,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 34,
+      "line": 35,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -281,14 +281,14 @@
   },
   {
     "name": "inspectProjectAsync",
-    "description": "Inspect a directory using bounded, asynchronous, read-only filesystem access.\n\nImport from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,\n256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,\nincluding generated `.ankh`, are pruned. Symlinks outside exclusions are skipped\nwith diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.\nConfigure additional manifest basenames and detector callbacks for new ecosystems.\nPackage/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;\nother ecosystem manifests are identified, not fully resolved into dependency graphs.\nNo inspected JavaScript, Gradle, Python, executable config or install script is executed.\nInspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.\nReturned `files` are sorted relative POSIX paths from the pruned scan, including source files.\nThe result reports incompleteness; it never grants permission to run an update.\nOn a complete scan output is sorted; when a budget is exhausted the retained subset depends\non filesystem enumeration order. Inspect a stable checkout for reproducible results.\nInstall with `npm install @ankhorage/project-detector`; the standalone command is\n`npx --package @ankhorage/project-detector project-detector inspect .`.\nWith Ankh installed, use `ankh project-detector inspect .`.\nCLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.\nRelease automation requires the organization release App configuration and npm publishing\nauthorization for this new package; repository files alone do not provision these credentials.",
+    "description": "Inspect a directory using bounded, asynchronous, read-only filesystem access.\n\nImport from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,\n256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,\nincluding generated `.ankh`, are pruned. Symlinks outside exclusions are skipped\nwith diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.\nConfigure additional manifest basenames and detector callbacks for new ecosystems.\nPackage/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;\nother ecosystem manifests are identified, not fully resolved into dependency graphs.\nNo inspected JavaScript, Gradle, Python, executable config or install script is executed.\nInspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.\nReturned `directories` and `files` are sorted relative POSIX paths from the pruned scan.\nThe directory inventory includes empty directories and omits the inspection root itself.\nThe result reports incompleteness; it never grants permission to run an update.\nOn a complete scan output is sorted; when a budget is exhausted the retained subset depends\non filesystem enumeration order. Inspect a stable checkout for reproducible results.\nInstall with `npm install @ankhorage/project-detector`; the standalone command is\n`npx --package @ankhorage/project-detector project-detector inspect .`.\nWith Ankh installed, use `ankh project-detector inspect .`.\nCLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.\nRelease automation requires the organization release App configuration and npm publishing\nauthorization for this new package; repository files alone do not provision these credentials.",
     "isReadme": true,
     "examples": [],
     "kind": "function",
     "modulePath": "src/features/inspection/composition/inspectProjectAsync.ts",
     "sourceLocation": {
       "filePath": "src/features/inspection/composition/inspectProjectAsync.ts",
-      "line": 29,
+      "line": 30,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts"],
@@ -663,7 +663,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 41,
+      "line": 42,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -693,6 +693,13 @@
         "name": "diagnostics",
         "kind": "property",
         "type": "readonly ProjectDiagnostic[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "directories",
+        "kind": "property",
+        "type": "readonly string[]",
         "required": true,
         "description": null
       },
@@ -818,7 +825,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 23,
+      "line": 24,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -869,6 +876,13 @@
         "name": "diagnostics",
         "kind": "property",
         "type": "readonly ProjectDiagnostic[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "directories",
+        "kind": "property",
+        "type": "readonly string[]",
         "required": true,
         "description": null
       },
