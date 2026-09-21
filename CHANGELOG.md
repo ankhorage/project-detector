@@ -1,5 +1,11 @@
 # @ankhorage/project-detector
 
+## 0.2.0
+
+### Minor Changes
+
+- b0b0e94: Expose the pruned inspected file paths on `ProjectInspection` so downstream analyzers can use the same source set as project detection.
+
 ## 0.1.1
 
 ### Patch Changes
