@@ -3,7 +3,7 @@
 
 # @ankhorage/project-detector
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v0.1.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v0.1.1](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
 
 Extensible, evidence-based project detection and safe filesystem inspection.
 
@@ -64,6 +64,7 @@ Package/workspace membership currently resolves JavaScript package.json workspac
 other ecosystem manifests are identified, not fully resolved into dependency graphs.
 No inspected JavaScript, Gradle, Python, executable config or install script is executed.
 Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.
+Returned `files` are sorted relative POSIX paths from the pruned scan, including source files.
 The result reports incompleteness; it never grants permission to run an update.
 On a complete scan output is sorted; when a budget is exhausted the retained subset depends
 on filesystem enumeration order. Inspect a stable checkout for reproducible results.
@@ -75,7 +76,7 @@ Release automation requires the organization release App configuration and npm p
 authorization for this new package; repository files alone do not provision these credentials.
 
 Module: `src/features/inspection/composition/inspectProjectAsync.ts`
-Source: `src/features/inspection/composition/inspectProjectAsync.ts:28:1`
+Source: `src/features/inspection/composition/inspectProjectAsync.ts:29:1`
 Related symbols: `ProjectInspection`, `ProjectInspectionOptions`
 
 </details>

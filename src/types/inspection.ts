@@ -41,6 +41,8 @@ export interface InspectedWorkspace {
 export interface ProjectInspection {
   readonly rootPath: string;
   readonly complete: boolean;
+  /** Sorted relative POSIX file paths retained by the configured inspection scan. */
+  readonly files: readonly string[];
   readonly detection: ProjectDetection;
   readonly packages: readonly InspectedPackage[];
   readonly workspaces: readonly InspectedWorkspace[];

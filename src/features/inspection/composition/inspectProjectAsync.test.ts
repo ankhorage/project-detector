@@ -101,13 +101,22 @@ test('skips symlinked directories and manifests, including loops', async () => {
 });
 
 test('prunes generated Ankh materialization without treating its runtime link as incomplete', async () => {
-  const fixture = await createFixtureAsync({ 'src/main.ts': '' });
+  const fixture = await createFixtureAsync({
+    'index.ts': '',
+    'src/main.ts': '',
+    '.ankh/zora/.web-gen-1/src/generated.ts': '',
+  });
   try {
     await mkdir(path.join(fixture, '.ankh/zora'), { recursive: true });
-    await symlink(fixture, path.join(fixture, '.ankh/zora/web'));
+    await symlink(
+      path.join(fixture, '.ankh/zora/.web-gen-1'),
+      path.join(fixture, '.ankh/zora/web'),
+      process.platform === 'win32' ? 'junction' : 'dir',
+    );
 
     const result = await inspectProjectAsync(fixture);
     expect(result.complete).toBe(true);
+    expect(result.files).toEqual(['index.ts', 'src/main.ts']);
     expect(result.detection.traits.has('typescript')).toBe(true);
   } finally {
     await rm(fixture, { recursive: true });

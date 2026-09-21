@@ -103,7 +103,7 @@ Source: `src/types/inspection.ts:34:1`
 
 Kind: `function`
 Module: `src/features/inspection/composition/inspectProjectAsync.ts`
-Source: `src/features/inspection/composition/inspectProjectAsync.ts:28:1`
+Source: `src/features/inspection/composition/inspectProjectAsync.ts:29:1`
 
 Inspect a directory using bounded, asynchronous, read-only filesystem access.
 
@@ -116,6 +116,7 @@ Package/workspace membership currently resolves JavaScript package.json workspac
 other ecosystem manifests are identified, not fully resolved into dependency graphs.
 No inspected JavaScript, Gradle, Python, executable config or install script is executed.
 Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.
+Returned `files` are sorted relative POSIX paths from the pruned scan, including source files.
 The result reports incompleteness; it never grants permission to run an update.
 On a complete scan output is sorted; when a budget is exhausted the retained subset depends
 on filesystem enumeration order. Inspect a stable checkout for reproducible results.
@@ -257,6 +258,7 @@ Source: `src/types/inspection.ts:41:1`
 | complete    | property | `boolean`                       | yes      |             |
 | detection   | property | `ProjectDetection`              | yes      |             |
 | diagnostics | property | `readonly ProjectDiagnostic[]`  | yes      |             |
+| files       | property | `readonly string[]`             | yes      |             |
 | manifests   | property | `readonly string[]`             | yes      |             |
 | packages    | property | `readonly InspectedPackage[]`   | yes      |             |
 | rootPath    | property | `string`                        | yes      |             |
