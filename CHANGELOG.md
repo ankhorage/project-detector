@@ -1,5 +1,11 @@
 # @ankhorage/project-detector
 
+## 0.1.1
+
+### Patch Changes
+
+- b73df21: Ignore generated `.ankh` materialization during project inspection so its shared runtime symlink does not make a source scan incomplete.
+
 ## 0.1.0
 
 ### Minor Changes
