@@ -14,6 +14,7 @@ import { inspectWithPortAsync } from '../application/inspectWithPortAsync.js';
  * other ecosystem manifests are identified, not fully resolved into dependency graphs.
  * No inspected JavaScript, Gradle, Python, executable config or install script is executed.
  * Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.
+ * Returned `files` are sorted relative POSIX paths from the pruned scan, including source files.
  * The result reports incompleteness; it never grants permission to run an update.
  * On a complete scan output is sorted; when a budget is exhausted the retained subset depends
  * on filesystem enumeration order. Inspect a stable checkout for reproducible results.
