@@ -24,7 +24,14 @@ export async function readSnapshotAsync(
   if (Object.values(limits).some((value) => !Number.isSafeInteger(value) || value < 1)) {
     throw new Error('Inspection limits must be positive safe integers.');
   }
-  const state: ScanState = { count: 0, bytes: 0, files: [], contents: new Map(), diagnostics: [] };
+  const state: ScanState = {
+    count: 0,
+    bytes: 0,
+    directories: [],
+    files: [],
+    contents: new Map(),
+    diagnostics: [],
+  };
   const context: ScanContext = {
     root,
     options,
@@ -36,6 +43,7 @@ export async function readSnapshotAsync(
   await visitDirectoryAsync(root, 0, context);
   return {
     rootPath: root,
+    directories: [...state.directories].sort(),
     files: [...state.files].sort(),
     contents: new Map([...state.contents].sort()),
     diagnostics: state.diagnostics,
@@ -48,6 +56,7 @@ export async function readSnapshotAsync(
 interface ScanState {
   count: number;
   bytes: number;
+  readonly directories: string[];
   readonly files: string[];
   readonly contents: Map<string, string>;
   readonly diagnostics: ProjectDiagnostic[];
@@ -103,6 +112,7 @@ async function visitDirectoryAsync(
           message: 'Symbolic links are not followed.',
         });
       } else if (entry.isDirectory() && !context.excluded.has(entry.name)) {
+        context.state.directories.push(toPortablePath(path.relative(context.root, file)));
         await visitDirectoryAsync(file, depth + 1, context);
       } else if (entry.isFile()) {
         await visitFileAsync(file, entry.name, context);

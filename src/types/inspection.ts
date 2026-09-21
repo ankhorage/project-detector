@@ -14,6 +14,7 @@ export interface ProjectInspectionOptions extends ProjectDetectionOptions {
 
 export interface ProjectSnapshot {
   readonly rootPath: string;
+  readonly directories: readonly string[];
   readonly files: readonly string[];
   readonly contents: ReadonlyMap<string, string>;
   readonly diagnostics: readonly ProjectDiagnostic[];
@@ -41,6 +42,8 @@ export interface InspectedWorkspace {
 export interface ProjectInspection {
   readonly rootPath: string;
   readonly complete: boolean;
+  /** Sorted relative POSIX paths of scanned directories, including empty directories. */
+  readonly directories: readonly string[];
   /** Sorted relative POSIX file paths retained by the configured inspection scan. */
   readonly files: readonly string[];
   readonly detection: ProjectDetection;
