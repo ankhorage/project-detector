@@ -1,5 +1,11 @@
 # @ankhorage/project-detector
 
+## 0.3.0
+
+### Minor Changes
+
+- b183ee6: Expose the scanned project directory inventory, including empty directories, through the public inspection result.
+
 ## 0.2.0
 
 ### Minor Changes
