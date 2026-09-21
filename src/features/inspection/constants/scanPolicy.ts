@@ -9,6 +9,7 @@ export const defaultExcludedDirectories = [
   '.next',
   '.expo',
   '.cache',
+  '.ankh',
   '__pycache__',
   '.venv',
   'venv',

@@ -834,35 +834,35 @@
               <article
                 class="item"
                 id="symbol-inspectprojectasync"
-                data-search="inspectProjectAsync function src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories are pruned. Symlinks are skipped&#10;with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials. ProjectInspection ProjectInspectionOptions (path: string, options?: ProjectInspectionOptions) =&gt; Promise&lt;ProjectInspection&gt;"
+                data-search="inspectProjectAsync function src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,&#10;including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped&#10;with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials. ProjectInspection ProjectInspectionOptions (path: string, options?: ProjectInspectionOptions) =&gt; Promise&lt;ProjectInspection&gt;"
               >
                 <h4>inspectProjectAsync</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/inspection/composition/inspectProjectAsync.ts:27:1</code>
+                  <code>src/features/inspection/composition/inspectProjectAsync.ts:28:1</code>
                 </p>
                 <p>
                   Inspect a directory using bounded, asynchronous, read-only filesystem access.
                   Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000
                   entries, 256 KiB per manifest and 8 MiB total manifest text.
-                  Dependency/build/cache directories are pruned. Symlinks are skipped with
-                  diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to
-                  cancel. Configure additional manifest basenames and detector callbacks for new
-                  ecosystems. Package/workspace membership currently resolves JavaScript
-                  package.json workspaces and pnpm YAML; other ecosystem manifests are identified,
-                  not fully resolved into dependency graphs. No inspected JavaScript, Gradle,
-                  Python, executable config or install script is executed. Inspection is a
-                  best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.
-                  The result reports incompleteness; it never grants permission to run an update. On
-                  a complete scan output is sorted; when a budget is exhausted the retained subset
-                  depends on filesystem enumeration order. Inspect a stable checkout for
-                  reproducible results. Install with `npm install @ankhorage/project-detector`; the
-                  standalone command is `npx --package @ankhorage/project-detector project-detector
-                  inspect .`. With Ankh installed, use `ankh project-detector inspect .`. CLI exit
-                  codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial
-                  scans. Release automation requires the organization release App configuration and
-                  npm publishing authorization for this new package; repository files alone do not
-                  provision these credentials.
+                  Dependency/build/cache directories, including generated `.ankh`, are pruned.
+                  Symlinks outside exclusions are skipped with diagnostics; their targets are never
+                  intentionally scanned. Pass an AbortSignal to cancel. Configure additional
+                  manifest basenames and detector callbacks for new ecosystems. Package/workspace
+                  membership currently resolves JavaScript package.json workspaces and pnpm YAML;
+                  other ecosystem manifests are identified, not fully resolved into dependency
+                  graphs. No inspected JavaScript, Gradle, Python, executable config or install
+                  script is executed. Inspection is a best-effort snapshot, not a sandbox against
+                  concurrent hostile filesystem edits. The result reports incompleteness; it never
+                  grants permission to run an update. On a complete scan output is sorted; when a
+                  budget is exhausted the retained subset depends on filesystem enumeration order.
+                  Inspect a stable checkout for reproducible results. Install with `npm install
+                  @ankhorage/project-detector`; the standalone command is `npx --package
+                  @ankhorage/project-detector project-detector inspect .`. With Ankh installed, use
+                  `ankh project-detector inspect .`. CLI exit codes are 0 for a complete scan, 1 for
+                  invocation/root errors and 2 for partial scans. Release automation requires the
+                  organization release App configuration and npm publishing authorization for this
+                  new package; repository files alone do not provision these credentials.
                 </p>
                 <p><strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code></p>
                 <div>
@@ -3053,7 +3053,7 @@ sequenceDiagram
             >
               <h3>createFixtureAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/composition/inspectProjectAsync.test.ts:151:1</code>
+                <code>src/features/inspection/composition/inspectProjectAsync.test.ts:165:1</code>
               </p>
               <p class="empty">No description available.</p>
             </article>
@@ -3069,30 +3069,31 @@ sequenceDiagram
             <h2>src/features/inspection/composition/inspectProjectAsync.ts</h2>
             <article
               class="item"
-              data-search="inspectProjectAsync src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories are pruned. Symlinks are skipped&#10;with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials."
+              data-search="inspectProjectAsync src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,&#10;including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped&#10;with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials."
             >
               <h3>inspectProjectAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/composition/inspectProjectAsync.ts:27:1</code>
+                <code>src/features/inspection/composition/inspectProjectAsync.ts:28:1</code>
               </p>
               <p>
                 Inspect a directory using bounded, asynchronous, read-only filesystem access. Import
                 from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries, 256 KiB
-                per manifest and 8 MiB total manifest text. Dependency/build/cache directories are
-                pruned. Symlinks are skipped with diagnostics; their targets are never intentionally
-                scanned. Pass an AbortSignal to cancel. Configure additional manifest basenames and
-                detector callbacks for new ecosystems. Package/workspace membership currently
-                resolves JavaScript package.json workspaces and pnpm YAML; other ecosystem manifests
-                are identified, not fully resolved into dependency graphs. No inspected JavaScript,
-                Gradle, Python, executable config or install script is executed. Inspection is a
-                best-effort snapshot, not a sandbox against concurrent hostile filesystem edits. The
-                result reports incompleteness; it never grants permission to run an update. On a
-                complete scan output is sorted; when a budget is exhausted the retained subset
-                depends on filesystem enumeration order. Inspect a stable checkout for reproducible
-                results. Install with `npm install @ankhorage/project-detector`; the standalone
-                command is `npx --package @ankhorage/project-detector project-detector inspect .`.
-                With Ankh installed, use `ankh project-detector inspect .`. CLI exit codes are 0 for
-                a complete scan, 1 for invocation/root errors and 2 for partial scans. Release
+                per manifest and 8 MiB total manifest text. Dependency/build/cache directories,
+                including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped
+                with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal
+                to cancel. Configure additional manifest basenames and detector callbacks for new
+                ecosystems. Package/workspace membership currently resolves JavaScript package.json
+                workspaces and pnpm YAML; other ecosystem manifests are identified, not fully
+                resolved into dependency graphs. No inspected JavaScript, Gradle, Python, executable
+                config or install script is executed. Inspection is a best-effort snapshot, not a
+                sandbox against concurrent hostile filesystem edits. The result reports
+                incompleteness; it never grants permission to run an update. On a complete scan
+                output is sorted; when a budget is exhausted the retained subset depends on
+                filesystem enumeration order. Inspect a stable checkout for reproducible results.
+                Install with `npm install @ankhorage/project-detector`; the standalone command is
+                `npx --package @ankhorage/project-detector project-detector inspect .`. With Ankh
+                installed, use `ankh project-detector inspect .`. CLI exit codes are 0 for a
+                complete scan, 1 for invocation/root errors and 2 for partial scans. Release
                 automation requires the organization release App configuration and npm publishing
                 authorization for this new package; repository files alone do not provision these
                 credentials.

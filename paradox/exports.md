@@ -103,12 +103,13 @@ Source: `src/types/inspection.ts:34:1`
 
 Kind: `function`
 Module: `src/features/inspection/composition/inspectProjectAsync.ts`
-Source: `src/features/inspection/composition/inspectProjectAsync.ts:27:1`
+Source: `src/features/inspection/composition/inspectProjectAsync.ts:28:1`
 
 Inspect a directory using bounded, asynchronous, read-only filesystem access.
 
 Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,
-256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories are pruned. Symlinks are skipped
+256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,
+including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped
 with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.
 Configure additional manifest basenames and detector callbacks for new ecosystems.
 Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;

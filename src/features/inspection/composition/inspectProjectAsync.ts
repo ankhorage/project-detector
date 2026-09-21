@@ -6,7 +6,8 @@ import { inspectWithPortAsync } from '../application/inspectWithPortAsync.js';
  * Inspect a directory using bounded, asynchronous, read-only filesystem access.
  *
  * Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,
- * 256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories are pruned. Symlinks are skipped
+ * 256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,
+ * including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped
  * with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.
  * Configure additional manifest basenames and detector callbacks for new ecosystems.
  * Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;
