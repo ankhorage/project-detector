@@ -1,5 +1,11 @@
 # @ankhorage/project-detector
 
+## 0.3.1
+
+### Patch Changes
+
+- 69fd589: Allow inspection callers to exclude project-relative file globs before detection and downstream dependency analysis.
+
 ## 0.3.0
 
 ### Minor Changes
