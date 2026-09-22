@@ -7,6 +7,8 @@ export interface ProjectInspectionOptions extends ProjectDetectionOptions {
   readonly maxTotalManifestBytes?: number;
   /** Additional directory basenames to prune, not glob expressions. */
   readonly excludeDirectories?: readonly string[];
+  /** Additional project-relative POSIX glob patterns for files to prune before detection. */
+  readonly excludeFiles?: readonly string[];
   /** Additional manifest basenames whose bounded text is available to detectors. */
   readonly manifestNames?: readonly string[];
   readonly signal?: AbortSignal;

@@ -2,6 +2,7 @@ import { opendir, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 import { toPortablePath } from '@ankhorage/utility/node/path';
+import { minimatch } from 'minimatch';
 
 import type { ProjectDiagnostic } from '../../../../types/detection.js';
 import type { ProjectInspectionOptions, ProjectSnapshot } from '../../../../types/inspection.js';
@@ -38,6 +39,7 @@ export async function readSnapshotAsync(
     limits,
     state,
     excluded: new Set([...defaultExcludedDirectories, ...(options.excludeDirectories ?? [])]),
+    excludedFiles: options.excludeFiles ?? [],
     manifests: new Set([...defaultManifestNames, ...(options.manifestNames ?? [])]),
   };
   await visitDirectoryAsync(root, 0, context);
@@ -73,6 +75,7 @@ interface ScanContext {
   };
   readonly state: ScanState;
   readonly excluded: ReadonlySet<string>;
+  readonly excludedFiles: readonly string[];
   readonly manifests: ReadonlySet<string>;
 }
 
@@ -131,6 +134,7 @@ async function visitDirectoryAsync(
 /*** Retain file paths and only read explicitly recognized manifest text. */
 async function visitFileAsync(file: string, name: string, context: ScanContext): Promise<void> {
   const relative = toPortablePath(path.relative(context.root, file));
+  if (context.excludedFiles.some((pattern) => minimatch(relative, pattern, { dot: true }))) return;
   context.state.files.push(relative);
   if (!context.manifests.has(name)) return;
   try {

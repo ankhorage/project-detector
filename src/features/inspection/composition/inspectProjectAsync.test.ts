@@ -162,6 +162,26 @@ test('supports custom manifest evidence and explicit extra exclusions', async ()
   }
 });
 
+test('prunes project-relative file exclusion globs before detection', async () => {
+  const fixture = await createFixtureAsync({
+    'src/main.ts': '',
+    'src/main.test.ts': '',
+    'src/nested/widget.spec.ts': '',
+    'root.spec.ts': '',
+  });
+  try {
+    const result = await inspectProjectAsync(fixture, {
+      excludeFiles: ['**/*.test.*', '**/*.spec.*'],
+    });
+
+    expect(result.complete).toBe(true);
+    expect(result.files).toEqual(['src/main.ts']);
+    expect(result.detection.traits.has('typescript')).toBe(true);
+  } finally {
+    await rm(fixture, { recursive: true });
+  }
+});
+
 test('can inspect through an injected evidence port without a filesystem', async () => {
   const result = await inspectWithPortAsync('virtual', {
     readAsync: () =>
