@@ -4,7 +4,7 @@
 
 Kind: `type`
 Module: `src/types/detection.ts`
-Source: `src/types/detection.ts:44:1`
+Source: `src/types/detection.ts:46:1`
 
 ### Members
 
@@ -20,7 +20,7 @@ Source: `src/types/detection.ts:44:1`
 
 Kind: `type`
 Module: `src/types/detection.ts`
-Source: `src/types/detection.ts:48:1`
+Source: `src/types/detection.ts:50:1`
 
 ### Members
 
@@ -103,14 +103,15 @@ Source: `src/types/inspection.ts:39:1`
 
 Kind: `function`
 Module: `src/features/inspection/composition/inspectProjectAsync.ts`
-Source: `src/features/inspection/composition/inspectProjectAsync.ts:30:1`
+Source: `src/features/inspection/composition/inspectProjectAsync.ts:31:1`
 
 Inspect a directory using bounded, asynchronous, read-only filesystem access.
 
 Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,
 256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,
 including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped
-with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.
+with path-bearing warnings; they do not alone make a scan incomplete. Their targets
+are never intentionally scanned. Pass an AbortSignal to cancel.
 Configure additional manifest basenames and detector callbacks for new ecosystems.
 Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;
 other ecosystem manifests are identified, not fully resolved into dependency graphs.
@@ -139,7 +140,7 @@ authorization for this new package; repository files alone do not provision thes
 
 Kind: `function`
 Module: `src/features/inspection/application/inspectWithPortAsync.ts`
-Source: `src/features/inspection/application/inspectWithPortAsync.ts:19:1`
+Source: `src/features/inspection/application/inspectWithPortAsync.ts:20:1`
 
 Inspect a snapshot through an injected evidence source; keep I/O outside project classification.
 
@@ -161,7 +162,7 @@ Source: `src/types/detection.ts:1:1`
 
 Kind: `type`
 Module: `src/types/detection.ts`
-Source: `src/types/detection.ts:55:1`
+Source: `src/types/detection.ts:57:1`
 
 ### Members
 
@@ -240,11 +241,12 @@ Source: `src/types/detection.ts:38:1`
 
 ### Members
 
-| Name    | Kind     | Type     | Required | Description |
-| ------- | -------- | -------- | -------- | ----------- |
-| code    | property | `string` | yes      |             |
-| message | property | `string` | yes      |             |
-| path    | property | `string` | no       |             |
+| Name     | Kind     | Type                   | Required | Description |
+| -------- | -------- | ---------------------- | -------- | ----------- |
+| code     | property | `string`               | yes      |             |
+| message  | property | `string`               | yes      |             |
+| path     | property | `string`               | no       |             |
+| severity | property | `"warning" \| "error"` | no       |             |
 
 ## ProjectInspection
 

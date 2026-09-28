@@ -74,7 +74,9 @@ test('finds nested Conan and vcpkg metadata and package-manager conflicts', () =
     files: ['native/conanfile.txt', 'native/vcpkg.json', 'yarn.lock'],
   });
   expect(result.packageManagers).toEqual(['conan', 'pnpm', 'vcpkg', 'yarn']);
-  expect(result.diagnostics.some((item) => item.code === 'ambiguous-package-manager')).toBe(true);
+  expect(
+    result.diagnostics.find((item) => item.code === 'ambiguous-package-manager'),
+  ).toMatchObject({ severity: 'warning' });
 });
 
 test('adds new ecosystems without changing built-in implementations', () => {
@@ -110,8 +112,11 @@ test('rejects conflicting extension IDs and invalid weights', () => {
   ).toThrow('invalid finding');
 });
 
-test('reports unknown input and rejects non-portable paths', () => {
-  expect(detectProject({}).diagnostics[0]?.code).toBe('unknown-project');
+test('reports unknown input as a warning and rejects non-portable paths', () => {
+  expect(detectProject({}).diagnostics[0]).toMatchObject({
+    code: 'unknown-project',
+    severity: 'warning',
+  });
   for (const file of ['../escape.ts', '/root.ts', 'C:\\root.ts']) {
     expect(() => detectProject({ files: [file] })).toThrow('relative POSIX');
   }

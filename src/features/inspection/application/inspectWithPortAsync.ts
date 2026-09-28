@@ -12,6 +12,7 @@ import type {
 } from '../../../types/inspection.js';
 import { detectProject } from '../../detection/application/detectProject.js';
 import { summarizeDetection } from '../../detection/domain/summarizeDetection.js';
+import { hasBlockingDiagnostics } from '../domain/hasBlockingDiagnostics.js';
 import { inspectWorkspaces } from '../domain/inspectWorkspaces.js';
 import { readPackageMetadata } from '../domain/readPackageMetadata.js';
 
@@ -36,7 +37,7 @@ export async function inspectWithPortAsync(
   ];
   return {
     rootPath: snapshot.rootPath,
-    complete: snapshot.complete && diagnostics.length === 0,
+    complete: snapshot.complete && !hasBlockingDiagnostics(diagnostics),
     directories: snapshot.directories,
     files: snapshot.files,
     detection,

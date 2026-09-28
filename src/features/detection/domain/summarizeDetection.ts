@@ -65,14 +65,21 @@ function detectionDiagnostics(
   );
   return [
     ...(findings.length === 0
-      ? [{ code: 'unknown-project', message: 'No supported project indicators found.' }]
+      ? [
+          {
+            code: 'unknown-project',
+            message: 'No supported project indicators found.',
+            severity: 'warning',
+          } satisfies ProjectDiagnostic,
+        ]
       : []),
     ...(nodeManagers.length > 1
       ? [
           {
             code: 'ambiguous-package-manager',
             message: `Multiple package managers detected: ${nodeManagers.join(', ')}. Select explicitly before updates.`,
-          },
+            severity: 'warning',
+          } satisfies ProjectDiagnostic,
         ]
       : []),
   ];
