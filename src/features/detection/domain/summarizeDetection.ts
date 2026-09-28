@@ -70,7 +70,7 @@ function detectionDiagnostics(
             code: 'unknown-project',
             message: 'No supported project indicators found.',
             severity: 'warning',
-          },
+          } satisfies ProjectDiagnostic,
         ]
       : []),
     ...(nodeManagers.length > 1
@@ -79,7 +79,7 @@ function detectionDiagnostics(
             code: 'ambiguous-package-manager',
             message: `Multiple package managers detected: ${nodeManagers.join(', ')}. Select explicitly before updates.`,
             severity: 'warning',
-          },
+          } satisfies ProjectDiagnostic,
         ]
       : []),
   ];
