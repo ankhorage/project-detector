@@ -39,6 +39,8 @@ export interface ProjectDiagnostic {
   readonly code: string;
   readonly message: string;
   readonly path?: string;
+  /** Warnings describe intentionally omitted evidence; absent severity means an inspection error. */
+  readonly severity?: 'warning' | 'error';
 }
 
 export interface AttributedFinding extends DetectionFinding {

@@ -1,3 +1,7 @@
+import { mkdtemp, realpath, rm, symlink, writeFile } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+
 import { expect, test } from 'bun:test';
 
 import { createCliProvider } from './createCliProvider.js';
@@ -27,4 +31,35 @@ test('provides an Ankh command with matching handler and capability', () => {
   expect(provider.commands[0]?.path).toEqual(['inspect']);
   expect(provider.handlers?.[0]?.path).toEqual(['inspect']);
   expect(provider.capabilities).toEqual(['project-detector.inspect']);
+});
+
+test('returns success with a path-bearing warning for a skipped symlink', async () => {
+  const fixture = await mkdtemp(path.join(os.tmpdir(), 'project-detector-cli-link-'));
+  try {
+    await writeFile(path.join(fixture, 'index.ts'), '');
+    await symlink('index.ts', path.join(fixture, 'arbitrary-link.ts'));
+    const output: string[] = [];
+    const exitCode = await runAsync(['inspect', fixture], {
+      cwd: fixture,
+      writeStdout: (value) => output.push(value),
+      writeStderr: () => undefined,
+    });
+    const result = JSON.parse(output.join('')) as {
+      complete: boolean;
+      diagnostics: { code: string; message: string; path?: string; severity?: string }[];
+    };
+
+    expect(exitCode).toBe(0);
+    expect(result.complete).toBe(true);
+    expect(result.diagnostics).toEqual([
+      {
+        code: 'symlink-skipped',
+        path: path.join(await realpath(fixture), 'arbitrary-link.ts'),
+        message: 'Symbolic links are not followed.',
+        severity: 'warning',
+      },
+    ]);
+  } finally {
+    await rm(fixture, { recursive: true });
+  }
 });

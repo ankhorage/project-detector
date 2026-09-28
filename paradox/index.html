@@ -301,6 +301,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/features/inspection/domain/hasBlockingDiagnostics.ts"
+              >
+                src/features/inspection/domain/hasBlockingDiagnostics.ts
+                <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/features/inspection/domain/inspectWorkspaces.ts"
               >
                 src/features/inspection/domain/inspectWorkspaces.ts
@@ -327,7 +337,7 @@
             <div class="summary">
               <div><strong>20</strong><span class="muted">public exports</span></div>
               <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>29</strong><span class="muted">modules</span></div>
+              <div><strong>30</strong><span class="muted">modules</span></div>
               <div><strong>2</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -509,7 +519,7 @@
             </article>
             <article
               class="item"
-              data-search="src/features/inspection/adapters/outbound/readSnapshotAsync.ts src/features/inspection/adapters/outbound/readManifestAsync.ts src/features/inspection/constants/scanPolicy.ts src/types/detection.ts src/types/inspection.ts readSnapshotAsync"
+              data-search="src/features/inspection/adapters/outbound/readSnapshotAsync.ts src/features/inspection/adapters/outbound/readManifestAsync.ts src/features/inspection/constants/scanPolicy.ts src/features/inspection/domain/hasBlockingDiagnostics.ts src/types/detection.ts src/types/inspection.ts readSnapshotAsync"
             >
               <h3>src/features/inspection/adapters/outbound/readSnapshotAsync.ts</h3>
               <p class="muted">Referenced module</p>
@@ -517,13 +527,14 @@
                 <strong>Dependencies:</strong>
                 <code>src/features/inspection/adapters/outbound/readManifestAsync.ts</code>,
                 <code>src/features/inspection/constants/scanPolicy.ts</code>,
+                <code>src/features/inspection/domain/hasBlockingDiagnostics.ts</code>,
                 <code>src/types/detection.ts</code>, <code>src/types/inspection.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>readSnapshotAsync</code></p>
             </article>
             <article
               class="item"
-              data-search="src/features/inspection/application/inspectWithPortAsync.ts src/features/detection/application/detectProject.ts src/features/detection/domain/summarizeDetection.ts src/features/inspection/domain/inspectWorkspaces.ts src/features/inspection/domain/readPackageMetadata.ts src/types/detection.ts src/types/inspection.ts inspectWithPortAsync"
+              data-search="src/features/inspection/application/inspectWithPortAsync.ts src/features/detection/application/detectProject.ts src/features/detection/domain/summarizeDetection.ts src/features/inspection/domain/hasBlockingDiagnostics.ts src/features/inspection/domain/inspectWorkspaces.ts src/features/inspection/domain/readPackageMetadata.ts src/types/detection.ts src/types/inspection.ts inspectWithPortAsync"
             >
               <h3>src/features/inspection/application/inspectWithPortAsync.ts</h3>
               <p class="muted">Referenced module</p>
@@ -531,6 +542,7 @@
                 <strong>Dependencies:</strong>
                 <code>src/features/detection/application/detectProject.ts</code>,
                 <code>src/features/detection/domain/summarizeDetection.ts</code>,
+                <code>src/features/inspection/domain/hasBlockingDiagnostics.ts</code>,
                 <code>src/features/inspection/domain/inspectWorkspaces.ts</code>,
                 <code>src/features/inspection/domain/readPackageMetadata.ts</code>,
                 <code>src/types/detection.ts</code>, <code>src/types/inspection.ts</code>
@@ -580,6 +592,15 @@
                 <strong>Exports:</strong> <code>defaultExcludedDirectories</code>,
                 <code>defaultManifestNames</code>
               </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/inspection/domain/hasBlockingDiagnostics.ts src/types/detection.ts hasBlockingDiagnostics"
+            >
+              <h3>src/features/inspection/domain/hasBlockingDiagnostics.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/types/detection.ts</code></p>
+              <p><strong>Exports:</strong> <code>hasBlockingDiagnostics</code></p>
             </article>
             <article
               class="item"
@@ -776,7 +797,7 @@
                 <h4>inspectWithPortAsync</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/inspection/application/inspectWithPortAsync.ts:19:1</code>
+                  <code>src/features/inspection/application/inspectWithPortAsync.ts:20:1</code>
                 </p>
                 <p>
                   Inspect a snapshot through an injected evidence source; keep I/O outside project
@@ -834,38 +855,38 @@
               <article
                 class="item"
                 id="symbol-inspectprojectasync"
-                data-search="inspectProjectAsync function src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,&#10;including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped&#10;with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;Returned `directories` and `files` are sorted relative POSIX paths from the pruned scan.&#10;The directory inventory includes empty directories and omits the inspection root itself.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials. ProjectInspection ProjectInspectionOptions (path: string, options?: ProjectInspectionOptions) =&gt; Promise&lt;ProjectInspection&gt;"
+                data-search="inspectProjectAsync function src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,&#10;including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped&#10;with path-bearing warnings; they do not alone make a scan incomplete. Their targets&#10;are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;Returned `directories` and `files` are sorted relative POSIX paths from the pruned scan.&#10;The directory inventory includes empty directories and omits the inspection root itself.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials. ProjectInspection ProjectInspectionOptions (path: string, options?: ProjectInspectionOptions) =&gt; Promise&lt;ProjectInspection&gt;"
               >
                 <h4>inspectProjectAsync</h4>
                 <p class="muted">
                   function •
-                  <code>src/features/inspection/composition/inspectProjectAsync.ts:30:1</code>
+                  <code>src/features/inspection/composition/inspectProjectAsync.ts:31:1</code>
                 </p>
                 <p>
                   Inspect a directory using bounded, asynchronous, read-only filesystem access.
                   Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000
                   entries, 256 KiB per manifest and 8 MiB total manifest text.
                   Dependency/build/cache directories, including generated `.ankh`, are pruned.
-                  Symlinks outside exclusions are skipped with diagnostics; their targets are never
-                  intentionally scanned. Pass an AbortSignal to cancel. Configure additional
-                  manifest basenames and detector callbacks for new ecosystems. Package/workspace
-                  membership currently resolves JavaScript package.json workspaces and pnpm YAML;
-                  other ecosystem manifests are identified, not fully resolved into dependency
-                  graphs. No inspected JavaScript, Gradle, Python, executable config or install
-                  script is executed. Inspection is a best-effort snapshot, not a sandbox against
-                  concurrent hostile filesystem edits. Returned `directories` and `files` are sorted
-                  relative POSIX paths from the pruned scan. The directory inventory includes empty
-                  directories and omits the inspection root itself. The result reports
-                  incompleteness; it never grants permission to run an update. On a complete scan
-                  output is sorted; when a budget is exhausted the retained subset depends on
-                  filesystem enumeration order. Inspect a stable checkout for reproducible results.
-                  Install with `npm install @ankhorage/project-detector`; the standalone command is
-                  `npx --package @ankhorage/project-detector project-detector inspect .`. With Ankh
-                  installed, use `ankh project-detector inspect .`. CLI exit codes are 0 for a
-                  complete scan, 1 for invocation/root errors and 2 for partial scans. Release
-                  automation requires the organization release App configuration and npm publishing
-                  authorization for this new package; repository files alone do not provision these
-                  credentials.
+                  Symlinks outside exclusions are skipped with path-bearing warnings; they do not
+                  alone make a scan incomplete. Their targets are never intentionally scanned. Pass
+                  an AbortSignal to cancel. Configure additional manifest basenames and detector
+                  callbacks for new ecosystems. Package/workspace membership currently resolves
+                  JavaScript package.json workspaces and pnpm YAML; other ecosystem manifests are
+                  identified, not fully resolved into dependency graphs. No inspected JavaScript,
+                  Gradle, Python, executable config or install script is executed. Inspection is a
+                  best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.
+                  Returned `directories` and `files` are sorted relative POSIX paths from the pruned
+                  scan. The directory inventory includes empty directories and omits the inspection
+                  root itself. The result reports incompleteness; it never grants permission to run
+                  an update. On a complete scan output is sorted; when a budget is exhausted the
+                  retained subset depends on filesystem enumeration order. Inspect a stable checkout
+                  for reproducible results. Install with `npm install @ankhorage/project-detector`;
+                  the standalone command is `npx --package @ankhorage/project-detector
+                  project-detector inspect .`. With Ankh installed, use `ankh project-detector
+                  inspect .`. CLI exit codes are 0 for a complete scan, 1 for invocation/root errors
+                  and 2 for partial scans. Release automation requires the organization release App
+                  configuration and npm publishing authorization for this new package; repository
+                  files alone do not provision these credentials.
                 </p>
                 <p><strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code></p>
                 <div>
@@ -967,7 +988,7 @@
                 data-search="AttributedFinding type src/types/detection.ts "
               >
                 <h4>AttributedFinding</h4>
-                <p class="muted">type • <code>src/types/detection.ts:44:1</code></p>
+                <p class="muted">type • <code>src/types/detection.ts:46:1</code></p>
 
                 <p>
                   <strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code>,
@@ -1036,7 +1057,7 @@
                 data-search="DetectedLanguage type src/types/detection.ts "
               >
                 <h4>DetectedLanguage</h4>
-                <p class="muted">type • <code>src/types/detection.ts:48:1</code></p>
+                <p class="muted">type • <code>src/types/detection.ts:50:1</code></p>
 
                 <p>
                   <strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code>,
@@ -1168,7 +1189,7 @@
                 data-search="ProjectDetection type src/types/detection.ts  AttributedFinding DetectedLanguage ProjectDiagnostic"
               >
                 <h4>ProjectDetection</h4>
-                <p class="muted">type • <code>src/types/detection.ts:55:1</code></p>
+                <p class="muted">type • <code>src/types/detection.ts:57:1</code></p>
 
                 <p>
                   <strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code>,
@@ -1458,6 +1479,13 @@
                       <td><code>path</code></td>
                       <td>property</td>
                       <td><code>string</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>severity</code></td>
+                      <td>property</td>
+                      <td><code>&quot;warning&quot; | &quot;error&quot;</code></td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -2023,6 +2051,8 @@
                 module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt;
                 module_src_features_inspection_constants_scanPolicy_ts
                 module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt;
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts
+                module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt;
                 module_src_types_detection_ts
                 module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt;
                 module_src_types_inspection_ts
@@ -2033,6 +2063,8 @@
                 module_src_features_detection_application_detectProject_ts
                 module_src_features_inspection_application_inspectWithPortAsync_ts --&gt;
                 module_src_features_detection_domain_summarizeDetection_ts
+                module_src_features_inspection_application_inspectWithPortAsync_ts --&gt;
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts
                 module_src_features_inspection_application_inspectWithPortAsync_ts --&gt;
                 module_src_features_inspection_domain_inspectWorkspaces_ts
                 module_src_features_inspection_application_inspectWithPortAsync_ts --&gt;
@@ -2063,6 +2095,11 @@
                 module_src_features_inspection_constants_scanPolicy_ts[&quot;src/features/inspection/constants/scanPolicy.ts&quot;]
                 package__ankhorage_project_detector -.-&gt;
                 module_src_features_inspection_constants_scanPolicy_ts
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts[&quot;src/features/inspection/domain/hasBlockingDiagnostics.ts&quot;]
+                package__ankhorage_project_detector -.-&gt;
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts --&gt;
+                module_src_types_detection_ts
                 module_src_features_inspection_domain_inspectWorkspaces_ts[&quot;src/features/inspection/domain/inspectWorkspaces.ts&quot;]
                 package__ankhorage_project_detector -.-&gt;
                 module_src_features_inspection_domain_inspectWorkspaces_ts
@@ -2156,12 +2193,14 @@ graph TD
   package__ankhorage_project_detector -.-&gt; module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts
   module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_features_inspection_adapters_outbound_readManifestAsync_ts
   module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_features_inspection_constants_scanPolicy_ts
+  module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_features_inspection_domain_hasBlockingDiagnostics_ts
   module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_types_detection_ts
   module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_types_inspection_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts[&quot;src/features/inspection/application/inspectWithPortAsync.ts&quot;]
   package__ankhorage_project_detector -.-&gt; module_src_features_inspection_application_inspectWithPortAsync_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_detection_application_detectProject_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_detection_domain_summarizeDetection_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_inspection_domain_hasBlockingDiagnostics_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_inspection_domain_inspectWorkspaces_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_inspection_domain_readPackageMetadata_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_types_detection_ts
@@ -2179,6 +2218,9 @@ graph TD
   module_src_features_inspection_composition_manifestLimits_test_ts --&gt; module_src_nodeProjectDetector_ts
   module_src_features_inspection_constants_scanPolicy_ts[&quot;src/features/inspection/constants/scanPolicy.ts&quot;]
   package__ankhorage_project_detector -.-&gt; module_src_features_inspection_constants_scanPolicy_ts
+  module_src_features_inspection_domain_hasBlockingDiagnostics_ts[&quot;src/features/inspection/domain/hasBlockingDiagnostics.ts&quot;]
+  package__ankhorage_project_detector -.-&gt; module_src_features_inspection_domain_hasBlockingDiagnostics_ts
+  module_src_features_inspection_domain_hasBlockingDiagnostics_ts --&gt; module_src_types_detection_ts
   module_src_features_inspection_domain_inspectWorkspaces_ts[&quot;src/features/inspection/domain/inspectWorkspaces.ts&quot;]
   package__ankhorage_project_detector -.-&gt; module_src_features_inspection_domain_inspectWorkspaces_ts
   module_src_features_inspection_domain_inspectWorkspaces_ts --&gt; module_src_features_inspection_domain_readPackageMetadata_ts
@@ -2230,6 +2272,7 @@ graph TD
                 module_src_features_inspection_composition_inspectProjectAsync_ts[&quot;src/features/inspection/composition/inspectProjectAsync.ts&quot;]
                 module_src_features_inspection_composition_manifestLimits_test_ts[&quot;src/features/inspection/composition/manifestLimits.test.ts&quot;]
                 module_src_features_inspection_constants_scanPolicy_ts[&quot;src/features/inspection/constants/scanPolicy.ts&quot;]
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts[&quot;src/features/inspection/domain/hasBlockingDiagnostics.ts&quot;]
                 module_src_features_inspection_domain_inspectWorkspaces_ts[&quot;src/features/inspection/domain/inspectWorkspaces.ts&quot;]
                 module_src_features_inspection_domain_readPackageMetadata_ts[&quot;src/features/inspection/domain/readPackageMetadata.ts&quot;]
                 module_src_nodeProjectDetector_ts[&quot;src/nodeProjectDetector.ts&quot;]
@@ -2278,6 +2321,8 @@ graph TD
                 module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt;
                 module_src_features_inspection_constants_scanPolicy_ts
                 module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt;
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts
+                module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt;
                 module_src_types_detection_ts
                 module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt;
                 module_src_types_inspection_ts
@@ -2285,6 +2330,8 @@ graph TD
                 module_src_features_detection_application_detectProject_ts
                 module_src_features_inspection_application_inspectWithPortAsync_ts --&gt;
                 module_src_features_detection_domain_summarizeDetection_ts
+                module_src_features_inspection_application_inspectWithPortAsync_ts --&gt;
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts
                 module_src_features_inspection_application_inspectWithPortAsync_ts --&gt;
                 module_src_features_inspection_domain_inspectWorkspaces_ts
                 module_src_features_inspection_application_inspectWithPortAsync_ts --&gt;
@@ -2303,6 +2350,8 @@ graph TD
                 module_src_types_inspection_ts
                 module_src_features_inspection_composition_manifestLimits_test_ts --&gt;
                 module_src_nodeProjectDetector_ts
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts --&gt;
+                module_src_types_detection_ts
                 module_src_features_inspection_domain_inspectWorkspaces_ts --&gt;
                 module_src_features_inspection_domain_readPackageMetadata_ts
                 module_src_features_inspection_domain_inspectWorkspaces_ts --&gt;
@@ -2338,6 +2387,7 @@ graph LR
   module_src_features_inspection_composition_inspectProjectAsync_ts[&quot;src/features/inspection/composition/inspectProjectAsync.ts&quot;]
   module_src_features_inspection_composition_manifestLimits_test_ts[&quot;src/features/inspection/composition/manifestLimits.test.ts&quot;]
   module_src_features_inspection_constants_scanPolicy_ts[&quot;src/features/inspection/constants/scanPolicy.ts&quot;]
+  module_src_features_inspection_domain_hasBlockingDiagnostics_ts[&quot;src/features/inspection/domain/hasBlockingDiagnostics.ts&quot;]
   module_src_features_inspection_domain_inspectWorkspaces_ts[&quot;src/features/inspection/domain/inspectWorkspaces.ts&quot;]
   module_src_features_inspection_domain_readPackageMetadata_ts[&quot;src/features/inspection/domain/readPackageMetadata.ts&quot;]
   module_src_nodeProjectDetector_ts[&quot;src/nodeProjectDetector.ts&quot;]
@@ -2372,10 +2422,12 @@ graph LR
   module_src_features_detection_domain_summarizeDetection_ts --&gt; module_src_types_detection_ts
   module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_features_inspection_adapters_outbound_readManifestAsync_ts
   module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_features_inspection_constants_scanPolicy_ts
+  module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_features_inspection_domain_hasBlockingDiagnostics_ts
   module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_types_detection_ts
   module_src_features_inspection_adapters_outbound_readSnapshotAsync_ts --&gt; module_src_types_inspection_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_detection_application_detectProject_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_detection_domain_summarizeDetection_ts
+  module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_inspection_domain_hasBlockingDiagnostics_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_inspection_domain_inspectWorkspaces_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_features_inspection_domain_readPackageMetadata_ts
   module_src_features_inspection_application_inspectWithPortAsync_ts --&gt; module_src_types_detection_ts
@@ -2385,6 +2437,7 @@ graph LR
   module_src_features_inspection_composition_inspectProjectAsync_ts --&gt; module_src_features_inspection_application_inspectWithPortAsync_ts
   module_src_features_inspection_composition_inspectProjectAsync_ts --&gt; module_src_types_inspection_ts
   module_src_features_inspection_composition_manifestLimits_test_ts --&gt; module_src_nodeProjectDetector_ts
+  module_src_features_inspection_domain_hasBlockingDiagnostics_ts --&gt; module_src_types_detection_ts
   module_src_features_inspection_domain_inspectWorkspaces_ts --&gt; module_src_features_inspection_domain_readPackageMetadata_ts
   module_src_features_inspection_domain_inspectWorkspaces_ts --&gt; module_src_types_detection_ts
   module_src_features_inspection_domain_inspectWorkspaces_ts --&gt; module_src_types_inspection_ts
@@ -2419,6 +2472,7 @@ graph LR
                 module_src_features_inspection_composition_inspectProjectAsync_ts[&quot;src/features/inspection/composition/inspectProjectAsync.ts&quot;]
                 module_src_features_inspection_composition_manifestLimits_test_ts[&quot;src/features/inspection/composition/manifestLimits.test.ts&quot;]
                 module_src_features_inspection_constants_scanPolicy_ts[&quot;src/features/inspection/constants/scanPolicy.ts&quot;]
+                module_src_features_inspection_domain_hasBlockingDiagnostics_ts[&quot;src/features/inspection/domain/hasBlockingDiagnostics.ts&quot;]
                 module_src_features_inspection_domain_inspectWorkspaces_ts[&quot;src/features/inspection/domain/inspectWorkspaces.ts&quot;]
                 module_src_features_inspection_domain_readPackageMetadata_ts[&quot;src/features/inspection/domain/readPackageMetadata.ts&quot;]
                 module_src_nodeProjectDetector_ts[&quot;src/nodeProjectDetector.ts&quot;]
@@ -2512,6 +2566,7 @@ graph LR
   module_src_features_inspection_composition_inspectProjectAsync_ts[&quot;src/features/inspection/composition/inspectProjectAsync.ts&quot;]
   module_src_features_inspection_composition_manifestLimits_test_ts[&quot;src/features/inspection/composition/manifestLimits.test.ts&quot;]
   module_src_features_inspection_constants_scanPolicy_ts[&quot;src/features/inspection/constants/scanPolicy.ts&quot;]
+  module_src_features_inspection_domain_hasBlockingDiagnostics_ts[&quot;src/features/inspection/domain/hasBlockingDiagnostics.ts&quot;]
   module_src_features_inspection_domain_inspectWorkspaces_ts[&quot;src/features/inspection/domain/inspectWorkspaces.ts&quot;]
   module_src_features_inspection_domain_readPackageMetadata_ts[&quot;src/features/inspection/domain/readPackageMetadata.ts&quot;]
   module_src_nodeProjectDetector_ts[&quot;src/nodeProjectDetector.ts&quot;]
@@ -2619,71 +2674,6 @@ sequenceDiagram
   participant_summarizeDetection-&gt;&gt;participant_detectionDiagnostics: detectionDiagnostics()
   participant_detectionDiagnostics--&gt;&gt;participant_summarizeDetection: return
   participant_summarizeDetection--&gt;&gt;participant_detectProject: return
-</pre>
-              </details>
-            </article>
-            <article
-              class="item"
-              data-search="inspectWithPortAsync sequence diagrams/sequences/inspect-with-port-async.mmd"
-            >
-              <h3>inspectWithPortAsync sequence</h3>
-              <p class="muted"><code>diagrams/sequences/inspect-with-port-async.mmd</code></p>
-              <div class="mermaid">
-                sequenceDiagram participant participant_detectionDiagnostics as detectionDiagnostics
-                participant participant_detectProject as detectProject participant
-                participant_detectSnapshot as detectSnapshot participant
-                participant_inspectWithPortAsync as inspectWithPortAsync participant
-                participant_inspectWorkspaces as inspectWorkspaces participant participant_readAsync
-                as readAsync participant participant_summarizeDetection as summarizeDetection
-                participant participant_valuesFor as valuesFor
-                participant_inspectWithPortAsync-&gt;&gt;participant_readAsync: port.readAsync()
-                participant_readAsync--&gt;&gt;participant_inspectWithPortAsync: return
-                participant_inspectWithPortAsync-&gt;&gt;participant_inspectWorkspaces:
-                inspectWorkspaces()
-                participant_inspectWorkspaces--&gt;&gt;participant_inspectWithPortAsync: return
-                participant_inspectWithPortAsync-&gt;&gt;participant_detectSnapshot:
-                detectSnapshot() participant_detectSnapshot-&gt;&gt;participant_detectProject:
-                detectProject() participant_detectProject-&gt;&gt;participant_summarizeDetection:
-                summarizeDetection() participant_summarizeDetection-&gt;&gt;participant_valuesFor:
-                valuesFor() participant_valuesFor--&gt;&gt;participant_summarizeDetection: return
-                participant_summarizeDetection-&gt;&gt;participant_detectionDiagnostics:
-                detectionDiagnostics()
-                participant_detectionDiagnostics--&gt;&gt;participant_summarizeDetection: return
-                participant_summarizeDetection--&gt;&gt;participant_detectProject: return
-                participant_detectProject--&gt;&gt;participant_detectSnapshot: return
-                participant_detectSnapshot-&gt;&gt;participant_summarizeDetection:
-                summarizeDetection()
-                participant_summarizeDetection--&gt;&gt;participant_detectSnapshot: return
-                participant_detectSnapshot--&gt;&gt;participant_inspectWithPortAsync: return
-              </div>
-              <details>
-                <summary>View Mermaid source</summary>
-                <pre>
-sequenceDiagram
-  participant participant_detectionDiagnostics as detectionDiagnostics
-  participant participant_detectProject as detectProject
-  participant participant_detectSnapshot as detectSnapshot
-  participant participant_inspectWithPortAsync as inspectWithPortAsync
-  participant participant_inspectWorkspaces as inspectWorkspaces
-  participant participant_readAsync as readAsync
-  participant participant_summarizeDetection as summarizeDetection
-  participant participant_valuesFor as valuesFor
-  participant_inspectWithPortAsync-&gt;&gt;participant_readAsync: port.readAsync()
-  participant_readAsync--&gt;&gt;participant_inspectWithPortAsync: return
-  participant_inspectWithPortAsync-&gt;&gt;participant_inspectWorkspaces: inspectWorkspaces()
-  participant_inspectWorkspaces--&gt;&gt;participant_inspectWithPortAsync: return
-  participant_inspectWithPortAsync-&gt;&gt;participant_detectSnapshot: detectSnapshot()
-  participant_detectSnapshot-&gt;&gt;participant_detectProject: detectProject()
-  participant_detectProject-&gt;&gt;participant_summarizeDetection: summarizeDetection()
-  participant_summarizeDetection-&gt;&gt;participant_valuesFor: valuesFor()
-  participant_valuesFor--&gt;&gt;participant_summarizeDetection: return
-  participant_summarizeDetection-&gt;&gt;participant_detectionDiagnostics: detectionDiagnostics()
-  participant_detectionDiagnostics--&gt;&gt;participant_summarizeDetection: return
-  participant_summarizeDetection--&gt;&gt;participant_detectProject: return
-  participant_detectProject--&gt;&gt;participant_detectSnapshot: return
-  participant_detectSnapshot-&gt;&gt;participant_summarizeDetection: summarizeDetection()
-  participant_summarizeDetection--&gt;&gt;participant_detectSnapshot: return
-  participant_detectSnapshot--&gt;&gt;participant_inspectWithPortAsync: return
 </pre>
               </details>
             </article>
@@ -2986,7 +2976,7 @@ sequenceDiagram
             >
               <h3>readSnapshotAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:14:1</code>
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:15:1</code>
               </p>
               <p>
                 Collect bounded inspection evidence while pruning dependencies and never following
@@ -2999,7 +2989,7 @@ sequenceDiagram
             >
               <h3>visitDirectoryAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:86:1</code>
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:87:1</code>
               </p>
               <p>
                 Stream a directory with a global entry budget; return explicit diagnostics for
@@ -3012,7 +3002,7 @@ sequenceDiagram
             >
               <h3>visitEntryAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:116:1</code>
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:117:1</code>
               </p>
               <p>Inspect one in-scope filesystem entry without following symlinks.</p>
             </article>
@@ -3022,7 +3012,7 @@ sequenceDiagram
             >
               <h3>isExcludedPath</h3>
               <p class="muted">
-                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:151:1</code>
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:153:1</code>
               </p>
               <p>
                 Decide whether a project-relative path is outside the caller&#39;s selected
@@ -3035,7 +3025,7 @@ sequenceDiagram
             >
               <h3>visitFileAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:156:1</code>
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:158:1</code>
               </p>
               <p>Retain file paths and only read explicitly recognized manifest text.</p>
             </article>
@@ -3055,7 +3045,7 @@ sequenceDiagram
             >
               <h3>inspectWithPortAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/application/inspectWithPortAsync.ts:19:1</code>
+                <code>src/features/inspection/application/inspectWithPortAsync.ts:20:1</code>
               </p>
               <p>
                 Inspect a snapshot through an injected evidence source; keep I/O outside project
@@ -3068,7 +3058,7 @@ sequenceDiagram
             >
               <h3>detectSnapshot</h3>
               <p class="muted">
-                <code>src/features/inspection/application/inspectWithPortAsync.ts:58:1</code>
+                <code>src/features/inspection/application/inspectWithPortAsync.ts:59:1</code>
               </p>
               <p>
                 Combine tree evidence with attributed metadata from every package, not just the
@@ -3081,7 +3071,7 @@ sequenceDiagram
             >
               <h3>inspectPackage</h3>
               <p class="muted">
-                <code>src/features/inspection/application/inspectWithPortAsync.ts:73:1</code>
+                <code>src/features/inspection/application/inspectWithPortAsync.ts:74:1</code>
               </p>
               <p>
                 Classify each package using its own metadata and files, excluding nested package
@@ -3094,7 +3084,7 @@ sequenceDiagram
             >
               <h3>owns</h3>
               <p class="muted">
-                <code>src/features/inspection/application/inspectWithPortAsync.ts:83:9</code>
+                <code>src/features/inspection/application/inspectWithPortAsync.ts:84:9</code>
               </p>
               <p class="empty">No description available.</p>
             </article>
@@ -3114,7 +3104,7 @@ sequenceDiagram
             >
               <h3>createFixtureAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/composition/inspectProjectAsync.test.ts:227:1</code>
+                <code>src/features/inspection/composition/inspectProjectAsync.test.ts:251:1</code>
               </p>
               <p class="empty">No description available.</p>
             </article>
@@ -3130,37 +3120,57 @@ sequenceDiagram
             <h2>src/features/inspection/composition/inspectProjectAsync.ts</h2>
             <article
               class="item"
-              data-search="inspectProjectAsync src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,&#10;including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped&#10;with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;Returned `directories` and `files` are sorted relative POSIX paths from the pruned scan.&#10;The directory inventory includes empty directories and omits the inspection root itself.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials."
+              data-search="inspectProjectAsync src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,&#10;including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped&#10;with path-bearing warnings; they do not alone make a scan incomplete. Their targets&#10;are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;Returned `directories` and `files` are sorted relative POSIX paths from the pruned scan.&#10;The directory inventory includes empty directories and omits the inspection root itself.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials."
             >
               <h3>inspectProjectAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/composition/inspectProjectAsync.ts:30:1</code>
+                <code>src/features/inspection/composition/inspectProjectAsync.ts:31:1</code>
               </p>
               <p>
                 Inspect a directory using bounded, asynchronous, read-only filesystem access. Import
                 from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries, 256 KiB
                 per manifest and 8 MiB total manifest text. Dependency/build/cache directories,
                 including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped
-                with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal
-                to cancel. Configure additional manifest basenames and detector callbacks for new
-                ecosystems. Package/workspace membership currently resolves JavaScript package.json
-                workspaces and pnpm YAML; other ecosystem manifests are identified, not fully
-                resolved into dependency graphs. No inspected JavaScript, Gradle, Python, executable
-                config or install script is executed. Inspection is a best-effort snapshot, not a
-                sandbox against concurrent hostile filesystem edits. Returned `directories` and
-                `files` are sorted relative POSIX paths from the pruned scan. The directory
-                inventory includes empty directories and omits the inspection root itself. The
-                result reports incompleteness; it never grants permission to run an update. On a
-                complete scan output is sorted; when a budget is exhausted the retained subset
-                depends on filesystem enumeration order. Inspect a stable checkout for reproducible
-                results. Install with `npm install @ankhorage/project-detector`; the standalone
-                command is `npx --package @ankhorage/project-detector project-detector inspect .`.
-                With Ankh installed, use `ankh project-detector inspect .`. CLI exit codes are 0 for
-                a complete scan, 1 for invocation/root errors and 2 for partial scans. Release
-                automation requires the organization release App configuration and npm publishing
-                authorization for this new package; repository files alone do not provision these
-                credentials.
+                with path-bearing warnings; they do not alone make a scan incomplete. Their targets
+                are never intentionally scanned. Pass an AbortSignal to cancel. Configure additional
+                manifest basenames and detector callbacks for new ecosystems. Package/workspace
+                membership currently resolves JavaScript package.json workspaces and pnpm YAML;
+                other ecosystem manifests are identified, not fully resolved into dependency graphs.
+                No inspected JavaScript, Gradle, Python, executable config or install script is
+                executed. Inspection is a best-effort snapshot, not a sandbox against concurrent
+                hostile filesystem edits. Returned `directories` and `files` are sorted relative
+                POSIX paths from the pruned scan. The directory inventory includes empty directories
+                and omits the inspection root itself. The result reports incompleteness; it never
+                grants permission to run an update. On a complete scan output is sorted; when a
+                budget is exhausted the retained subset depends on filesystem enumeration order.
+                Inspect a stable checkout for reproducible results. Install with `npm install
+                @ankhorage/project-detector`; the standalone command is `npx --package
+                @ankhorage/project-detector project-detector inspect .`. With Ankh installed, use
+                `ankh project-detector inspect .`. CLI exit codes are 0 for a complete scan, 1 for
+                invocation/root errors and 2 for partial scans. Release automation requires the
+                organization release App configuration and npm publishing authorization for this new
+                package; repository files alone do not provision these credentials.
               </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-features-inspection-domain-hasblockingdiagnostics-ts"
+          class="view"
+          data-view="src/features/inspection/domain/hasBlockingDiagnostics.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/inspection/domain/hasBlockingDiagnostics.ts</h2>
+            <article
+              class="item"
+              data-search="hasBlockingDiagnostics src/features/inspection/domain/hasBlockingDiagnostics.ts Distinguish scan failures from warnings about intentionally omitted evidence."
+            >
+              <h3>hasBlockingDiagnostics</h3>
+              <p class="muted">
+                <code>src/features/inspection/domain/hasBlockingDiagnostics.ts:4:1</code>
+              </p>
+              <p>Distinguish scan failures from warnings about intentionally omitted evidence.</p>
             </article>
           </section>
         </section>

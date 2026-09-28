@@ -8,6 +8,7 @@ import { minimatch } from 'minimatch';
 import type { ProjectDiagnostic } from '../../../../types/detection.js';
 import type { ProjectInspectionOptions, ProjectSnapshot } from '../../../../types/inspection.js';
 import { defaultExcludedDirectories, defaultManifestNames } from '../../constants/scanPolicy.js';
+import { hasBlockingDiagnostics } from '../../domain/hasBlockingDiagnostics.js';
 import { readManifestAsync } from './readManifestAsync.js';
 
 /*** Collect bounded inspection evidence while pruning dependencies and never following directory symlinks. */
@@ -51,7 +52,7 @@ export async function readSnapshotAsync(
     files: [...state.files].sort(),
     contents: new Map([...state.contents].sort()),
     diagnostics: state.diagnostics,
-    complete: state.diagnostics.length === 0,
+    complete: !hasBlockingDiagnostics(state.diagnostics),
   };
 }
 
@@ -137,6 +138,7 @@ async function visitEntryAsync(
       code: 'symlink-skipped',
       path: file,
       message: 'Symbolic links are not followed.',
+      severity: 'warning',
     });
   } else if (entry.isDirectory() && !context.excluded.has(entry.name)) {
     context.state.directories.push(relative);

@@ -3,7 +3,7 @@
 
 # @ankhorage/project-detector
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v0.3.1](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v0.3.2](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
 
 Extensible, evidence-based project detection and safe filesystem inspection.
 
@@ -16,7 +16,6 @@ Extensible, evidence-based project detection and safe filesystem inspection.
 - [Module relationships](././paradox/diagrams/module-relationships.mmd)
 - [Export graph](././paradox/diagrams/export-graph.mmd)
 - [detectProject sequence](././paradox/diagrams/sequences/detect-project.mmd)
-- [inspectWithPortAsync sequence](././paradox/diagrams/sequences/inspect-with-port-async.mmd)
 - [project-detector sequence](././paradox/diagrams/sequences/project-detector.mmd)
 
 ## Public API
@@ -58,7 +57,8 @@ Inspect a directory using bounded, asynchronous, read-only filesystem access.
 Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,
 256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,
 including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped
-with diagnostics; their targets are never intentionally scanned. Pass an AbortSignal to cancel.
+with path-bearing warnings; they do not alone make a scan incomplete. Their targets
+are never intentionally scanned. Pass an AbortSignal to cancel.
 Configure additional manifest basenames and detector callbacks for new ecosystems.
 Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;
 other ecosystem manifests are identified, not fully resolved into dependency graphs.
@@ -77,7 +77,7 @@ Release automation requires the organization release App configuration and npm p
 authorization for this new package; repository files alone do not provision these credentials.
 
 Module: `src/features/inspection/composition/inspectProjectAsync.ts`
-Source: `src/features/inspection/composition/inspectProjectAsync.ts:30:1`
+Source: `src/features/inspection/composition/inspectProjectAsync.ts:31:1`
 Related symbols: `ProjectInspection`, `ProjectInspectionOptions`
 
 </details>

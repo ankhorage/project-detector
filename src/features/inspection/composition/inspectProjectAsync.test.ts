@@ -83,7 +83,7 @@ test('reports scan limits and supports cancellation', async () => {
   }
 });
 
-test('skips symlinked directories and manifests, including loops', async () => {
+test('reports arbitrary symlinks as non-blocking warnings without following them', async () => {
   const fixture = await createFixtureAsync({
     'src/index.ts': '',
     'original.json': '{"dependencies":{"expo":"*"}}',
@@ -91,10 +91,31 @@ test('skips symlinked directories and manifests, including loops', async () => {
   try {
     await symlink(fixture, path.join(fixture, 'loop'));
     await symlink(path.join(fixture, 'original.json'), path.join(fixture, 'package.json'));
+    await symlink('missing.ts', path.join(fixture, 'broken.ts'));
+    await symlink(os.tmpdir(), path.join(fixture, 'outside'));
     const result = await inspectProjectAsync(fixture);
-    expect(result.complete).toBe(false);
+    expect(result.complete).toBe(true);
     expect(result.detection.traits.has('expo')).toBe(false);
-    expect(result.diagnostics.filter((item) => item.code === 'symlink-skipped')).toHaveLength(2);
+    expect(result.files).toEqual(['original.json', 'src/index.ts']);
+    const warnings = result.diagnostics.filter((item) => item.code === 'symlink-skipped');
+    expect(warnings).toHaveLength(4);
+    expect(warnings.every((item) => item.severity === 'warning' && item.path !== undefined)).toBe(
+      true,
+    );
+  } finally {
+    await rm(fixture, { recursive: true });
+  }
+});
+
+test('keeps real scan failures blocking when symlink warnings are present', async () => {
+  const fixture = await createFixtureAsync({ 'nested/main.ts': '' });
+  try {
+    await symlink('missing.ts', path.join(fixture, 'another-link.ts'));
+    const result = await inspectProjectAsync(fixture, { maxDepth: 1 });
+
+    expect(result.complete).toBe(false);
+    expect(result.diagnostics.map((item) => item.code)).toContain('symlink-skipped');
+    expect(result.diagnostics.map((item) => item.code)).toContain('depth-limit');
   } finally {
     await rm(fixture, { recursive: true });
   }
