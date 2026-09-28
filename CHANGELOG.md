@@ -1,5 +1,11 @@
 # @ankhorage/project-detector
 
+## 0.3.2
+
+### Patch Changes
+
+- 1968f8b: Allow callers to exclude project-relative paths from bounded inspection scope before filesystem entry diagnostics are produced.
+
 ## 0.3.1
 
 ### Patch Changes
