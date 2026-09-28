@@ -1,3 +1,4 @@
+import type { Dirent } from 'node:fs';
 import { opendir, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 
@@ -39,6 +40,7 @@ export async function readSnapshotAsync(
     limits,
     state,
     excluded: new Set([...defaultExcludedDirectories, ...(options.excludeDirectories ?? [])]),
+    excludedPaths: options.excludePaths ?? [],
     excludedFiles: options.excludeFiles ?? [],
     manifests: new Set([...defaultManifestNames, ...(options.manifestNames ?? [])]),
   };
@@ -75,6 +77,7 @@ interface ScanContext {
   };
   readonly state: ScanState;
   readonly excluded: ReadonlySet<string>;
+  readonly excludedPaths: readonly string[];
   readonly excludedFiles: readonly string[];
   readonly manifests: ReadonlySet<string>;
 }
@@ -97,29 +100,7 @@ async function visitDirectoryAsync(
   try {
     const handle = await opendir(directory);
     for await (const entry of handle) {
-      context.options.signal?.throwIfAborted();
-      if (context.state.count >= context.limits.maxEntries) {
-        context.state.diagnostics.push({
-          code: 'entry-limit',
-          path: directory,
-          message: 'Scan entry limit reached; inspection is incomplete.',
-        });
-        break;
-      }
-      context.state.count += 1;
-      const file = path.join(directory, entry.name);
-      if (entry.isSymbolicLink()) {
-        context.state.diagnostics.push({
-          code: 'symlink-skipped',
-          path: file,
-          message: 'Symbolic links are not followed.',
-        });
-      } else if (entry.isDirectory() && !context.excluded.has(entry.name)) {
-        context.state.directories.push(toPortablePath(path.relative(context.root, file)));
-        await visitDirectoryAsync(file, depth + 1, context);
-      } else if (entry.isFile()) {
-        await visitFileAsync(file, entry.name, context);
-      }
+      if (!(await visitEntryAsync(directory, depth, entry, context))) break;
     }
   } catch (error) {
     context.options.signal?.throwIfAborted();
@@ -129,6 +110,46 @@ async function visitDirectoryAsync(
       message: toErrorMessage(error),
     });
   }
+}
+
+/*** Inspect one in-scope filesystem entry without following symlinks. */
+async function visitEntryAsync(
+  directory: string,
+  depth: number,
+  entry: Dirent,
+  context: ScanContext,
+): Promise<boolean> {
+  context.options.signal?.throwIfAborted();
+  const file = path.join(directory, entry.name);
+  const relative = toPortablePath(path.relative(context.root, file));
+  if (isExcludedPath(relative, context)) return true;
+  if (context.state.count >= context.limits.maxEntries) {
+    context.state.diagnostics.push({
+      code: 'entry-limit',
+      path: directory,
+      message: 'Scan entry limit reached; inspection is incomplete.',
+    });
+    return false;
+  }
+  context.state.count += 1;
+  if (entry.isSymbolicLink()) {
+    context.state.diagnostics.push({
+      code: 'symlink-skipped',
+      path: file,
+      message: 'Symbolic links are not followed.',
+    });
+  } else if (entry.isDirectory() && !context.excluded.has(entry.name)) {
+    context.state.directories.push(relative);
+    await visitDirectoryAsync(file, depth + 1, context);
+  } else if (entry.isFile()) {
+    await visitFileAsync(file, entry.name, context);
+  }
+  return true;
+}
+
+/*** Decide whether a project-relative path is outside the caller's selected inspection scope. */
+function isExcludedPath(relative: string, context: ScanContext): boolean {
+  return context.excludedPaths.some((pattern) => minimatch(relative, pattern, { dot: true }));
 }
 
 /*** Retain file paths and only read explicitly recognized manifest text. */

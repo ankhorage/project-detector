@@ -194,7 +194,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 28,
+      "line": 32,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -241,7 +241,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 35,
+      "line": 39,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -663,7 +663,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 42,
+      "line": 46,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -772,6 +772,20 @@
         "description": null
       },
       {
+        "name": "excludeFiles",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "excludePaths",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "manifestNames",
         "kind": "property",
         "type": "readonly string[]",
@@ -825,7 +839,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 24,
+      "line": 28,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -851,7 +865,7 @@
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
       "filePath": "src/types/inspection.ts",
-      "line": 15,
+      "line": 19,
       "column": 1
     },
     "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
