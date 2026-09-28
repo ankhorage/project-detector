@@ -1,5 +1,11 @@
 # @ankhorage/project-detector
 
+## 0.3.3
+
+### Patch Changes
+
+- fb68f25: Report skipped symbolic links and non-blocking detection diagnostics as warnings.
+
 ## 0.3.2
 
 ### Patch Changes
