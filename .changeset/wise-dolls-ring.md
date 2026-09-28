@@ -2,4 +2,4 @@
 '@ankhorage/project-detector': patch
 ---
 
-Report skipped symbolic links as non-blocking inspection warnings.
+Report skipped symbolic links and non-blocking detection diagnostics as warnings.
