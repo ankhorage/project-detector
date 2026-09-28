@@ -100,6 +100,21 @@ test('skips symlinked directories and manifests, including loops', async () => {
   }
 });
 
+test('excludes project-relative symlink paths before entry classification', async () => {
+  const fixture = await createFixtureAsync({ 'src/main.ts': '' });
+  try {
+    await symlink(path.join(fixture, 'src/main.ts'), path.join(fixture, 'excluded-link'));
+
+    const result = await inspectProjectAsync(fixture, { excludePaths: ['excluded-link'] });
+
+    expect(result.complete).toBe(true);
+    expect(result.files).toEqual(['src/main.ts']);
+    expect(result.diagnostics.some((item) => item.code === 'symlink-skipped')).toBe(false);
+  } finally {
+    await rm(fixture, { recursive: true });
+  }
+});
+
 test('prunes generated Ankh materialization without treating its runtime link as incomplete', async () => {
   const fixture = await createFixtureAsync({
     'index.ts': '',
@@ -157,6 +172,9 @@ test('supports custom manifest evidence and explicit extra exclusions', async ()
       ],
     });
     expect([...result.detection.traits]).toEqual(['custom']);
+    expect(result.complete).toBe(true);
+    expect(result.directories).toEqual([]);
+    expect(result.files).toEqual(['project.custom']);
   } finally {
     await rm(fixture, { recursive: true });
   }

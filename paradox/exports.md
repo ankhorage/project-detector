@@ -73,7 +73,7 @@ Public types are owned by this package and exported through `@ankhorage/project-
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:28:1`
+Source: `src/types/inspection.ts:32:1`
 
 ### Members
 
@@ -88,7 +88,7 @@ Source: `src/types/inspection.ts:28:1`
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:35:1`
+Source: `src/types/inspection.ts:39:1`
 
 ### Members
 
@@ -250,7 +250,7 @@ Source: `src/types/detection.ts:38:1`
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:42:1`
+Source: `src/types/inspection.ts:46:1`
 
 ### Members
 
@@ -278,6 +278,8 @@ Source: `src/types/inspection.ts:3:1`
 | --------------------- | -------- | ---------------------------- | -------- | ----------- |
 | detectors             | property | `readonly ProjectDetector[]` | no       |             |
 | excludeDirectories    | property | `readonly string[]`          | no       |             |
+| excludeFiles          | property | `readonly string[]`          | no       |             |
+| excludePaths          | property | `readonly string[]`          | no       |             |
 | manifestNames         | property | `readonly string[]`          | no       |             |
 | maxDepth              | property | `number`                     | no       |             |
 | maxEntries            | property | `number`                     | no       |             |
@@ -289,7 +291,7 @@ Source: `src/types/inspection.ts:3:1`
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:24:1`
+Source: `src/types/inspection.ts:28:1`
 
 ### Members
 
@@ -301,7 +303,7 @@ Source: `src/types/inspection.ts:24:1`
 
 Kind: `type`
 Module: `src/types/inspection.ts`
-Source: `src/types/inspection.ts:15:1`
+Source: `src/types/inspection.ts:19:1`
 
 ### Members
 

@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.0",
+      "value": "v0.3.1",
       "color": "cb3837"
     },
     {
@@ -550,7 +550,7 @@
       "modulePath": "src/types/inspection.ts",
       "sourceLocation": {
         "filePath": "src/types/inspection.ts",
-        "line": 28,
+        "line": 32,
         "column": 1
       },
       "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -597,7 +597,7 @@
       "modulePath": "src/types/inspection.ts",
       "sourceLocation": {
         "filePath": "src/types/inspection.ts",
-        "line": 35,
+        "line": 39,
         "column": 1
       },
       "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -1019,7 +1019,7 @@
       "modulePath": "src/types/inspection.ts",
       "sourceLocation": {
         "filePath": "src/types/inspection.ts",
-        "line": 42,
+        "line": 46,
         "column": 1
       },
       "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -1128,6 +1128,20 @@
           "description": null
         },
         {
+          "name": "excludeFiles",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "excludePaths",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "manifestNames",
           "kind": "property",
           "type": "readonly string[]",
@@ -1181,7 +1195,7 @@
       "modulePath": "src/types/inspection.ts",
       "sourceLocation": {
         "filePath": "src/types/inspection.ts",
-        "line": 24,
+        "line": 28,
         "column": 1
       },
       "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -1207,7 +1221,7 @@
       "modulePath": "src/types/inspection.ts",
       "sourceLocation": {
         "filePath": "src/types/inspection.ts",
-        "line": 15,
+        "line": 19,
         "column": 1
       },
       "exportPaths": ["src/nodeProjectDetector.ts", "src/projectDetector.ts"],
@@ -1438,7 +1452,7 @@
       "description": "Collect bounded inspection evidence while pruning dependencies and never following directory symlinks.",
       "sourceLocation": {
         "filePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
-        "line": 12,
+        "line": 14,
         "column": 1
       }
     },
@@ -1447,7 +1461,25 @@
       "description": "Stream a directory with a global entry budget; return explicit diagnostics for partial scans.",
       "sourceLocation": {
         "filePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
-        "line": 80,
+        "line": 86,
+        "column": 1
+      }
+    },
+    {
+      "name": "visitEntryAsync",
+      "description": "Inspect one in-scope filesystem entry without following symlinks.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "line": 116,
+        "column": 1
+      }
+    },
+    {
+      "name": "isExcludedPath",
+      "description": "Decide whether a project-relative path is outside the caller's selected inspection scope.",
+      "sourceLocation": {
+        "filePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "line": 151,
         "column": 1
       }
     },
@@ -1456,7 +1488,7 @@
       "description": "Retain file paths and only read explicitly recognized manifest text.",
       "sourceLocation": {
         "filePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
-        "line": 132,
+        "line": 156,
         "column": 1
       }
     },
@@ -1501,7 +1533,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/inspection/composition/inspectProjectAsync.test.ts",
-        "line": 192,
+        "line": 227,
         "column": 1
       }
     },
@@ -2367,26 +2399,44 @@
       },
       {
         "fromSymbol": "visitDirectoryAsync",
-        "toSymbol": "toPortablePath",
-        "callExpression": "toPortablePath",
-        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
-      },
-      {
-        "fromSymbol": "visitDirectoryAsync",
-        "toSymbol": "visitDirectoryAsync",
-        "callExpression": "visitDirectoryAsync",
-        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
-      },
-      {
-        "fromSymbol": "visitDirectoryAsync",
-        "toSymbol": "visitFileAsync",
-        "callExpression": "visitFileAsync",
+        "toSymbol": "visitEntryAsync",
+        "callExpression": "visitEntryAsync",
         "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
       },
       {
         "fromSymbol": "visitDirectoryAsync",
         "toSymbol": "toErrorMessage",
         "callExpression": "toErrorMessage",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitEntryAsync",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitEntryAsync",
+        "toSymbol": "isExcludedPath",
+        "callExpression": "isExcludedPath",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitEntryAsync",
+        "toSymbol": "visitDirectoryAsync",
+        "callExpression": "visitDirectoryAsync",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "visitEntryAsync",
+        "toSymbol": "visitFileAsync",
+        "callExpression": "visitFileAsync",
+        "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts",
+        "toSymbol": "minimatch",
+        "callExpression": "minimatch",
         "sourcePath": "src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
       },
       {

@@ -264,7 +264,7 @@
                 data-target="src/features/inspection/adapters/outbound/readSnapshotAsync.ts"
               >
                 src/features/inspection/adapters/outbound/readSnapshotAsync.ts
-                <small>3 functions</small>
+                <small>5 functions</small>
               </button>
             </li>
             <li>
@@ -1487,7 +1487,7 @@
                 data-search="InspectedPackage type src/types/inspection.ts  ProjectDetection"
               >
                 <h4>InspectedPackage</h4>
-                <p class="muted">type • <code>src/types/inspection.ts:28:1</code></p>
+                <p class="muted">type • <code>src/types/inspection.ts:32:1</code></p>
 
                 <p>
                   <strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code>,
@@ -1548,7 +1548,7 @@
                 data-search="InspectedWorkspace type src/types/inspection.ts "
               >
                 <h4>InspectedWorkspace</h4>
-                <p class="muted">type • <code>src/types/inspection.ts:35:1</code></p>
+                <p class="muted">type • <code>src/types/inspection.ts:39:1</code></p>
 
                 <p>
                   <strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code>,
@@ -1604,7 +1604,7 @@
                 data-search="ProjectInspection type src/types/inspection.ts  InspectedPackage InspectedWorkspace ProjectDetection ProjectDiagnostic"
               >
                 <h4>ProjectInspection</h4>
-                <p class="muted">type • <code>src/types/inspection.ts:42:1</code></p>
+                <p class="muted">type • <code>src/types/inspection.ts:46:1</code></p>
 
                 <p>
                   <strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code>,
@@ -1742,6 +1742,20 @@
                       <td></td>
                     </tr>
                     <tr>
+                      <td><code>excludeFiles</code></td>
+                      <td>property</td>
+                      <td><code>readonly string[]</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>excludePaths</code></td>
+                      <td>property</td>
+                      <td><code>readonly string[]</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
                       <td><code>manifestNames</code></td>
                       <td>property</td>
                       <td><code>readonly string[]</code></td>
@@ -1792,7 +1806,7 @@
                 data-search="ProjectInspectionPort type src/types/inspection.ts  ProjectInspectionOptions ProjectSnapshot"
               >
                 <h4>ProjectInspectionPort</h4>
-                <p class="muted">type • <code>src/types/inspection.ts:24:1</code></p>
+                <p class="muted">type • <code>src/types/inspection.ts:28:1</code></p>
 
                 <p>
                   <strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code>,
@@ -1838,7 +1852,7 @@
                 data-search="ProjectSnapshot type src/types/inspection.ts  ProjectDiagnostic"
               >
                 <h4>ProjectSnapshot</h4>
-                <p class="muted">type • <code>src/types/inspection.ts:15:1</code></p>
+                <p class="muted">type • <code>src/types/inspection.ts:19:1</code></p>
 
                 <p>
                   <strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code>,
@@ -2972,7 +2986,7 @@ sequenceDiagram
             >
               <h3>readSnapshotAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:12:1</code>
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:14:1</code>
               </p>
               <p>
                 Collect bounded inspection evidence while pruning dependencies and never following
@@ -2985,7 +2999,7 @@ sequenceDiagram
             >
               <h3>visitDirectoryAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:80:1</code>
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:86:1</code>
               </p>
               <p>
                 Stream a directory with a global entry budget; return explicit diagnostics for
@@ -2994,11 +3008,34 @@ sequenceDiagram
             </article>
             <article
               class="item"
+              data-search="visitEntryAsync src/features/inspection/adapters/outbound/readSnapshotAsync.ts Inspect one in-scope filesystem entry without following symlinks."
+            >
+              <h3>visitEntryAsync</h3>
+              <p class="muted">
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:116:1</code>
+              </p>
+              <p>Inspect one in-scope filesystem entry without following symlinks.</p>
+            </article>
+            <article
+              class="item"
+              data-search="isExcludedPath src/features/inspection/adapters/outbound/readSnapshotAsync.ts Decide whether a project-relative path is outside the caller&#39;s selected inspection scope."
+            >
+              <h3>isExcludedPath</h3>
+              <p class="muted">
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:151:1</code>
+              </p>
+              <p>
+                Decide whether a project-relative path is outside the caller&#39;s selected
+                inspection scope.
+              </p>
+            </article>
+            <article
+              class="item"
               data-search="visitFileAsync src/features/inspection/adapters/outbound/readSnapshotAsync.ts Retain file paths and only read explicitly recognized manifest text."
             >
               <h3>visitFileAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:132:1</code>
+                <code>src/features/inspection/adapters/outbound/readSnapshotAsync.ts:156:1</code>
               </p>
               <p>Retain file paths and only read explicitly recognized manifest text.</p>
             </article>
@@ -3077,7 +3114,7 @@ sequenceDiagram
             >
               <h3>createFixtureAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/composition/inspectProjectAsync.test.ts:192:1</code>
+                <code>src/features/inspection/composition/inspectProjectAsync.test.ts:227:1</code>
               </p>
               <p class="empty">No description available.</p>
             </article>
