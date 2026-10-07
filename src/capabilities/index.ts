@@ -7,6 +7,7 @@ export const CAPABILITIES = [
     access: ['invoke'],
     binding: { kind: 'action', bindableAs: ['target'] },
     label: 'Inspect project',
-    description: 'Inspect project languages, packages and workspaces without executing project code.',
+    description:
+      'Inspect project languages, packages and workspaces without executing project code.',
   },
 ] as const satisfies readonly Capability[];
