@@ -33,7 +33,7 @@ describe('Project Detector capabilities', () => {
 
     const provider = createCliProvider(packageJson.version);
     expect(provider.capabilities).toBe(CAPABILITIES);
-    expect(new Set(provider.commands.map(({ capability }) => capability))).toEqual(
+    expect(new Set(provider.commands.map((command) => String(command.capability)))).toEqual(
       new Set(CAPABILITIES.map(({ id }) => id)),
     );
   });
