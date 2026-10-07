@@ -4,6 +4,7 @@ import path from 'node:path';
 
 import { expect, test } from 'bun:test';
 
+import { CAPABILITIES } from '../capabilities/index.js';
 import { createCliProvider } from './createCliProvider.js';
 import { runAsync } from './runAsync.js';
 
@@ -30,7 +31,8 @@ test('provides an Ankh command with matching handler and capability', () => {
   expect(provider.category).toBe('project-detector');
   expect(provider.commands[0]?.path).toEqual(['inspect']);
   expect(provider.handlers?.[0]?.path).toEqual(['inspect']);
-  expect(provider.capabilities).toEqual(['project-detector.inspect']);
+  expect(provider.capabilities).toBe(CAPABILITIES);
+  expect(provider.commands[0]?.capability).toBe('project-detector.inspect');
 });
 
 test('returns success with a path-bearing warning for a skipped symlink', async () => {

@@ -46,7 +46,11 @@
       "types": "./dist/cli/createCliProvider.d.ts",
       "import": "./dist/cli/createCliProvider.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./capabilities": {
+      "types": "./dist/capabilities/index.d.ts",
+      "import": "./dist/capabilities/index.js"
+    }
   },
   "bin": {
     "project-detector": "./dist/cli/runAsync.js"
@@ -58,7 +62,7 @@
     "node": ">=24"
   },
   "peerDependencies": {
-    "@ankhorage/ankh": "^0.8.13"
+    "@ankhorage/ankh": "^0.12.0"
   },
   "peerDependenciesMeta": {
     "@ankhorage/ankh": {
@@ -69,7 +73,21 @@
     "category": "project-detector",
     "provider": "./dist/cli/provider.js",
     "capabilities": [
-      "project-detector.inspect"
+      {
+        "id": "project-detector.inspect",
+        "owner": "@ankhorage/project-detector",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Inspect project",
+        "description": "Inspect project languages, packages and workspaces without executing project code."
+      }
     ]
   },
   "ankhorage": {
@@ -92,15 +110,16 @@
     "version-packages": "ankhorage-changeset version"
   },
   "dependencies": {
+    "@ankhorage/contracts": "^24.1.0",
     "@ankhorage/utility": "^0.8.0",
     "minimatch": "^10.2.6",
     "yaml": "^2.9.1"
   },
   "devDependencies": {
-    "@ankhorage/ankh": "^0.8.13",
+    "@ankhorage/ankh": "^0.12.0",
     "@ankhorage/devtools": "^1.14.7",
     "@ankhorage/paradox": "^0.1.26",
-    "@types/bun": "^1.4.1",
+    "@types/bun": "^1.4.2",
     "@types/node": "^26.5.1",
     "typescript": "~6.0.3"
   },
