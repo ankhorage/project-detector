@@ -1,7 +1,6 @@
 import type { AnkhRuntimeCommandProvider } from '@ankhorage/ankh';
 
 import { CAPABILITIES } from '../capabilities/index.js';
-
 import { inspect } from './commands/inspect.js';
 import { runAsync } from './runAsync.js';
 
