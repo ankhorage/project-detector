@@ -1,12 +1,14 @@
 import path from 'node:path';
 
+import type { Capability } from '@ankhorage/contracts/capabilities';
+
 import { inspectProjectAsync } from '../../features/inspection/composition/inspectProjectAsync.js';
 import type { ProjectDetectorCliContext } from '../../types/cli.js';
 
 /*** Map the inspect command to read-only inspection and serializable JSON output. */
 export const inspect = {
   path: ['inspect'],
-  capability: 'project-detector.inspect' as const,
+  capability: 'project-detector.inspect' satisfies Capability['id'],
   summary: 'Inspect project languages, packages and workspaces without executing project code.',
   executeAsync: async (
     argv: readonly string[],
