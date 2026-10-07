@@ -1,5 +1,7 @@
 import type { AnkhRuntimeCommandProvider } from '@ankhorage/ankh';
 
+import { CAPABILITIES } from '../capabilities/index.js';
+
 import { inspect } from './commands/inspect.js';
 import { runAsync } from './runAsync.js';
 
@@ -9,7 +11,7 @@ export function createCliProvider(version: string): AnkhRuntimeCommandProvider {
     id: '@ankhorage/project-detector',
     category: 'project-detector',
     version,
-    capabilities: [inspect.capability],
+    capabilities: CAPABILITIES,
     commands: [{ path: inspect.path, capability: inspect.capability, summary: inspect.summary }],
     handlers: [
       {
