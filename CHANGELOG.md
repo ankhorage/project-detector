@@ -1,5 +1,11 @@
 # @ankhorage/project-detector
 
+## 0.3.5
+
+### Patch Changes
+
+- 1050449: Migrate capability declarations and validation to the released singular Contracts declaration and standalone Capability toolkit.
+
 ## 0.3.4
 
 ### Patch Changes
