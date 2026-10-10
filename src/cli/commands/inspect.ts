@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-import type { Capability } from '@ankhorage/contracts/capabilities';
+import type { Capability } from '@ankhorage/contracts/capability';
 
 import { inspectProjectAsync } from '../../features/inspection/composition/inspectProjectAsync.js';
 import type { ProjectDetectorCliContext } from '../../types/cli.js';

@@ -110,7 +110,8 @@
     "version-packages": "ankhorage-changeset version"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^24.1.0",
+    "@ankhorage/capability": "^0.2.1",
+    "@ankhorage/contracts": "^26.0.0",
     "@ankhorage/utility": "^0.8.0",
     "minimatch": "^10.2.6",
     "yaml": "^2.9.1"
