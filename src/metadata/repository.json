@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "kind": "tooling",
+  "title": "Ankhorage Project Detector",
+  "summary": "Detects project languages, frameworks, runtimes, packages, workspaces, and manifests through pure evidence analysis and bounded filesystem inspection.",
+  "purpose": "Give standalone tools safe, extensible project evidence without executing inspected project code.",
+  "domain": "project detection and filesystem inspection",
+  "responsibilities": [
+    "Detect overlapping language, framework, runtime, build-tool, and package-manager evidence.",
+    "Inspect directory trees with bounded asynchronous read-only filesystem access.",
+    "Resolve JavaScript package and workspace membership from package.json workspaces and pnpm YAML.",
+    "Expose pure, Node, CLI, and Ankh capability entrypoints with portable result types."
+  ],
+  "boundaries": [
+    "Does not execute inspected JavaScript, Gradle, Python, install, or configuration code.",
+    "Does not resolve dependency updates, query registries, run migrations, or modify the inspected project.",
+    "Does not claim full workspace resolution for ecosystems without an explicit adapter."
+  ],
+  "audience": [
+    "Standalone developer tools that need project-shape evidence.",
+    "CLI and Ankh hosts inspecting source trees without trusting project code."
+  ],
+  "useCases": [
+    "Detect multiple applicable languages and frameworks from supplied evidence.",
+    "Inspect a project directory with explicit depth, entry-count, and manifest-byte budgets.",
+    "Enumerate files, directories, packages, and JavaScript workspaces without executing the target.",
+    "Extend detection through explicitly supplied trusted detector callbacks."
+  ],
+  "architecture": {
+    "role": "A pure detection core plus a bounded Node filesystem adapter and thin CLI/capability delivery edges.",
+    "invariants": [
+      "Detection evidence is additive and scores are heuristic strengths rather than probabilities.",
+      "Filesystem inspection is read-only, bounded, and reports incompleteness instead of granting execution permission.",
+      "Symlink targets are never intentionally scanned.",
+      "Portable public types are owned and exported by this package."
+    ]
+  },
+  "constraints": {
+    "platforms": [
+      "Pure JavaScript environments for evidence analysis",
+      "Node.js for filesystem inspection"
+    ],
+    "security": [
+      "Inspected project code is never executed; symlink targets are skipped and bounded scans prune dependency and cache directories."
+    ],
+    "limitations": [
+      "Non-JavaScript ecosystem manifests are identified but not fully resolved into dependency graphs or workspaces."
+    ]
+  }
+}
