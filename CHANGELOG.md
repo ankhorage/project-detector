@@ -1,5 +1,11 @@
 # @ankhorage/project-detector
 
+## 0.3.6
+
+### Patch Changes
+
+- 0b182c5: Add canonical repository metadata for tooling and managed-agent consumers.
+
 ## 0.3.5
 
 ### Patch Changes
