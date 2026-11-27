@@ -12,12 +12,20 @@ graph TD
   package__ankhorage_project_detector -.-> module_package_json
   module_paradox_config_ts["paradox.config.ts"]
   package__ankhorage_project_detector -.-> module_paradox_config_ts
+  module_src_capabilities_index_test_ts["src/capabilities/index.test.ts"]
+  package__ankhorage_project_detector -.-> module_src_capabilities_index_test_ts
+  module_src_capabilities_index_test_ts --> module_package_json
+  module_src_capabilities_index_test_ts --> module_src_capabilities_index_ts
+  module_src_capabilities_index_test_ts --> module_src_cli_createCliProvider_ts
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  package__ankhorage_project_detector -.-> module_src_capabilities_index_ts
   module_src_cli_commands_inspect_ts["src/cli/commands/inspect.ts"]
   package__ankhorage_project_detector -.-> module_src_cli_commands_inspect_ts
   module_src_cli_commands_inspect_ts --> module_src_features_inspection_composition_inspectProjectAsync_ts
   module_src_cli_commands_inspect_ts --> module_src_types_cli_ts
   module_src_cli_createCliProvider_ts["src/cli/createCliProvider.ts"]
   package__ankhorage_project_detector -.-> module_src_cli_createCliProvider_ts
+  module_src_cli_createCliProvider_ts --> module_src_capabilities_index_ts
   module_src_cli_createCliProvider_ts --> module_src_cli_commands_inspect_ts
   module_src_cli_createCliProvider_ts --> module_src_cli_runAsync_ts
   module_src_cli_provider_ts["src/cli/provider.ts"]
@@ -26,6 +34,7 @@ graph TD
   module_src_cli_provider_ts --> module_src_cli_createCliProvider_ts
   module_src_cli_runAsync_test_ts["src/cli/runAsync.test.ts"]
   package__ankhorage_project_detector -.-> module_src_cli_runAsync_test_ts
+  module_src_cli_runAsync_test_ts --> module_src_capabilities_index_ts
   module_src_cli_runAsync_test_ts --> module_src_cli_createCliProvider_ts
   module_src_cli_runAsync_test_ts --> module_src_cli_runAsync_ts
   module_src_cli_runAsync_ts["src/cli/runAsync.ts"]

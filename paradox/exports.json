@@ -1,9 +1,11 @@
 [
   {
     "name": "AttributedFinding",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -55,9 +57,11 @@
   },
   {
     "name": "DetectedLanguage",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -102,9 +106,11 @@
   },
   {
     "name": "DetectionFinding",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -149,9 +155,11 @@
   },
   {
     "name": "detectProject",
+    "title": null,
     "description": "Detect overlapping project languages, frameworks, runtimes and package-manager evidence.\n\nThe pure API accepts package metadata plus optional relative POSIX file paths and manifest text.\nJavaScript, TypeScript, Java, Kotlin, C++, Python and Delphi evidence is additive, never exclusive.\nGeneric Make/CMake/Gradle files identify build tools, not necessarily a source language.\nScores are heuristic strengths, not confidence probabilities. No source parser, registry request,\ndependency update, migration, filesystem operation or inspected project script runs here.\nExtend detection with explicitly supplied trusted detector callbacks; IDs must be unique.\nPublic types are owned by this package and exported through `@ankhorage/project-detector/types`.",
     "isReadme": true,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/detection/application/detectProject.ts",
     "sourceLocation": {
@@ -187,9 +195,11 @@
   },
   {
     "name": "InspectedPackage",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
@@ -234,9 +244,11 @@
   },
   {
     "name": "InspectedWorkspace",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
@@ -281,9 +293,11 @@
   },
   {
     "name": "inspectProjectAsync",
+    "title": null,
     "description": "Inspect a directory using bounded, asynchronous, read-only filesystem access.\n\nImport from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,\n256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,\nincluding generated `.ankh`, are pruned. Symlinks outside exclusions are skipped\nwith path-bearing warnings; they do not alone make a scan incomplete. Their targets\nare never intentionally scanned. Pass an AbortSignal to cancel.\nConfigure additional manifest basenames and detector callbacks for new ecosystems.\nPackage/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;\nother ecosystem manifests are identified, not fully resolved into dependency graphs.\nNo inspected JavaScript, Gradle, Python, executable config or install script is executed.\nInspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.\nReturned `directories` and `files` are sorted relative POSIX paths from the pruned scan.\nThe directory inventory includes empty directories and omits the inspection root itself.\nThe result reports incompleteness; it never grants permission to run an update.\nOn a complete scan output is sorted; when a budget is exhausted the retained subset depends\non filesystem enumeration order. Inspect a stable checkout for reproducible results.\nInstall with `npm install @ankhorage/project-detector`; the standalone command is\n`npx --package @ankhorage/project-detector project-detector inspect .`.\nWith Ankh installed, use `ankh project-detector inspect .`.\nCLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.\nRelease automation requires the organization release App configuration and npm publishing\nauthorization for this new package; repository files alone do not provision these credentials.",
     "isReadme": true,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/inspection/composition/inspectProjectAsync.ts",
     "sourceLocation": {
@@ -319,9 +333,11 @@
   },
   {
     "name": "inspectWithPortAsync",
+    "title": null,
     "description": "Inspect a snapshot through an injected evidence source; keep I/O outside project classification.",
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "function",
     "modulePath": "src/features/inspection/application/inspectWithPortAsync.ts",
     "sourceLocation": {
@@ -363,9 +379,11 @@
   },
   {
     "name": "ProjectDependencyMap",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "unknown",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -381,9 +399,11 @@
   },
   {
     "name": "ProjectDetection",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -442,9 +462,11 @@
   },
   {
     "name": "ProjectDetectionInput",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -517,9 +539,11 @@
   },
   {
     "name": "ProjectDetectionOptions",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -543,9 +567,11 @@
   },
   {
     "name": "ProjectDetector",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -576,9 +602,11 @@
   },
   {
     "name": "ProjectDetectorCliContext",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/cli.ts",
     "sourceLocation": {
@@ -616,9 +644,11 @@
   },
   {
     "name": "ProjectDiagnostic",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {
@@ -663,9 +693,11 @@
   },
   {
     "name": "ProjectInspection",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
@@ -750,9 +782,11 @@
   },
   {
     "name": "ProjectInspectionOptions",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
@@ -839,9 +873,11 @@
   },
   {
     "name": "ProjectInspectionPort",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
@@ -865,9 +901,11 @@
   },
   {
     "name": "ProjectSnapshot",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "type",
     "modulePath": "src/types/inspection.ts",
     "sourceLocation": {
@@ -926,9 +964,11 @@
   },
   {
     "name": "ProjectTrait",
+    "title": null,
     "description": null,
     "isReadme": false,
-    "examples": [],
+    "see": [],
+    "security": [],
     "kind": "unknown",
     "modulePath": "src/types/detection.ts",
     "sourceLocation": {

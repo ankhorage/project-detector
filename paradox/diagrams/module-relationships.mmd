@@ -2,6 +2,8 @@ graph LR
   module_examples_basic_usage_inspect_ts["examples/basic-usage/inspect.ts"]
   module_package_json["package.json"]
   module_paradox_config_ts["paradox.config.ts"]
+  module_src_capabilities_index_test_ts["src/capabilities/index.test.ts"]
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
   module_src_cli_commands_inspect_ts["src/cli/commands/inspect.ts"]
   module_src_cli_createCliProvider_ts["src/cli/createCliProvider.ts"]
   module_src_cli_provider_ts["src/cli/provider.ts"]
@@ -31,12 +33,17 @@ graph LR
   module_src_types_public_ts["src/types/public.ts"]
   module_examples_basic_usage_inspect_ts --> module_dist_nodeProjectDetector_d_ts
   module_examples_basic_usage_inspect_ts --> module_dist_projectDetector_d_ts
+  module_src_capabilities_index_test_ts --> module_package_json
+  module_src_capabilities_index_test_ts --> module_src_capabilities_index_ts
+  module_src_capabilities_index_test_ts --> module_src_cli_createCliProvider_ts
   module_src_cli_commands_inspect_ts --> module_src_features_inspection_composition_inspectProjectAsync_ts
   module_src_cli_commands_inspect_ts --> module_src_types_cli_ts
+  module_src_cli_createCliProvider_ts --> module_src_capabilities_index_ts
   module_src_cli_createCliProvider_ts --> module_src_cli_commands_inspect_ts
   module_src_cli_createCliProvider_ts --> module_src_cli_runAsync_ts
   module_src_cli_provider_ts --> module_package_json
   module_src_cli_provider_ts --> module_src_cli_createCliProvider_ts
+  module_src_cli_runAsync_test_ts --> module_src_capabilities_index_ts
   module_src_cli_runAsync_test_ts --> module_src_cli_createCliProvider_ts
   module_src_cli_runAsync_test_ts --> module_src_cli_runAsync_ts
   module_src_cli_runAsync_ts --> module_src_cli_commands_inspect_ts

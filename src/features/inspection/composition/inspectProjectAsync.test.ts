@@ -55,9 +55,9 @@ test('reads pnpm patterns, prunes dependency/build files and never executes conf
     expect(result.detection.traits.has('cpp')).toBe(false);
     expect(result.complete).toBe(true);
     expect(result.files.some((file) => /(^|\/)(ios|android|Pods)\//u.test(file))).toBe(false);
-    expect(result.directories.some((directory) => /(^|\/)(ios|android|Pods)(\/|$)/u.test(directory))).toBe(
-      false,
-    );
+    expect(
+      result.directories.some((directory) => /(^|\/)(ios|android|Pods)(\/|$)/u.test(directory)),
+    ).toBe(false);
   } finally {
     await rm(fixture, { recursive: true });
   }
