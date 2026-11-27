@@ -41,6 +41,10 @@ test('reads pnpm patterns, prunes dependency/build files and never executes conf
     'packages/lib/src/main.kt': '',
     'node_modules/fake/index.py': '',
     'dist/generated.cpp': '',
+    'examples/mobile/ios/Pods/Headers/generated.cpp': '',
+    'examples/mobile/android/app/src/main/java/Generated.java': '',
+    'examples/mobile/ios/generated.swift': '',
+    'Pods/standalone/generated.py': '',
     'app.config.js': 'throw new Error("must not execute")',
   });
   try {
@@ -49,6 +53,11 @@ test('reads pnpm patterns, prunes dependency/build files and never executes conf
     expect(result.detection.traits.has('kotlin')).toBe(true);
     expect(result.detection.traits.has('python')).toBe(false);
     expect(result.detection.traits.has('cpp')).toBe(false);
+    expect(result.complete).toBe(true);
+    expect(result.files.some((file) => /(^|\/)(ios|android|Pods)\//u.test(file))).toBe(false);
+    expect(result.directories.some((directory) => /(^|\/)(ios|android|Pods)(\/|$)/u.test(directory))).toBe(
+      false,
+    );
   } finally {
     await rm(fixture, { recursive: true });
   }
