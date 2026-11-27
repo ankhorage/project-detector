@@ -6,56 +6,271 @@
 
 Package: `@ankhorage/project-detector`
 
-Extensible, evidence-based project detection and safe filesystem inspection for standalone tools.
+Title: Ankhorage Project Detector
 
-## Current architecture only
+Detects project languages, frameworks, runtimes, packages, workspaces, and manifests through pure evidence analysis and bounded filesystem inspection.
 
-Only the current Ankhorage architecture is valid. Do not add or retain deprecated APIs,
-compatibility aliases, shims, dual old/new paths, historical-state fallbacks, or migrations whose
-sole purpose is supporting obsolete states. Remove superseded implementations instead.
+Purpose: Give standalone tools safe, extensible project evidence without executing inspected project code.
 
-When a canonical change affects another repository, update that repository to the latest released
-public API instead of preserving compatibility locally. Cross-package usage must go through
-published public APIs and declared dependencies, never sibling source files.
+Audience:
 
-Current-runtime error handling and canonical database or infrastructure migrations remain valid
-when they support states that the current architecture can intentionally produce.
+- Standalone developer tools that need project-shape evidence.
+- CLI and Ankh hosts inspecting source trees without trusting project code.
 
-## Required repository instructions
+## Scope and boundaries
 
-Before changing any file, read this `AGENTS.md` completely and inspect `.agents/skills/`.
-For every change, load and follow both baseline repository skills before making changes:
+Responsibilities:
 
-1. `.agents/skills/ankhorage-coding-rules/SKILL.md`
-2. `.agents/skills/ankhorage-project-structure/SKILL.md`
+- Detect overlapping language, framework, runtime, build-tool, and package-manager evidence.
+- Inspect directory trees with bounded asynchronous read-only filesystem access.
+- Resolve JavaScript package and workspace membership from package.json workspaces and pnpm YAML.
+- Expose pure, Node, CLI, and Ankh capability entrypoints with portable result types.
 
-Load and follow every additional repository-local skill relevant to the task, including skills
-required by either baseline skill. Continue to follow these instructions and skills through
-validation and delivery; do not substitute remembered, globally installed, or generic guidance for
-the repository-local versions.
+Boundaries:
+
+- Does not execute inspected JavaScript, Gradle, Python, install, or configuration code.
+- Does not resolve dependency updates, query registries, run migrations, or modify the inspected project.
+- Does not claim full workspace resolution for ecosystems without an explicit adapter.
+
+Architecture role: A pure detection core plus a bounded Node filesystem adapter and thin CLI/capability delivery edges.
+
+Architectural invariants:
+
+- Detection evidence is additive and scores are heuristic strengths rather than probabilities.
+- Filesystem inspection is read-only, bounded, and reports incompleteness instead of granting execution permission.
+- Symlink targets are never intentionally scanned.
+- Portable public types are owned and exported by this package.
+
+## Task authority and scope
+
+The user's explicit requirements and acceptance criteria define the
+authorized scope. Scope is frozen unless the user explicitly changes it.
+
+- Implement exactly the requested outcome. Never invent requirements.
+- No unsolicited features, refactoring, redesign, migrations,
+  abstractions, compatibility layers, or architectural improvements.
+- Change only files necessary for the task, including relevant tests,
+  documentation sources, and release metadata.
+- Existing defects, architecture debt, and reviewer suggestions do not
+  authorize additional work.
+- Repository rules and skills define HOW authorized work is implemented,
+  never WHAT additional work may be performed.
+- Never weaken mandatory quality, security, or validation requirements.
+
+If correct implementation requires work outside scope, STOP.
+Explain the blocker and wait for explicit user instructions.
+Never independently expand scope or improvise workarounds.
+
+STOP always means graceful stop: cease implementation, preserve and
+remotely hand off task work, document blockers, and safely clean up
+according to the delivery rules below.
+
+Do not stop for unrelated cosmetic issues or optional improvements.
+
+## Architecture and dependencies
+
+Only the current Ankhorage architecture is valid.
+
+- No deprecated APIs, compatibility shims, historical fallbacks,
+  or dual implementation paths.
+- Remove superseded implementations only within authorized work.
+- Temporary migration paths require explicit authorization.
+- Repositories must remain standalone, independently installable,
+  buildable, testable, and usable with declared dependencies.
+- No unpublished sibling sources, workspace/file/link dependencies,
+  hidden organization-local state, or implicit deployment assumptions.
+- Cross-package imports must use published public APIs.
+- Published packages must remain consumer-agnostic.
+- Provider-specific behavior belongs behind explicit boundaries.
+
+If implementation requires changes in another repository, STOP.
+Identify the repository, required change, and blocker.
+Wait for explicit instructions.
+
+Report unrelated architecture violations in a PR Conversation comment
+with location, evidence, and impact. Never fix them independently.
+Link directly to the comment in the final chat response.
+
+## Dependencies
+
+- Use `bun install` for development and restoring existing dependencies.
+- Use `bun update` for authorized existing dependency updates.
+- Never add new dependencies without explicit user approval.
+- Never downgrade dependencies.
+- Do not perform dependency migrations or unrelated refactoring.
+- Evaluate reputable existing packages before reimplementing their
+  functionality; propose new dependencies for approval.
+- Keep `package.json` and `bun.lock` synchronized and commit their changes.
+- Use `--frozen-lockfile` for reproducible CI and release builds.
+
+## Managed and generated files
+
+Never directly edit generated or centrally managed files, including
+`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, managed workflows, managed skills,
+and generated documentation.
+
+Read-only inspection is permitted.
+
+Changes require explicit user authorization and must be implemented
+through the canonical owner or generator.
+
+If a protected file needs changes, STOP and report its owner.
+Never modify generated output as a workaround.
+
+## Database and infrastructure
+
+Database schema changes, data migrations, destructive operations,
+and infrastructure mutations require explicit task authorization.
+
+Otherwise STOP and report the proposed changes, impact, risks,
+and rollback requirements.
+
+Never independently modify database structures or existing data.
+
+## Security
+
+All security findings (P0–P3) are hard blockers.
+
+On detection:
+
+- STOP implementation immediately and perform graceful handoff.
+- Report all findings as a prioritized P0–P3 list with evidence.
+- Do not fix, bypass, merge, or deploy.
+- Wait for explicit user instructions.
+
+This includes pre-existing security vulnerabilities.
+
+## Repository instructions and skills
+
+Before editing, read `AGENTS.md` and inspect `.agents/skills/`.
+
+Load:
+
+- `.agents/skills/ankhorage-coding-rules/SKILL.md`
+- `.agents/skills/ankhorage-project-structure/SKILL.md`
+- Additional repository-local skills when applicable or required.
+
+Follow applicable skills without expanding task scope.
+STOP only when implementation would violate a mandatory requirement.
+
+Never substitute generic or remembered instructions for repository-local
+skills.
+
+Skill scripts must use TypeScript (`.ts`) and run with Bun.
+JavaScript skill scripts (`.js`, `.mjs`, `.cjs`) are prohibited.
 
 ## Documentation
 
-`README.md` and the `paradox/` documentation tree are generated by `@ankhorage/paradox`.
-Never edit generated documentation directly. Update the owning Paradox `/*** ... */` comments in
-`src`, including `@readme` tags where the content belongs in the README, then run `bun docs`
-and commit the regenerated artifacts.
+`README.md` and configured Paradox output are release-generated artifacts.
+Never edit or commit them in ordinary feature PRs.
 
-## Pull requests
+Update only relevant Paradox `/*** ... */` comments, real
+`examples/<example>/...` usage sources, and necessary manual documentation.
 
-Before creating a pull request, run all of these commands in this order and resolve every failure:
+The release workflow regenerates documentation after the version bump.
+Do not generate unrelated documentation or examples.
 
-```sh
-bun run build
-bun run check-types
-bun run lint
-bun run knip:check
-bun run changeset
-bun run format
-```
+## Testing, validation and review
 
-## Skill scripts
+- Create new unit tests only.
+- Never introduce new E2E, smoke, integration, browser, simulator,
+  performance, or other non-unit tests without explicit authorization.
+- Existing tests of all types may be executed, corrected, and extended
+  with directly relevant assertions within the authorized task.
+- Never weaken assertions to conceal regressions.
+- Run applicable mandatory CI checks without weakening or bypassing them.
+- Do not invent additional test matrices or acceptance criteria.
+- Recommend additional non-unit tests in the final handoff if useful.
+  Their non-creation is not a blocker.
 
-Scripts inside an Agent Skill must always be TypeScript files with the `.ts` extension.
-JavaScript skill scripts using `.js`, `.mjs`, or `.cjs` are not allowed. Run TypeScript
-skill scripts with Bun.
+Run existing mandatory build, typecheck, lint, Knip, formatting,
+and other quality checks.
+
+- Fix task-introduced failures within scope.
+- Report unrelated or pre-existing failures without fixing them.
+- Do not repeatedly rerun unchanged failures without new evidence.
+- Never disable, bypass, or falsify mandatory checks.
+
+Review against original requirements and mandatory contracts.
+
+Blocking findings require evidence of incorrect requested behavior,
+introduced regressions, or mandatory contract violations.
+Security findings always follow the Security hard-blocker policy.
+
+Optional improvements and unrelated findings are non-blocking.
+Document them in PR Conversation comments.
+
+Reviewers cannot expand scope or introduce acceptance criteria.
+Report failed and unverified checks accurately.
+
+## GitHub task lifecycle and delivery
+
+Treat each issue, PR, review, and change request as an independent task.
+
+- Fetch current origin/main, issue, PR, HEAD, review, and CI state.
+- Use a fresh isolated checkout or worktree for every task.
+- Isolate concurrent workspaces, builds, temporary files, and caches.
+- Continue change requests on the existing PR branch.
+- Preserve unrelated user work and existing PR history.
+- Use Conventional Commits and PR titles.
+- Assign all issues and PRs to `artiphishle`.
+- Never assign or request PR reviews from any user or team.
+- Leave the requested reviewers list empty; report review readiness in the handoff.
+- Link issues to PRs and close issues only when completed.
+- Never merge without explicit authorization.
+
+Review the final diff and remove unauthorized changes.
+
+For every task with changes, including blocked tasks:
+
+1. Commit all recoverable task changes.
+2. Push to the intended remote branch.
+3. Verify the exact remote HEAD SHA.
+4. Document blockers and findings in the PR.
+5. Keep incomplete or blocked PRs in Draft.
+6. Safely clean up task-owned temporary workspaces.
+
+A recovery commit does not imply successful completion.
+
+If remote persistence is technically impossible, preserve local work
+and report the failed handoff, unpushed commits, and recovery location.
+Never discard unpushed work to satisfy cleanup requirements.
+
+Cleanup may remove only task-owned paths strictly beneath the resolved
+system `/tmp` path (`/private/tmp` on macOS), using Git-aware removal.
+
+Never remove unrelated work, shared paths, or unpersisted data.
+Report cleanup success, failure, or omission.
+
+Read-only reviews report findings without creating commits.
+
+## Pull requests and release preparation
+
+Run applicable mandatory validation:
+
+- `bun run build`
+- `bun run check-types`
+- `bun run lint`
+- `bun run knip:check`
+- Relevant unit tests and existing mandatory tests
+
+Create the required Changeset for release-impacting work.
+No release impact means no Changeset. Never create empty Changesets.
+
+After Changeset creation, run `bun run format` as the final regular
+file-writing validation operation.
+
+Then run applicable read-only checks:
+
+- `bun run format:check`
+- `bun run changeset:status`
+
+Include the Changeset file in formatting.
+Repeat necessary final checks after subsequent file modifications.
+
+Formatting must not introduce unrelated changes into the final diff.
+
+A Draft PR may document blocked or partially verified work.
+Never claim failing or unverified mandatory checks have passed.
+
+Complete the delivery and cleanup process defined above.

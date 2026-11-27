@@ -8,7 +8,7 @@ import type { ProjectDetectorCliContext } from '../../types/cli.js';
 /*** Map the inspect command to read-only inspection and serializable JSON output. */
 export const inspect = {
   path: ['inspect'],
-  capability: 'project-detector.inspect' satisfies Capability['id'],
+  capability: 'project-detector.inspect' as const satisfies Capability['id'],
   summary: 'Inspect project languages, packages and workspaces without executing project code.',
   executeAsync: async (
     argv: readonly string[],

@@ -185,7 +185,14 @@
       <aside class="sidebar">
         <p class="muted">Generated with Paradox</p>
         <h1>@ankhorage/project-detector</h1>
-        <p>Extensible, evidence-based project detection and safe filesystem inspection.</p>
+        <p>
+          Detects project languages, frameworks, runtimes, packages, workspaces, and manifests
+          through pure evidence analysis and bounded filesystem inspection.
+        </p>
+        <p>
+          Give standalone tools safe, extensible project evidence without executing inspected
+          project code.
+        </p>
         <input id="search" class="search" type="search" placeholder="Search current view" />
         <nav aria-label="Documentation sections">
           <ul class="nav-list">
@@ -337,7 +344,7 @@
             <div class="summary">
               <div><strong>20</strong><span class="muted">public exports</span></div>
               <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>30</strong><span class="muted">modules</span></div>
+              <div><strong>32</strong><span class="muted">modules</span></div>
               <div><strong>2</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -347,6 +354,17 @@
             </ul>
           </section>
 
+          <section class="panel" data-search="usage ankh project-detector --help">
+            <h2>Usage</h2>
+            <article class="item">
+              <h3>CLI</h3>
+              <pre>ankh project-detector --help</pre>
+            </article>
+          </section>
+          <section class="panel">
+            <h2>Policy</h2>
+            <p>No documentation findings.</p>
+          </section>
           <section class="panel">
             <h2>Modules</h2>
             <article
@@ -375,6 +393,24 @@
             </article>
             <article
               class="item"
+              data-search="src/capabilities/index.test.ts package.json src/capabilities/index.ts src/cli/createCliProvider.ts"
+            >
+              <h3>src/capabilities/index.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>package.json</code>,
+                <code>src/capabilities/index.ts</code>, <code>src/cli/createCliProvider.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
+            <article class="item" data-search="src/capabilities/index.ts CAPABILITIES">
+              <h3>src/capabilities/index.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p><strong>Exports:</strong> <code>CAPABILITIES</code></p>
+            </article>
+            <article
+              class="item"
               data-search="src/cli/commands/inspect.ts src/features/inspection/composition/inspectProjectAsync.ts src/types/cli.ts inspect"
             >
               <h3>src/cli/commands/inspect.ts</h3>
@@ -388,13 +424,13 @@
             </article>
             <article
               class="item"
-              data-search="src/cli/createCliProvider.ts src/cli/commands/inspect.ts src/cli/runAsync.ts createCliProvider"
+              data-search="src/cli/createCliProvider.ts src/capabilities/index.ts src/cli/commands/inspect.ts src/cli/runAsync.ts createCliProvider"
             >
               <h3>src/cli/createCliProvider.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
-                <strong>Dependencies:</strong> <code>src/cli/commands/inspect.ts</code>,
-                <code>src/cli/runAsync.ts</code>
+                <strong>Dependencies:</strong> <code>src/capabilities/index.ts</code>,
+                <code>src/cli/commands/inspect.ts</code>, <code>src/cli/runAsync.ts</code>
               </p>
               <p><strong>Exports:</strong> <code>createCliProvider</code></p>
             </article>
@@ -412,13 +448,13 @@
             </article>
             <article
               class="item"
-              data-search="src/cli/runAsync.test.ts src/cli/createCliProvider.ts src/cli/runAsync.ts"
+              data-search="src/cli/runAsync.test.ts src/capabilities/index.ts src/cli/createCliProvider.ts src/cli/runAsync.ts"
             >
               <h3>src/cli/runAsync.test.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
-                <strong>Dependencies:</strong> <code>src/cli/createCliProvider.ts</code>,
-                <code>src/cli/runAsync.ts</code>
+                <strong>Dependencies:</strong> <code>src/capabilities/index.ts</code>,
+                <code>src/cli/createCliProvider.ts</code>, <code>src/cli/runAsync.ts</code>
               </p>
               <p><strong>Exports:</strong> <span class="empty">None</span></p>
             </article>
@@ -728,9 +764,10 @@
               <article
                 class="item"
                 id="symbol-detectproject"
-                data-search="detectProject function src/features/detection/application/detectProject.ts Detect overlapping project languages, frameworks, runtimes and package-manager evidence.&#10;&#10;The pure API accepts package metadata plus optional relative POSIX file paths and manifest text.&#10;JavaScript, TypeScript, Java, Kotlin, C++, Python and Delphi evidence is additive, never exclusive.&#10;Generic Make/CMake/Gradle files identify build tools, not necessarily a source language.&#10;Scores are heuristic strengths, not confidence probabilities. No source parser, registry request,&#10;dependency update, migration, filesystem operation or inspected project script runs here.&#10;Extend detection with explicitly supplied trusted detector callbacks; IDs must be unique.&#10;Public types are owned by this package and exported through `@ankhorage/project-detector/types`. ProjectDetection ProjectDetectionInput ProjectDetectionOptions (input: ProjectDetectionInput, options?: ProjectDetectionOptions) =&gt; ProjectDetection"
+                data-search="detectProject  function src/features/detection/application/detectProject.ts Detect overlapping project languages, frameworks, runtimes and package-manager evidence.&#10;&#10;The pure API accepts package metadata plus optional relative POSIX file paths and manifest text.&#10;JavaScript, TypeScript, Java, Kotlin, C++, Python and Delphi evidence is additive, never exclusive.&#10;Generic Make/CMake/Gradle files identify build tools, not necessarily a source language.&#10;Scores are heuristic strengths, not confidence probabilities. No source parser, registry request,&#10;dependency update, migration, filesystem operation or inspected project script runs here.&#10;Extend detection with explicitly supplied trusted detector callbacks; IDs must be unique.&#10;Public types are owned by this package and exported through `@ankhorage/project-detector/types`. ProjectDetection ProjectDetectionInput ProjectDetectionOptions (input: ProjectDetectionInput, options?: ProjectDetectionOptions) =&gt; ProjectDetection"
               >
                 <h4>detectProject</h4>
+
                 <p class="muted">
                   function • <code>src/features/detection/application/detectProject.ts:24:1</code>
                 </p>
@@ -746,6 +783,7 @@
                   IDs must be unique. Public types are owned by this package and exported through
                   `@ankhorage/project-detector/types`.
                 </p>
+
                 <p><strong>Export paths:</strong> <code>src/projectDetector.ts</code></p>
                 <div>
                   <strong>Related symbols:</strong>
@@ -792,9 +830,10 @@
               <article
                 class="item"
                 id="symbol-inspectwithportasync"
-                data-search="inspectWithPortAsync function src/features/inspection/application/inspectWithPortAsync.ts Inspect a snapshot through an injected evidence source; keep I/O outside project classification. ProjectInspection ProjectInspectionOptions ProjectInspectionPort (path: string, port: ProjectInspectionPort, options?: ProjectInspectionOptions) =&gt; Promise&lt;ProjectInspection&gt;"
+                data-search="inspectWithPortAsync  function src/features/inspection/application/inspectWithPortAsync.ts Inspect a snapshot through an injected evidence source; keep I/O outside project classification. ProjectInspection ProjectInspectionOptions ProjectInspectionPort (path: string, port: ProjectInspectionPort, options?: ProjectInspectionOptions) =&gt; Promise&lt;ProjectInspection&gt;"
               >
                 <h4>inspectWithPortAsync</h4>
+
                 <p class="muted">
                   function •
                   <code>src/features/inspection/application/inspectWithPortAsync.ts:20:1</code>
@@ -803,6 +842,7 @@
                   Inspect a snapshot through an injected evidence source; keep I/O outside project
                   classification.
                 </p>
+
                 <p><strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code></p>
                 <div>
                   <strong>Related symbols:</strong>
@@ -855,9 +895,10 @@
               <article
                 class="item"
                 id="symbol-inspectprojectasync"
-                data-search="inspectProjectAsync function src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,&#10;including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped&#10;with path-bearing warnings; they do not alone make a scan incomplete. Their targets&#10;are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;Returned `directories` and `files` are sorted relative POSIX paths from the pruned scan.&#10;The directory inventory includes empty directories and omits the inspection root itself.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials. ProjectInspection ProjectInspectionOptions (path: string, options?: ProjectInspectionOptions) =&gt; Promise&lt;ProjectInspection&gt;"
+                data-search="inspectProjectAsync  function src/features/inspection/composition/inspectProjectAsync.ts Inspect a directory using bounded, asynchronous, read-only filesystem access.&#10;&#10;Import from `@ankhorage/project-detector/node`. Defaults: depth 16, 20,000 entries,&#10;256 KiB per manifest and 8 MiB total manifest text. Dependency/build/cache directories,&#10;including generated `.ankh`, are pruned. Symlinks outside exclusions are skipped&#10;with path-bearing warnings; they do not alone make a scan incomplete. Their targets&#10;are never intentionally scanned. Pass an AbortSignal to cancel.&#10;Configure additional manifest basenames and detector callbacks for new ecosystems.&#10;Package/workspace membership currently resolves JavaScript package.json workspaces and pnpm YAML;&#10;other ecosystem manifests are identified, not fully resolved into dependency graphs.&#10;No inspected JavaScript, Gradle, Python, executable config or install script is executed.&#10;Inspection is a best-effort snapshot, not a sandbox against concurrent hostile filesystem edits.&#10;Returned `directories` and `files` are sorted relative POSIX paths from the pruned scan.&#10;The directory inventory includes empty directories and omits the inspection root itself.&#10;The result reports incompleteness; it never grants permission to run an update.&#10;On a complete scan output is sorted; when a budget is exhausted the retained subset depends&#10;on filesystem enumeration order. Inspect a stable checkout for reproducible results.&#10;Install with `npm install @ankhorage/project-detector`; the standalone command is&#10;`npx --package @ankhorage/project-detector project-detector inspect .`.&#10;With Ankh installed, use `ankh project-detector inspect .`.&#10;CLI exit codes are 0 for a complete scan, 1 for invocation/root errors and 2 for partial scans.&#10;Release automation requires the organization release App configuration and npm publishing&#10;authorization for this new package; repository files alone do not provision these credentials. ProjectInspection ProjectInspectionOptions (path: string, options?: ProjectInspectionOptions) =&gt; Promise&lt;ProjectInspection&gt;"
               >
                 <h4>inspectProjectAsync</h4>
+
                 <p class="muted">
                   function •
                   <code>src/features/inspection/composition/inspectProjectAsync.ts:31:1</code>
@@ -888,6 +929,7 @@
                   configuration and npm publishing authorization for this new package; repository
                   files alone do not provision these credentials.
                 </p>
+
                 <p><strong>Export paths:</strong> <code>src/nodeProjectDetector.ts</code></p>
                 <div>
                   <strong>Related symbols:</strong>
@@ -933,9 +975,10 @@
               <article
                 class="item"
                 id="symbol-projectdetectorclicontext"
-                data-search="ProjectDetectorCliContext type src/types/cli.ts "
+                data-search="ProjectDetectorCliContext  type src/types/cli.ts "
               >
                 <h4>ProjectDetectorCliContext</h4>
+
                 <p class="muted">type • <code>src/types/cli.ts:1:1</code></p>
 
                 <p>
@@ -985,9 +1028,10 @@
               <article
                 class="item"
                 id="symbol-attributedfinding"
-                data-search="AttributedFinding type src/types/detection.ts "
+                data-search="AttributedFinding  type src/types/detection.ts "
               >
                 <h4>AttributedFinding</h4>
+
                 <p class="muted">type • <code>src/types/detection.ts:46:1</code></p>
 
                 <p>
@@ -1054,9 +1098,10 @@
               <article
                 class="item"
                 id="symbol-detectedlanguage"
-                data-search="DetectedLanguage type src/types/detection.ts "
+                data-search="DetectedLanguage  type src/types/detection.ts "
               >
                 <h4>DetectedLanguage</h4>
+
                 <p class="muted">type • <code>src/types/detection.ts:50:1</code></p>
 
                 <p>
@@ -1110,9 +1155,10 @@
               <article
                 class="item"
                 id="symbol-detectionfinding"
-                data-search="DetectionFinding type src/types/detection.ts "
+                data-search="DetectionFinding  type src/types/detection.ts "
               >
                 <h4>DetectionFinding</h4>
+
                 <p class="muted">type • <code>src/types/detection.ts:18:1</code></p>
 
                 <p>
@@ -1172,9 +1218,10 @@
               <article
                 class="item"
                 id="symbol-projectdependencymap"
-                data-search="ProjectDependencyMap unknown src/types/detection.ts "
+                data-search="ProjectDependencyMap  unknown src/types/detection.ts "
               >
                 <h4>ProjectDependencyMap</h4>
+
                 <p class="muted">unknown • <code>src/types/detection.ts:1:1</code></p>
 
                 <p>
@@ -1186,9 +1233,10 @@
               <article
                 class="item"
                 id="symbol-projectdetection"
-                data-search="ProjectDetection type src/types/detection.ts  AttributedFinding DetectedLanguage ProjectDiagnostic"
+                data-search="ProjectDetection  type src/types/detection.ts  AttributedFinding DetectedLanguage ProjectDiagnostic"
               >
                 <h4>ProjectDetection</h4>
+
                 <p class="muted">type • <code>src/types/detection.ts:57:1</code></p>
 
                 <p>
@@ -1263,9 +1311,10 @@
               <article
                 class="item"
                 id="symbol-projectdetectioninput"
-                data-search="ProjectDetectionInput type src/types/detection.ts "
+                data-search="ProjectDetectionInput  type src/types/detection.ts "
               >
                 <h4>ProjectDetectionInput</h4>
+
                 <p class="muted">type • <code>src/types/detection.ts:5:1</code></p>
 
                 <p>
@@ -1347,9 +1396,10 @@
               <article
                 class="item"
                 id="symbol-projectdetectionoptions"
-                data-search="ProjectDetectionOptions type src/types/detection.ts  ProjectDetector"
+                data-search="ProjectDetectionOptions  type src/types/detection.ts  ProjectDetector"
               >
                 <h4>ProjectDetectionOptions</h4>
+
                 <p class="muted">type • <code>src/types/detection.ts:33:1</code></p>
 
                 <p>
@@ -1387,9 +1437,10 @@
               <article
                 class="item"
                 id="symbol-projectdetector"
-                data-search="ProjectDetector type src/types/detection.ts  DetectionFinding ProjectDetectionInput"
+                data-search="ProjectDetector  type src/types/detection.ts  DetectionFinding ProjectDetectionInput"
               >
                 <h4>ProjectDetector</h4>
+
                 <p class="muted">type • <code>src/types/detection.ts:27:1</code></p>
 
                 <p>
@@ -1439,9 +1490,10 @@
               <article
                 class="item"
                 id="symbol-projectdiagnostic"
-                data-search="ProjectDiagnostic type src/types/detection.ts "
+                data-search="ProjectDiagnostic  type src/types/detection.ts "
               >
                 <h4>ProjectDiagnostic</h4>
+
                 <p class="muted">type • <code>src/types/detection.ts:38:1</code></p>
 
                 <p>
@@ -1495,9 +1547,10 @@
               <article
                 class="item"
                 id="symbol-projecttrait"
-                data-search="ProjectTrait unknown src/types/detection.ts "
+                data-search="ProjectTrait  unknown src/types/detection.ts "
               >
                 <h4>ProjectTrait</h4>
+
                 <p class="muted">unknown • <code>src/types/detection.ts:3:1</code></p>
 
                 <p>
@@ -1512,9 +1565,10 @@
               <article
                 class="item"
                 id="symbol-inspectedpackage"
-                data-search="InspectedPackage type src/types/inspection.ts  ProjectDetection"
+                data-search="InspectedPackage  type src/types/inspection.ts  ProjectDetection"
               >
                 <h4>InspectedPackage</h4>
+
                 <p class="muted">type • <code>src/types/inspection.ts:32:1</code></p>
 
                 <p>
@@ -1573,9 +1627,10 @@
               <article
                 class="item"
                 id="symbol-inspectedworkspace"
-                data-search="InspectedWorkspace type src/types/inspection.ts "
+                data-search="InspectedWorkspace  type src/types/inspection.ts "
               >
                 <h4>InspectedWorkspace</h4>
+
                 <p class="muted">type • <code>src/types/inspection.ts:39:1</code></p>
 
                 <p>
@@ -1629,9 +1684,10 @@
               <article
                 class="item"
                 id="symbol-projectinspection"
-                data-search="ProjectInspection type src/types/inspection.ts  InspectedPackage InspectedWorkspace ProjectDetection ProjectDiagnostic"
+                data-search="ProjectInspection  type src/types/inspection.ts  InspectedPackage InspectedWorkspace ProjectDetection ProjectDiagnostic"
               >
                 <h4>ProjectInspection</h4>
+
                 <p class="muted">type • <code>src/types/inspection.ts:46:1</code></p>
 
                 <p>
@@ -1728,9 +1784,10 @@
               <article
                 class="item"
                 id="symbol-projectinspectionoptions"
-                data-search="ProjectInspectionOptions type src/types/inspection.ts  ProjectDetector"
+                data-search="ProjectInspectionOptions  type src/types/inspection.ts  ProjectDetector"
               >
                 <h4>ProjectInspectionOptions</h4>
+
                 <p class="muted">type • <code>src/types/inspection.ts:3:1</code></p>
 
                 <p>
@@ -1831,9 +1888,10 @@
               <article
                 class="item"
                 id="symbol-projectinspectionport"
-                data-search="ProjectInspectionPort type src/types/inspection.ts  ProjectInspectionOptions ProjectSnapshot"
+                data-search="ProjectInspectionPort  type src/types/inspection.ts  ProjectInspectionOptions ProjectSnapshot"
               >
                 <h4>ProjectInspectionPort</h4>
+
                 <p class="muted">type • <code>src/types/inspection.ts:28:1</code></p>
 
                 <p>
@@ -1877,9 +1935,10 @@
               <article
                 class="item"
                 id="symbol-projectsnapshot"
-                data-search="ProjectSnapshot type src/types/inspection.ts  ProjectDiagnostic"
+                data-search="ProjectSnapshot  type src/types/inspection.ts  ProjectDiagnostic"
               >
                 <h4>ProjectSnapshot</h4>
+
                 <p class="muted">type • <code>src/types/inspection.ts:19:1</code></p>
 
                 <p>
@@ -1977,6 +2036,13 @@
                 module_package_json[&quot;package.json&quot;] package__ankhorage_project_detector
                 -.-&gt; module_package_json module_paradox_config_ts[&quot;paradox.config.ts&quot;]
                 package__ankhorage_project_detector -.-&gt; module_paradox_config_ts
+                module_src_capabilities_index_test_ts[&quot;src/capabilities/index.test.ts&quot;]
+                package__ankhorage_project_detector -.-&gt; module_src_capabilities_index_test_ts
+                module_src_capabilities_index_test_ts --&gt; module_package_json
+                module_src_capabilities_index_test_ts --&gt; module_src_capabilities_index_ts
+                module_src_capabilities_index_test_ts --&gt; module_src_cli_createCliProvider_ts
+                module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+                package__ankhorage_project_detector -.-&gt; module_src_capabilities_index_ts
                 module_src_cli_commands_inspect_ts[&quot;src/cli/commands/inspect.ts&quot;]
                 package__ankhorage_project_detector -.-&gt; module_src_cli_commands_inspect_ts
                 module_src_cli_commands_inspect_ts --&gt;
@@ -1984,6 +2050,7 @@
                 module_src_cli_commands_inspect_ts --&gt; module_src_types_cli_ts
                 module_src_cli_createCliProvider_ts[&quot;src/cli/createCliProvider.ts&quot;]
                 package__ankhorage_project_detector -.-&gt; module_src_cli_createCliProvider_ts
+                module_src_cli_createCliProvider_ts --&gt; module_src_capabilities_index_ts
                 module_src_cli_createCliProvider_ts --&gt; module_src_cli_commands_inspect_ts
                 module_src_cli_createCliProvider_ts --&gt; module_src_cli_runAsync_ts
                 module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
@@ -1992,6 +2059,7 @@
                 --&gt; module_src_cli_createCliProvider_ts
                 module_src_cli_runAsync_test_ts[&quot;src/cli/runAsync.test.ts&quot;]
                 package__ankhorage_project_detector -.-&gt; module_src_cli_runAsync_test_ts
+                module_src_cli_runAsync_test_ts --&gt; module_src_capabilities_index_ts
                 module_src_cli_runAsync_test_ts --&gt; module_src_cli_createCliProvider_ts
                 module_src_cli_runAsync_test_ts --&gt; module_src_cli_runAsync_ts
                 module_src_cli_runAsync_ts[&quot;src/cli/runAsync.ts&quot;]
@@ -2143,12 +2211,20 @@ graph TD
   package__ankhorage_project_detector -.-&gt; module_package_json
   module_paradox_config_ts[&quot;paradox.config.ts&quot;]
   package__ankhorage_project_detector -.-&gt; module_paradox_config_ts
+  module_src_capabilities_index_test_ts[&quot;src/capabilities/index.test.ts&quot;]
+  package__ankhorage_project_detector -.-&gt; module_src_capabilities_index_test_ts
+  module_src_capabilities_index_test_ts --&gt; module_package_json
+  module_src_capabilities_index_test_ts --&gt; module_src_capabilities_index_ts
+  module_src_capabilities_index_test_ts --&gt; module_src_cli_createCliProvider_ts
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  package__ankhorage_project_detector -.-&gt; module_src_capabilities_index_ts
   module_src_cli_commands_inspect_ts[&quot;src/cli/commands/inspect.ts&quot;]
   package__ankhorage_project_detector -.-&gt; module_src_cli_commands_inspect_ts
   module_src_cli_commands_inspect_ts --&gt; module_src_features_inspection_composition_inspectProjectAsync_ts
   module_src_cli_commands_inspect_ts --&gt; module_src_types_cli_ts
   module_src_cli_createCliProvider_ts[&quot;src/cli/createCliProvider.ts&quot;]
   package__ankhorage_project_detector -.-&gt; module_src_cli_createCliProvider_ts
+  module_src_cli_createCliProvider_ts --&gt; module_src_capabilities_index_ts
   module_src_cli_createCliProvider_ts --&gt; module_src_cli_commands_inspect_ts
   module_src_cli_createCliProvider_ts --&gt; module_src_cli_runAsync_ts
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
@@ -2157,6 +2233,7 @@ graph TD
   module_src_cli_provider_ts --&gt; module_src_cli_createCliProvider_ts
   module_src_cli_runAsync_test_ts[&quot;src/cli/runAsync.test.ts&quot;]
   package__ankhorage_project_detector -.-&gt; module_src_cli_runAsync_test_ts
+  module_src_cli_runAsync_test_ts --&gt; module_src_capabilities_index_ts
   module_src_cli_runAsync_test_ts --&gt; module_src_cli_createCliProvider_ts
   module_src_cli_runAsync_test_ts --&gt; module_src_cli_runAsync_ts
   module_src_cli_runAsync_ts[&quot;src/cli/runAsync.ts&quot;]
@@ -2254,6 +2331,8 @@ graph TD
                 module_examples_basic_usage_inspect_ts[&quot;examples/basic-usage/inspect.ts&quot;]
                 module_package_json[&quot;package.json&quot;]
                 module_paradox_config_ts[&quot;paradox.config.ts&quot;]
+                module_src_capabilities_index_test_ts[&quot;src/capabilities/index.test.ts&quot;]
+                module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
                 module_src_cli_commands_inspect_ts[&quot;src/cli/commands/inspect.ts&quot;]
                 module_src_cli_createCliProvider_ts[&quot;src/cli/createCliProvider.ts&quot;]
                 module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
@@ -2283,13 +2362,18 @@ graph TD
                 module_src_types_public_ts[&quot;src/types/public.ts&quot;]
                 module_examples_basic_usage_inspect_ts --&gt; module_dist_nodeProjectDetector_d_ts
                 module_examples_basic_usage_inspect_ts --&gt; module_dist_projectDetector_d_ts
+                module_src_capabilities_index_test_ts --&gt; module_package_json
+                module_src_capabilities_index_test_ts --&gt; module_src_capabilities_index_ts
+                module_src_capabilities_index_test_ts --&gt; module_src_cli_createCliProvider_ts
                 module_src_cli_commands_inspect_ts --&gt;
                 module_src_features_inspection_composition_inspectProjectAsync_ts
                 module_src_cli_commands_inspect_ts --&gt; module_src_types_cli_ts
+                module_src_cli_createCliProvider_ts --&gt; module_src_capabilities_index_ts
                 module_src_cli_createCliProvider_ts --&gt; module_src_cli_commands_inspect_ts
                 module_src_cli_createCliProvider_ts --&gt; module_src_cli_runAsync_ts
                 module_src_cli_provider_ts --&gt; module_package_json module_src_cli_provider_ts
                 --&gt; module_src_cli_createCliProvider_ts module_src_cli_runAsync_test_ts --&gt;
+                module_src_capabilities_index_ts module_src_cli_runAsync_test_ts --&gt;
                 module_src_cli_createCliProvider_ts module_src_cli_runAsync_test_ts --&gt;
                 module_src_cli_runAsync_ts module_src_cli_runAsync_ts --&gt;
                 module_src_cli_commands_inspect_ts module_src_cli_runAsync_ts --&gt;
@@ -2369,6 +2453,8 @@ graph LR
   module_examples_basic_usage_inspect_ts[&quot;examples/basic-usage/inspect.ts&quot;]
   module_package_json[&quot;package.json&quot;]
   module_paradox_config_ts[&quot;paradox.config.ts&quot;]
+  module_src_capabilities_index_test_ts[&quot;src/capabilities/index.test.ts&quot;]
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_cli_commands_inspect_ts[&quot;src/cli/commands/inspect.ts&quot;]
   module_src_cli_createCliProvider_ts[&quot;src/cli/createCliProvider.ts&quot;]
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
@@ -2398,12 +2484,17 @@ graph LR
   module_src_types_public_ts[&quot;src/types/public.ts&quot;]
   module_examples_basic_usage_inspect_ts --&gt; module_dist_nodeProjectDetector_d_ts
   module_examples_basic_usage_inspect_ts --&gt; module_dist_projectDetector_d_ts
+  module_src_capabilities_index_test_ts --&gt; module_package_json
+  module_src_capabilities_index_test_ts --&gt; module_src_capabilities_index_ts
+  module_src_capabilities_index_test_ts --&gt; module_src_cli_createCliProvider_ts
   module_src_cli_commands_inspect_ts --&gt; module_src_features_inspection_composition_inspectProjectAsync_ts
   module_src_cli_commands_inspect_ts --&gt; module_src_types_cli_ts
+  module_src_cli_createCliProvider_ts --&gt; module_src_capabilities_index_ts
   module_src_cli_createCliProvider_ts --&gt; module_src_cli_commands_inspect_ts
   module_src_cli_createCliProvider_ts --&gt; module_src_cli_runAsync_ts
   module_src_cli_provider_ts --&gt; module_package_json
   module_src_cli_provider_ts --&gt; module_src_cli_createCliProvider_ts
+  module_src_cli_runAsync_test_ts --&gt; module_src_capabilities_index_ts
   module_src_cli_runAsync_test_ts --&gt; module_src_cli_createCliProvider_ts
   module_src_cli_runAsync_test_ts --&gt; module_src_cli_runAsync_ts
   module_src_cli_runAsync_ts --&gt; module_src_cli_commands_inspect_ts
@@ -2454,6 +2545,8 @@ graph LR
                 module_examples_basic_usage_inspect_ts[&quot;examples/basic-usage/inspect.ts&quot;]
                 module_package_json[&quot;package.json&quot;]
                 module_paradox_config_ts[&quot;paradox.config.ts&quot;]
+                module_src_capabilities_index_test_ts[&quot;src/capabilities/index.test.ts&quot;]
+                module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
                 module_src_cli_commands_inspect_ts[&quot;src/cli/commands/inspect.ts&quot;]
                 module_src_cli_createCliProvider_ts[&quot;src/cli/createCliProvider.ts&quot;]
                 module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
@@ -2548,6 +2641,8 @@ graph LR
   module_examples_basic_usage_inspect_ts[&quot;examples/basic-usage/inspect.ts&quot;]
   module_package_json[&quot;package.json&quot;]
   module_paradox_config_ts[&quot;paradox.config.ts&quot;]
+  module_src_capabilities_index_test_ts[&quot;src/capabilities/index.test.ts&quot;]
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_cli_commands_inspect_ts[&quot;src/cli/commands/inspect.ts&quot;]
   module_src_cli_createCliProvider_ts[&quot;src/cli/createCliProvider.ts&quot;]
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
@@ -2718,6 +2813,11 @@ sequenceDiagram
               </details>
             </article>
           </section>
+          <section class="panel" data-search="donation sponsor support">
+            <h2>Donation</h2>
+            <p>If this project is useful to you, you can support its continued development.</p>
+            <p><a href="https://github.com/sponsors/ankhorage">Support @ankhorage</a></p>
+          </section>
         </section>
         <section
           id="view-src-cli-createcliprovider-ts"
@@ -2732,7 +2832,7 @@ sequenceDiagram
               data-search="createCliProvider src/cli/createCliProvider.ts Create the Ankh CLI adapter without coupling the detection core to Ankh."
             >
               <h3>createCliProvider</h3>
-              <p class="muted"><code>src/cli/createCliProvider.ts:7:1</code></p>
+              <p class="muted"><code>src/cli/createCliProvider.ts:8:1</code></p>
               <p>Create the Ankh CLI adapter without coupling the detection core to Ankh.</p>
             </article>
           </section>
@@ -3104,7 +3204,7 @@ sequenceDiagram
             >
               <h3>createFixtureAsync</h3>
               <p class="muted">
-                <code>src/features/inspection/composition/inspectProjectAsync.test.ts:251:1</code>
+                <code>src/features/inspection/composition/inspectProjectAsync.test.ts:260:1</code>
               </p>
               <p class="empty">No description available.</p>
             </article>

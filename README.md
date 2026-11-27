@@ -3,20 +3,29 @@
 
 # @ankhorage/project-detector
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v0.3.2](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v0.3.6](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![paradox: canonical](././paradox/badges/docs.svg)
 
-Extensible, evidence-based project detection and safe filesystem inspection.
+Detects project languages, frameworks, runtimes, packages, workspaces, and manifests through pure evidence analysis and bounded filesystem inspection.
 
-## Generated documentation
+Give standalone tools safe, extensible project evidence without executing inspected project code.
 
-- [Interactive documentation app](././paradox/index.html)
-- [Public API reference](././paradox/exports.md)
-- [Component registry](././paradox/components.md)
-- [Architecture overview](././paradox/diagrams/architecture-overview.mmd)
-- [Module relationships](././paradox/diagrams/module-relationships.mmd)
-- [Export graph](././paradox/diagrams/export-graph.mmd)
-- [detectProject sequence](././paradox/diagrams/sequences/detect-project.mmd)
-- [project-detector sequence](././paradox/diagrams/sequences/project-detector.mmd)
+## Usage
+
+### CLI
+
+Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.
+
+```zsh
+# Install the Ankhorage CLI
+bun add --global @ankhorage/ankh
+
+# Show usage information for project-detector
+ankh project-detector --help
+```
+
+## Documentation
+
+Open `./paradox/index.html` locally in your browser to browse the complete documentation.
 
 ## Public API
 
@@ -81,3 +90,13 @@ Source: `src/features/inspection/composition/inspectProjectAsync.ts:31:1`
 Related symbols: `ProjectInspection`, `ProjectInspectionOptions`
 
 </details>
+
+## Contributors
+
+<a href="https://github.com/artiphishle"><img src="https://avatars.githubusercontent.com/u/137318798?s=64" width="40" height="40" alt="artiphishle" /></a>
+
+## Donation
+
+If this project is useful to you, you can support its continued development.
+
+[Support @ankhorage](https://github.com/sponsors/ankhorage)
